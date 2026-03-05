@@ -83,6 +83,20 @@
       "autostart": true,
       "persistent": true,
       "priority": "critical"
+    },
+    "content": {
+      "file": "./agents/content/agent.json",
+      "autostart": false,
+      "persistent": true,
+      "priority": "high",
+      "spawnedBy": "ceo"
+    },
+    "designer": {
+      "file": "./agents/designer/agent.json",
+      "autostart": false,
+      "persistent": true,
+      "priority": "high",
+      "spawnedBy": "ceo"
     }
   },
 

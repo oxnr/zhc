@@ -28,13 +28,63 @@ docker build -t zhc .
 
 ## How It Works
 
-A CEO agent (Duke) boots up, plans a revenue strategy, and delegates work to specialist agents. Each agent runs autonomously — writing code, doing outreach, creating content, designing landing pages. All coordination happens through GitHub Issues and a shared memory layer.
+A Champion agent (Duke) boots up, plans a revenue strategy, and delegates work to specialist agents. Each agent runs autonomously — writing code, doing outreach, creating content, designing landing pages. All coordination happens through GitHub Issues and a shared memory layer.
 
-**Tasks are GitHub Issues.** The CEO creates issues, assigns them via labels, and a sync daemon polls GitHub every 30s to update the Kanban board. Agents close issues with proof-of-work comments.
+**Tasks are GitHub Issues.** The Champion creates issues, assigns them via labels, and a sync daemon polls GitHub every 30s to update the Kanban board. Agents close issues with proof-of-work comments.
 
 **Git is the backbone.** Commits, PRs, and issue activity feed into auto-generated daily summaries.
 
-**One container runs everything.** Dashboard, economy tracker, GitHub sync, and agents — managed by a bash entrypoint. The dashboard is the critical process; others can fail gracefully.
+**One container runs everything.** Mission Control dashboard, economy tracker, GitHub sync, and agents — managed by a bash entrypoint. The dashboard is the critical process; others can fail gracefully.
+
+## Built On
+
+ZHC combines three open-source frameworks into a single autonomous system:
+
+| Framework | Role in ZHC | Integration |
+|-----------|-------------|-------------|
+| [**OpenClaw**](https://openclaw.ai) | Agent gateway & model routing | `gateway/gateway.json` — routes tasks to the right model based on agent role, manages spawn rules and session lifecycle |
+| [**OpenAI Symphony**](https://github.com/openai/symphony) | Task lifecycle orchestration | `symphony/` — task board with states (INBOX → ASSIGNED → IN_PROGRESS → IN_REVIEW → DONE), proof-of-work protocol |
+| [**Agency Agents**](https://github.com/msitarzewski/agency-agents) | Specialist skill patterns | `skills/` — reusable skill files (rapid prototyper, growth hacking, finance tracker, analytics reporter, etc.) |
+
+**Mission Control** is the custom real-time dashboard (Express + WebSocket) that watches all file changes and pushes live updates to the browser.
+
+## Architecture
+
+```
+                        ┌─────────────────────────┐
+                        │     Mission Control      │
+                        │   Dashboard · API · WS   │
+                        │       (:4200)            │
+                        └────────────┬────────────┘
+                                     │
+                    ┌────────────────┼────────────────┐
+                    │        OpenClaw Gateway         │
+                    │  Model routing · Spawn rules    │
+                    │  gateway/gateway.json            │
+                    └────────────────┬────────────────┘
+                                     │
+                        ┌────────────▼────────────┐
+                        │    Duke (Champion)       │
+                        │ Strategy · Revenue · Del │
+                        └──┬───┬───┬───┬───┬──────┘
+                           │   │   │   │   │
+              ┌────────────┘   │   │   │   └────────────┐
+              │          ┌─────┘   │   └─────┐          │
+              ▼          ▼         ▼         ▼          ▼
+        ┌──────────┐┌────────┐┌────────┐┌─────────┐┌─────────┐
+        │Hackerman ││ Borat  ││ T-800  ││ Draper  ││ Picasso │
+        │Tech Lead ││Dealer  ││  Ops   ││ Content ││ Design  │
+        │Code+Ship ││Sales   ││Monitor ││Copy+SEO ││UI+Brand │
+        └────┬─────┘└───┬────┘└───┬────┘└────┬────┘└────┬────┘
+             │          │         │          │          │
+          Workers    Workers   Workers    Workers    Workers
+          (up to 5)  (up to 5) (up to 5) (up to 5) (up to 5)
+
+        ┌─────────────────────────────────────────────────────┐
+        │  Symphony Task Board · Economy Tracker · GitHub     │
+        │  Sync Daemon · Daily Summaries · Memory Layer       │
+        └─────────────────────────────────────────────────────┘
+```
 
 ## Agents
 
@@ -47,7 +97,7 @@ A CEO agent (Duke) boots up, plans a revenue strategy, and delegates work to spe
 | Content | Don Draper | Copy, blog, social media, SEO |
 | Designer | Picasso | UI/UX, landing pages, branding |
 
-Each agent has its own system prompt, skills, and tool access. The Champion delegates to leads, and each lead can spawn up to 5 worker agents.
+Each agent has its own system prompt, skills, and tool access defined in `agents/<role>/`. The Champion delegates to leads, and each lead can spawn up to 5 worker agents. Model routing is handled by the OpenClaw gateway — configure which models power which roles in `gateway/gateway.json`.
 
 ## Configuration
 
@@ -68,7 +118,7 @@ ZHC is model-agnostic. Configure which models and CLI tools your agents use:
 | `CODEX_CLI_PATH` | `codex` | CLI binary for coding agents |
 | `CODEX_MODEL` | `gpt-5.3-codex` | Model for code generation |
 
-Auth is handled by mounting your CLI config directories into the container. Whatever auth method your CLIs use (API keys, OAuth, subscriptions) works transparently.
+Model routing rules live in `gateway/gateway.json`. Auth is handled by mounting your CLI config directories into the container — whatever auth method your CLIs use (API keys, OAuth, subscriptions) works transparently.
 
 ### GitHub Integration
 
@@ -84,37 +134,10 @@ Auth is handled by mounting your CLI config directories into the container. What
 |----------|-------------|
 | `DASHBOARD_PORT` | Dashboard port (default: 4200) |
 | `DAILY_BUDGET_LIMIT` | Max daily spend on external services |
-| `CEO_HEARTBEAT_INTERVAL` | Seconds between CEO check-ins (default: 300) |
+| `CEO_HEARTBEAT_INTERVAL` | Seconds between Champion check-ins (default: 300) |
 | `CLOUDFLARE_API_TOKEN` | For deploying to Cloudflare Pages |
 
 See `.env.example` for all options.
-
-## Architecture
-
-```
-┌──────────────────────────────────────────────────────┐
-│                 SINGLE DOCKER CONTAINER               │
-│                                                       │
-│  ┌─────────────────────────────────────────────────┐  │
-│  │          MISSION CONTROL (:4200)                │  │
-│  │    Dashboard + Task Board + WebSocket + API     │  │
-│  └──────────────────────┬──────────────────────────┘  │
-│                         │                             │
-│  ┌──────────────────────▼──────────────────────────┐  │
-│  │            Duke (Champion)                      │  │
-│  │     Strategy · Revenue · Delegation             │  │
-│  └───┬──────┬──────┬──────┬──────┬─────────────────┘  │
-│      │      │      │      │      │                    │
-│  ┌───▼──┐┌──▼──┐┌──▼──┐┌──▼───┐┌─▼─────┐             │
-│  │Hacker││Borat││T-800││Draper││Picasso│             │
-│  │ Tech ││Deal ││ Ops ││ Copy ││Design │             │
-│  └──────┘└─────┘└─────┘└──────┘└───────┘             │
-│                                                       │
-│  ┌─────────────────────────────────────────────────┐  │
-│  │  GitHub Sync · Economy Tracker · Daily Summary  │  │
-│  └─────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────┘
-```
 
 ## Project Structure
 
@@ -125,12 +148,15 @@ zhc/
 ├── run.sh                  # Convenience launcher
 ├── docker-compose.yml      # Alternative to run.sh
 │
-├── dashboard/              # Mission Control + Task Board
+├── gateway/                # OpenClaw gateway config
+│   └── gateway.json        # Model routing, agent spawn rules
+│
+├── dashboard/              # Mission Control
 │   ├── server.js           # Express + WebSocket server
 │   ├── index.html          # Main dashboard
 │   └── tasks.html          # Kanban task board
 │
-├── agents/                 # Agent configs + prompts
+├── agents/                 # Agent configs + system prompts
 │   ├── ceo/                # Duke — strategy & delegation
 │   ├── cto/                # Hackerman — code & deploy
 │   ├── bizdev/             # Borat — market & outreach
@@ -138,7 +164,13 @@ zhc/
 │   ├── content/            # Don Draper — copy & social
 │   └── designer/           # Picasso — UI & branding
 │
-├── symphony/               # Task management
+├── skills/                 # Shared skill files (Agency Agents pattern)
+│   ├── rapid-prototyper.md
+│   ├── growth-hacking.md
+│   ├── finance-tracker.md
+│   └── ...
+│
+├── symphony/               # Task management (Symphony pattern)
 │   ├── github-sync.py      # GitHub Issues ↔ board.json
 │   ├── task-manager.py     # Task CRUD (GitHub or local)
 │   ├── daily-summary.py    # Auto daily summaries
@@ -182,8 +214,3 @@ docker run -d -p 4200:4200 \
   -v ~/.codex:/root/.codex:ro \
   --env-file .env --name zhc zhc
 ```
-
-## Inspired By
-
-- [OpenAI Symphony](https://github.com/openai/symphony) — Task lifecycle, autonomous work management
-- [Agency Agents](https://github.com/msitarzewski/agency-agents) — Specialist agent skills
