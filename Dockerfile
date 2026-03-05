@@ -11,7 +11,10 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
     | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
     && apt-get update && apt-get install -y gh && rm -rf /var/lib/apt/lists/*
 
-# Install claude + codex CLIs globally
+# Install OpenClaw (agent gateway + orchestration)
+RUN npm install -g openclaw@latest
+
+# Install Claude Code + Codex CLIs (agent backends)
 RUN npm install -g @anthropic-ai/claude-code codex-cli
 
 WORKDIR /zhc
@@ -22,9 +25,14 @@ RUN cd dashboard && npm install --production
 
 # Copy entire project
 COPY . .
-RUN chmod +x entrypoint.sh start-ceo.sh scripts/*.sh
+RUN chmod +x entrypoint.sh scripts/*.sh
 
-EXPOSE 4200
+# OpenClaw gateway + Mission Control dashboard
+EXPOSE 18789 4200
+
+ENV OPENCLAW_CONFIG_PATH=/zhc/openclaw.json
+ENV OPENCLAW_HOME=/zhc/.openclaw
+ENV ZHC_ROOT=/zhc
 
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
   CMD wget -qO- http://localhost:4200/api/state || exit 1

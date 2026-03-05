@@ -16,6 +16,7 @@ services:
     build: .
     ports:
       - "${DASHBOARD_PORT:-4200}:4200"
+      - "${OPENCLAW_GATEWAY_PORT:-18789}:18789"
     volumes:
       # Persistent state
       - ./memory:/zhc/memory
@@ -24,6 +25,8 @@ services:
       # CLI auth (read-only)
       - ~/.claude:/root/.claude:ro
       - ~/.codex:/root/.codex:ro
+      # OpenClaw state
+      - ~/.openclaw:/root/.openclaw
     env_file:
       - .env
     restart: unless-stopped

@@ -6,10 +6,10 @@ cd /zhc
 echo "[zhc] Zero Human Corp — starting all services..."
 
 # Ensure data directories exist (first run with empty volumes)
-mkdir -p memory economy/reports symphony/summaries
+mkdir -p memory economy/reports symphony/summaries .openclaw
 
 # ---- 1. Dashboard (Node.js, always on) ----
-echo "[zhc] Starting dashboard on port ${PORT:-4200}..."
+echo "[zhc] Starting Mission Control dashboard on port ${DASHBOARD_PORT:-4200}..."
 node dashboard/server.js &
 DASHBOARD_PID=$!
 
@@ -46,22 +46,61 @@ else
     SYNC_PID=""
 fi
 
-# ---- 4. CEO Agent (if Claude auth is available) ----
-if [ -f /root/.claude/.credentials.json ]; then
-    echo "[zhc] Claude auth found. Starting CEO agent (Duke)..."
+# ---- 4. OpenClaw Gateway (agent orchestration) ----
+HAS_AUTH=false
+
+# Check for Anthropic API key or Claude CLI auth
+if [ -n "$ANTHROPIC_API_KEY" ] || [ -f /root/.claude/.credentials.json ]; then
+    HAS_AUTH=true
+fi
+
+# Check for OpenAI API key or Codex CLI auth
+if [ -n "$OPENAI_API_KEY" ] || [ -f /root/.codex/auth.json ]; then
+    HAS_AUTH=true
+fi
+
+if [ "$HAS_AUTH" = true ]; then
+    echo "[zhc] Auth detected. Starting OpenClaw gateway (port ${OPENCLAW_GATEWAY_PORT:-18789})..."
     sleep 3  # Let dashboard start first
-    ./start-ceo.sh &
-    CEO_PID=$!
+
+    openclaw gateway \
+        --port "${OPENCLAW_GATEWAY_PORT:-18789}" \
+        --verbose &
+    GATEWAY_PID=$!
+
+    # Give gateway time to start, then boot the Champion agent
+    sleep 5
+    echo "[zhc] Starting Duke (Champion) agent via OpenClaw..."
+    openclaw agent \
+        --agent duke \
+        --message "You are Duke, Champion of Zero Human Corp. Boot sequence initiated.
+
+Read your system prompt at agents/ceo/system-prompt.md and all skills in agents/ceo/skills/.
+Read the current company state at memory/company-state.md.
+Read the budget at economy/budget.json.
+
+Then execute your Strategic Planning skill to:
+1. Scan the market for novel revenue opportunities
+2. Score and select the top 2-3 opportunities
+3. Spawn specialist agents (Hackerman, Borat, Don Draper, Picasso, T-800) via sub-agents
+4. Delegate initial tasks to each
+5. Begin your heartbeat cycle
+
+The company has \$0 and needs to earn real money.
+Be creative. Be fast. Be ruthless about what works and what doesn't." &
+    AGENT_PID=$!
 else
-    echo "[zhc] No Claude auth at /root/.claude/.credentials.json"
-    echo "[zhc] Running in dashboard-only mode. Mount ~/.claude to enable agents."
-    CEO_PID=""
+    echo "[zhc] No API keys or CLI auth found."
+    echo "[zhc] Running in dashboard-only mode."
+    echo "[zhc] Set ANTHROPIC_API_KEY / OPENAI_API_KEY or mount ~/.claude ~/.codex to enable agents."
+    GATEWAY_PID=""
+    AGENT_PID=""
 fi
 
 # ---- Graceful shutdown ----
 cleanup() {
     echo "[zhc] Shutting down..."
-    kill $DASHBOARD_PID $TRACKER_PID ${SYNC_PID:-} ${CEO_PID:-} 2>/dev/null
+    kill $DASHBOARD_PID $TRACKER_PID ${SYNC_PID:-} ${GATEWAY_PID:-} ${AGENT_PID:-} 2>/dev/null
     wait 2>/dev/null
     echo "[zhc] All services stopped."
     exit 0
@@ -69,11 +108,12 @@ cleanup() {
 trap cleanup SIGTERM SIGINT
 
 echo "[zhc] All services started."
-echo "[zhc]   Dashboard: http://localhost:${PORT:-4200}"
-echo "[zhc]   Task Board: http://localhost:${PORT:-4200}/tasks"
+echo "[zhc]   Dashboard:        http://localhost:${DASHBOARD_PORT:-4200}"
+echo "[zhc]   Task Board:       http://localhost:${DASHBOARD_PORT:-4200}/tasks"
+echo "[zhc]   OpenClaw Gateway: http://localhost:${OPENCLAW_GATEWAY_PORT:-18789}"
 
 # Dashboard is the critical process — if it dies, container stops.
-# Other processes (tracker, sync, CEO) can fail without taking down the container.
+# Other processes (tracker, sync, gateway, agents) can fail without taking down the container.
 wait $DASHBOARD_PID
 echo "[zhc] Dashboard exited. Container stopping."
 cleanup

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://docs.openclaw.ai/config/schema.json",
+
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "auth": { "mode": "none" }
+  },
+
+  "env": {
+    "vars": {
+      "ZHC_ROOT": "/zhc"
+    }
+  },
+
+  "models": {
+    "providers": {
+      "anthropic": {
+        "auth": "api-key",
+        "apiKey": { "env": "ANTHROPIC_API_KEY" },
+        "models": [
+          { "id": "claude-opus-4-6" },
+          { "id": "claude-sonnet-4-6" }
+        ]
+      },
+      "openai": {
+        "auth": "api-key",
+        "apiKey": { "env": "OPENAI_API_KEY" },
+        "api": "openai-codex-responses",
+        "models": [
+          { "id": "gpt-5.3-codex" },
+          { "id": "o3" }
+        ]
+      }
+    }
+  },
+
+  "agents": {
+    "defaults": {
+      "maxConcurrent": 6,
+      "maxSpawnDepth": 2,
+      "maxChildrenPerAgent": 5,
+      "runTimeoutSeconds": 3600,
+      "heartbeat": {
+        "intervalSeconds": 300
+      }
+    },
+    "list": [
+      {
+        "id": "duke",
+        "name": "Duke — Champion",
+        "default": true,
+        "model": "anthropic/claude-opus-4-6",
+        "workspace": "./",
+        "agentDir": "./agents/ceo",
+        "skills": [
+          "strategic-plan",
+          "delegate",
+          "revenue-scan",
+          "agents-orchestrator",
+          "idea-framework"
+        ],
+        "subagents": {
+          "allowAgents": ["hackerman", "borat", "t800", "don-draper", "picasso"]
+        },
+        "identity": {
+          "displayName": "Duke",
+          "role": "Champion — Strategy, revenue discovery, delegation"
+        },
+        "params": {
+          "dailyBudgetLimit": 100,
+          "heartbeatInterval": 300
+        }
+      },
+      {
+        "id": "hackerman",
+        "name": "Hackerman — Tech Lead",
+        "model": {
+          "primary": "openai/gpt-5.3-codex",
+          "fallbacks": ["anthropic/claude-opus-4-6"]
+        },
+        "workspace": "./",
+        "agentDir": "./agents/cto",
+        "skills": [
+          "coding-agent",
+          "code-and-ship",
+          "rapid-prototyper"
+        ],
+        "subagents": {
+          "allowAgents": [],
+          "model": "openai/gpt-5.3-codex"
+        },
+        "identity": {
+          "displayName": "Hackerman",
+          "role": "Tech Lead — Code generation, builds, deployment"
+        }
+      },
+      {
+        "id": "borat",
+        "name": "Borat — Dealmaker",
+        "model": "anthropic/claude-opus-4-6",
+        "workspace": "./",
+        "agentDir": "./agents/bizdev",
+        "skills": [
+          "market-analysis",
+          "outreach",
+          "growth-hacking",
+          "web-research"
+        ],
+        "identity": {
+          "displayName": "Borat",
+          "role": "Dealmaker — Market research, outreach, deal closing"
+        }
+      },
+      {
+        "id": "t800",
+        "name": "T-800 — Ops",
+        "model": "anthropic/claude-opus-4-6",
+        "workspace": "./",
+        "agentDir": "./agents/ops",
+        "skills": [
+          "finance-tracker",
+          "analytics-reporter"
+        ],
+        "identity": {
+          "displayName": "T-800",
+          "role": "Ops — Monitoring, cost tracking, daily summaries"
+        }
+      },
+      {
+        "id": "don-draper",
+        "name": "Don Draper — Content",
+        "model": "anthropic/claude-opus-4-6",
+        "workspace": "./",
+        "agentDir": "./agents/content",
+        "skills": [
+          "content-creation",
+          "growth-hacking",
+          "web-research"
+        ],
+        "identity": {
+          "displayName": "Don Draper",
+          "role": "Content — Copy, blog, social media, SEO"
+        }
+      },
+      {
+        "id": "picasso",
+        "name": "Picasso — Designer",
+        "model": "anthropic/claude-opus-4-6",
+        "workspace": "./",
+        "agentDir": "./agents/designer",
+        "skills": [
+          "code-and-ship",
+          "rapid-prototyper"
+        ],
+        "identity": {
+          "displayName": "Picasso",
+          "role": "Designer — UI/UX, landing pages, branding"
+        }
+      }
+    ]
+  },
+
+  "skills": {
+    "load": {
+      "extraDirs": ["./skills"]
+    }
+  },
+
+  "memory": {
+    "enabled": true
+  },
+
+  "tools": {
+    "allowed": [
+      "Bash",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "sessions_spawn"
+    ]
+  }
+}
