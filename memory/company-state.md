@@ -1,14 +1,14 @@
 # Company State — Initialized
 
 ## Current Strategy
-Awaiting CEO (Atlas) first boot. No strategy set yet.
+Awaiting CEO (Duke) first boot. No strategy set yet.
 
 ## Active Revenue Streams
 None yet.
 
 ## Active Agents
-- Atlas (CEO) — Starting up
-- Sentinel (Ops) — Starting up
+- Duke (CEO) — Starting up
+- T-800 (Ops) — Starting up
 
 ## Key Metrics
 - Total Revenue: $0.00

@@ -17,12 +17,12 @@ dashboard at localhost:4200.
 ## Architecture
 
 ```
-CEO (Atlas/Opus 4.6) ── plans, scores ideas, delegates, pivots
-  ├── CTO (Forge/Codex 5.3) ── codes, deploys to Cloudflare
+CEO (Duke/Opus 4.6) ── plans, scores ideas, delegates, pivots
+  ├── CTO (Hackerman/Codex 5.3) ── codes, deploys to Cloudflare
   │     └── up to 5 coding workers
-  ├── BizDev (Scout/Opus 4.6) ── research, outreach, content, sales
+  ├── BizDev (Borat/Opus 4.6) ── research, outreach, content, sales
   │     └── up to 5 outreach workers
-  └── Ops (Sentinel/Opus 4.6) ── monitoring, cost tracking, self-healing
+  └── Ops (T-800/Opus 4.6) ── monitoring, cost tracking, self-healing
         └── up to 5 monitoring workers
 
 Deploy:    Cloudflare Pages + Workers + D1 + R2 (via wrangler CLI)
@@ -110,7 +110,7 @@ zero-human-corp/
 ├── Dockerfile.tracker
 ├── setup.sh                             # One-command install
 ├── start-dashboard.sh                   # :4200
-├── start-ceo.sh                         # Boot Atlas
+├── start-ceo.sh                         # Boot Duke
 └── watch-logs.sh                        # Terminal status viewer
 ```
 
@@ -147,7 +147,7 @@ wrangler login                  # Cloudflare (browser OAuth)
 
 # 5. Launch
 docker compose up -d            # Dashboard + tracker
-./start-ceo.sh                  # Atlas boots → ideas → agents → revenue
+./start-ceo.sh                  # Duke boots → ideas → agents → revenue
 ```
 
 Dashboard at http://localhost:4200 — one screen, everything.

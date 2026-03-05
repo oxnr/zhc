@@ -14,11 +14,11 @@ When receiving a high-level objective:
 ### 2. Agent Assignment Matrix
 | Task Type | Primary Agent | Backup |
 |-----------|--------------|--------|
-| Code/Build/Deploy | CTO (Forge) | Coding Worker |
-| Market Research | BizDev (Scout) | Research Worker |
-| Sales/Outreach | BizDev (Scout) | Outreach Worker |
-| Content/Marketing | BizDev (Scout) | Content Worker |
-| Monitoring/Costs | Ops (Sentinel) | Ops Worker |
+| Code/Build/Deploy | CTO (Hackerman) | Coding Worker |
+| Market Research | BizDev (Borat) | Research Worker |
+| Sales/Outreach | BizDev (Borat) | Outreach Worker |
+| Content/Marketing | BizDev (Borat) | Content Worker |
+| Monitoring/Costs | Ops (T-800) | Ops Worker |
 | Data Analysis | BizDev or CTO | Analysis Worker |
 
 ### 3. Parallel Execution

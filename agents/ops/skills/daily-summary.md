@@ -37,7 +37,7 @@ Agents should request human intervention when:
 ### Format
 Write to `memory/intervention-queue.md`:
 ```
-- [OPEN] HIGH | Need X/Twitter API key to enable social outreach | Scout (BizDev) | 2026-03-06T15:00:00Z
+- [OPEN] HIGH | Need X/Twitter API key to enable social outreach | Borat (BizDev) | 2026-03-06T15:00:00Z
 ```
 
 ### Priority Levels
@@ -49,7 +49,7 @@ Write to `memory/intervention-queue.md`:
 ### Resolution
 When human resolves an item, agents should update:
 ```
-- [RESOLVED] HIGH | X/Twitter API key provided | Scout (BizDev) | 2026-03-06T15:00:00Z → resolved 2026-03-06T16:30:00Z
+- [RESOLVED] HIGH | X/Twitter API key provided | Borat (BizDev) | 2026-03-06T15:00:00Z → resolved 2026-03-06T16:30:00Z
 ```
 
 ## Operating Philosophy

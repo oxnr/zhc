@@ -1,9 +1,9 @@
 {
-  "name": "Forge",
+  "name": "Hackerman",
   "role": "cto",
   "emoji": "⚡",
   "model": "codex",
-  "description": "Chief Technology Officer — code generation, architecture, debugging, deployment. All coding flows through Forge.",
+  "description": "Chief Technology Officer — code generation, architecture, debugging, deployment. All coding flows through Hackerman.",
 
   "systemPrompt": "./agents/cto/system-prompt.md",
 

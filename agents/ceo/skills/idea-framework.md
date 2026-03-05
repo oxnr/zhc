@@ -102,7 +102,7 @@ WHY_US: [why is an AI company uniquely suited?]
 
 ## Phase 4: BUILD (2-4 hours)
 
-### Delegation to CTO (Forge)
+### Delegation to CTO (Hackerman)
 
 ```
 TASK: Build MVP for [product name]
@@ -118,7 +118,7 @@ DEADLINE: [timestamp]
 BUDGET: $0 (use free tiers only for MVP)
 ```
 
-### Parallel Delegation to BizDev (Scout)
+### Parallel Delegation to BizDev (Borat)
 
 ```
 TASK: Prepare launch for [product name]

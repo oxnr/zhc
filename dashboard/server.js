@@ -139,9 +139,51 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Serve the Symphony task board
+app.get('/tasks', (req, res) => {
+  res.sendFile(path.join(__dirname, 'tasks.html'));
+});
+
 // REST API for current state
 app.get('/api/state', (req, res) => {
   res.json(getFullState());
+});
+
+// REST API for tasks grouped by agent and status
+app.get('/api/tasks', (req, res) => {
+  const board = readJsonOrDefault('symphony/board.json', { tasks: [] });
+  const tasks = board.tasks || [];
+
+  // Agent metadata
+  const agentMeta = {
+    ceo: { name: 'Duke', emoji: '\u{1F451}', role: 'CEO' },
+    cto: { name: 'Hackerman', emoji: '\u{1F4BB}', role: 'CTO' },
+    bizdev: { name: 'Borat', emoji: '\u{1F44D}', role: 'BizDev' },
+    ops: { name: 'T-800', emoji: '\u{1F916}', role: 'Ops' },
+  };
+
+  // Group by agent
+  const byAgent = {};
+  for (const [key, meta] of Object.entries(agentMeta)) {
+    byAgent[key] = { ...meta, tasks: tasks.filter(t => t.assignee === key || t.createdBy === key) };
+  }
+  byAgent.unassigned = { name: 'Unassigned', emoji: '\u2753', role: 'none',
+    tasks: tasks.filter(t => !t.assignee) };
+
+  // Group by status
+  const statuses = ['INBOX', 'BACKLOG', 'ASSIGNED', 'IN_PROGRESS', 'IN_REVIEW', 'DONE', 'ARCHIVED'];
+  const byStatus = {};
+  for (const s of statuses) {
+    byStatus[s] = tasks.filter(t => t.status === s);
+  }
+
+  const active = tasks.filter(t => !['DONE', 'ARCHIVED'].includes(t.status)).length;
+
+  res.json({
+    byAgent,
+    byStatus,
+    stats: { total: tasks.length, active, completed: tasks.length - active },
+  });
 });
 
 // REST API for specific memory files

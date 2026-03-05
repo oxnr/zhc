@@ -1,55 +1,34 @@
 version: "3.9"
 
 # ============================================
-# Zero Human Corp — Docker Compose
+# Zero Human Corp — Single Container
 # ============================================
-# Dockerized: dashboard, economic tracker
-# NOT dockerized: agents (they need host CLI access to claude/codex/wrangler)
+# Everything runs in one container: dashboard, tracker, agents.
 #
 # Usage:
-#   docker compose up -d          # Start all services
+#   docker compose up -d          # Start
 #   docker compose logs -f        # Watch logs
-#   docker compose down           # Stop all
-#   docker compose up dashboard   # Start just dashboard
+#   docker compose down           # Stop
+#   docker compose up --build     # Rebuild and start
 
 services:
-  # ---- Mission Control Dashboard ----
-  # Custom single-pane-of-glass dashboard
-  # Watches memory/, economy/, symphony/ via chokidar
-  # Pushes real-time updates via WebSocket
-  dashboard:
-    build:
-      context: .
-      dockerfile: Dockerfile.dashboard
+  zhc:
+    build: .
     ports:
       - "${DASHBOARD_PORT:-4200}:4200"
     volumes:
-      - ./memory:/zhc/memory:ro
-      - ./economy:/zhc/economy:ro
-      - ./symphony:/zhc/symphony:ro
-      - ./agents:/zhc/agents:ro
-    environment:
-      - PORT=4200
-      - ZHC_ROOT=/zhc
+      # Persistent state
+      - ./memory:/zhc/memory
+      - ./economy:/zhc/economy
+      - ./symphony:/zhc/symphony
+      # CLI auth (read-only)
+      - ~/.claude:/root/.claude:ro
+      - ~/.codex:/root/.codex:ro
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:4200/api/state"]
       interval: 30s
       timeout: 5s
       retries: 3
-
-  # ---- Economic Tracker (generates P&L reports hourly) ----
-  tracker:
-    build:
-      context: .
-      dockerfile: Dockerfile.tracker
-    volumes:
-      - ./memory:/app/memory
-      - ./economy:/app/economy
-      - ./symphony:/app/symphony:ro
-    environment:
-      - REVENUE_LOG_PATH=/app/memory/revenue-log.md
-      - REPORT_PATH=/app/economy/reports/
-      - BUDGET_FILE=/app/economy/budget.json
-      - REPORT_INTERVAL=3600
-    restart: unless-stopped

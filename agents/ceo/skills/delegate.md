@@ -6,9 +6,9 @@ When you need work done that is outside your core competency (coding, outreach, 
 ## How to Delegate
 
 ### Step 1: Choose the Right Agent
-- **Code/Build/Deploy** → Assign to Forge (CTO)
-- **Research/Outreach/Sales** → Assign to Scout (BizDev)
-- **Monitoring/Costs/Health** → Assign to Sentinel (Ops)
+- **Code/Build/Deploy** → Assign to Hackerman (CTO)
+- **Research/Outreach/Sales** → Assign to Borat (BizDev)
+- **Monitoring/Costs/Health** → Assign to T-800 (Ops)
 
 ### Step 2: Write a Clear Task Brief
 Every delegation MUST include:

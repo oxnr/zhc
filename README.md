@@ -1,220 +1,168 @@
 # Zero Human Corp
 
-> A fully autonomous, zero-human AI company powered by OpenClaw multi-agent orchestration.
-> Opus 4.6 for strategic planning & reasoning. Codex 5.3 for all coding tasks.
-> Both running on subscription plans (Claude Max + ChatGPT Pro) — no API burn.
+> Fully autonomous AI company in a single Docker container.
+> Claude Opus 4.6 for strategy & reasoning. Codex 5.3 for coding.
+> Both on flat-rate subscriptions — no API burn.
 
 ## Architecture
 
 ```
-                    ┌─────────────────────────────────┐
-                    │        MISSION CONTROL           │
-                    │   (Real-time Dashboard @ :4200)  │
-                    │  28 panels · WebSocket · SQLite  │
-                    └────────────┬────────────────────┘
-                                 │
-                    ┌────────────▼────────────────────┐
-                    │      CEO AGENT (Opus 4.6)        │
-                    │  Strategic planning · Reasoning   │
-                    │  Revenue discovery · Delegation   │
-                    │  Gateway: Slack/Discord/Terminal  │
-                    └────────────┬────────────────────┘
-                                 │
-              ┌──────────────────┼──────────────────┐
-              │                  │                   │
-    ┌─────────▼──────┐ ┌────────▼────────┐ ┌───────▼────────┐
-    │  CTO AGENT     │ │  BIZ DEV AGENT  │ │  OPS AGENT     │
-    │  (Codex 5.3)   │ │  (Opus 4.6)     │ │  (Opus 4.6)    │
-    │                │ │                  │ │                 │
-    │  Code gen      │ │  Market research │ │  Monitoring     │
-    │  Debugging     │ │  Client outreach │ │  Cost tracking  │
-    │  Deployment    │ │  Deal closing    │ │  Self-healing   │
-    └───────┬────────┘ └────────┬────────┘ └───────┬────────┘
-            │                   │                   │
-     ┌──────▼──────┐    ┌──────▼──────┐    ┌──────▼──────┐
-     │ Worker Pool │    │ Worker Pool │    │ Worker Pool │
-     │ (Codex 5.3) │    │ (Opus 4.6)  │    │ (auto-route)│
-     │ max 5 each  │    │ max 5 each  │    │ max 5 each  │
-     └─────────────┘    └─────────────┘    └─────────────┘
+┌──────────────────────────────────────────────┐
+│              SINGLE DOCKER CONTAINER          │
+│                                               │
+│  ┌─────────────────────────────────────────┐  │
+│  │         MISSION CONTROL (:4200)         │  │
+│  │   Dashboard + Task Board + WebSocket    │  │
+│  └────────────────┬────────────────────────┘  │
+│                   │                           │
+│  ┌────────────────▼────────────────────────┐  │
+│  │        CEO — Duke 👑 (Opus 4.6)         │  │
+│  │   Strategy · Revenue · Delegation       │  │
+│  └────────────────┬────────────────────────┘  │
+│          ┌────────┼────────┐                  │
+│  ┌───────▼──┐ ┌───▼────┐ ┌▼─────────┐        │
+│  │Hackerman │ │ Borat  │ │  T-800   │        │
+│  │💻 CTO    │ │👍 Biz  │ │🤖 Ops    │        │
+│  │Codex 5.3 │ │Opus 4.6│ │Opus 4.6  │        │
+│  └──────────┘ └────────┘ └──────────┘        │
+│                                               │
+│  ┌─────────────────────────────────────────┐  │
+│  │  GitHub Sync · Economy Tracker · Daily  │  │
+│  │  Summaries · All state in mounted vols  │  │
+│  └─────────────────────────────────────────┘  │
+└──────────────────────────────────────────────┘
 ```
 
-## Quick Start (Hackathon Speed)
-
-### Prerequisites
-- Claude Max subscription ($100/mo or $200/mo) — gives Opus 4.6 via Claude Code
-- ChatGPT Pro subscription — gives Codex 5.3 via Codex CLI
-- Node.js 20+, Python 3.10+, Docker (optional)
-
-### 1. Clone & Install
+## Quick Start
 
 ```bash
-git clone <this-repo>
+# 1. Clone
+git clone https://github.com/onr/zero-human-corp.git
 cd zero-human-corp
-./setup.sh
+
+# 2. Build
+docker build -t zhc .
+
+# 3. Run
+./run.sh
+# Or manually:
+docker run -d -p 4200:4200 \
+  -v $(pwd)/memory:/zhc/memory \
+  -v $(pwd)/economy:/zhc/economy \
+  -v $(pwd)/symphony:/zhc/symphony \
+  -v ~/.claude:/root/.claude:ro \
+  -v ~/.codex:/root/.codex:ro \
+  --name zhc zhc
 ```
 
-### 2. Configure Models
+- Dashboard: http://localhost:4200
+- Task Board: http://localhost:4200/tasks
+- API: http://localhost:4200/api/state
+
+## How It Works
+
+**Tasks are GitHub Issues.** The CEO agent creates issues, assigns them to agents via labels, and the sync daemon polls GitHub every 30s to update the dashboard. When agents finish work, issues get closed with proof-of-work comments.
+
+**Git is the documentation backbone.** All commits, PRs, and issue activity feed into daily summaries generated automatically.
+
+**Everything runs in one container.** Dashboard (Node.js), economy tracker (Python), GitHub sync daemon, and the CEO agent — all managed by a bash entrypoint. Dashboard is the critical process; if it dies, the container restarts. Other processes can fail gracefully.
+
+## Configuration
 
 ```bash
 cp .env.example .env
-# Edit .env with your subscription endpoints
+# Edit .env:
 ```
 
-### 3. Launch
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `GITHUB_REPO` | For task tracking | `owner/repo` — enables GitHub Issues as tasks |
+| `GITHUB_TOKEN` | For task tracking | PAT with repo scope |
+| Claude auth | For agents | Mount `~/.claude` into container (read-only) |
+| Codex auth | For CTO agent | Mount `~/.codex` into container (read-only) |
 
-```bash
-# Terminal 1: Start Mission Control dashboard
-./start-dashboard.sh
+## Agents
 
-# Terminal 2: Start the CEO agent
-./start-ceo.sh
-
-# Terminal 3: Watch logs
-./watch-logs.sh
-```
-
-Dashboard at `http://localhost:4200`
+| Agent | Name | Model | Role |
+|-------|------|-------|------|
+| CEO | Duke 👑 | Opus 4.6 | Strategy, revenue discovery, delegation |
+| CTO | Hackerman 💻 | Codex 5.3 | Code generation, debugging, deployment |
+| BizDev | Borat 👍 | Opus 4.6 | Market research, outreach, deal closing |
+| Ops | T-800 🤖 | Opus 4.6 | Monitoring, cost tracking, daily summaries |
 
 ## Project Structure
 
 ```
 zero-human-corp/
-├── README.md
-├── setup.sh                    # One-command setup
-├── start-dashboard.sh          # Launch Mission Control
-├── start-ceo.sh                # Launch CEO agent
-├── watch-logs.sh               # Tail all agent logs
-├── .env.example                # Environment template
+├── Dockerfile              # Single container — everything
+├── entrypoint.sh           # Process manager
+├── run.sh                  # Convenience launcher
+├── start-ceo.sh            # CEO agent boot
+├── docker-compose.yml      # Alternative to run.sh
 │
-├── agents/                     # Agent configurations
-│   ├── ceo/                    # CEO agent (Opus 4.6)
-│   │   ├── agent.json          # Agent config
-│   │   ├── system-prompt.md    # CEO personality & strategy
-│   │   └── skills/             # CEO-specific skills
-│   │       ├── delegate.md     # How to spawn sub-agents
-│   │       ├── revenue-scan.md # Revenue opportunity scanner
-│   │       └── strategic-plan.md
-│   ├── cto/                    # CTO agent (Codex 5.3)
-│   │   ├── agent.json
-│   │   ├── system-prompt.md
-│   │   └── skills/
-│   ├── bizdev/                 # Business Dev (Opus 4.6)
-│   │   ├── agent.json
-│   │   ├── system-prompt.md
-│   │   └── skills/
-│   └── ops/                    # Operations (Opus 4.6)
-│       ├── agent.json
-│       ├── system-prompt.md
-│       └── skills/
+├── dashboard/              # Mission Control + Task Board
+│   ├── server.js           # Express + WebSocket server
+│   ├── index.html          # Main dashboard
+│   └── tasks.html          # Kanban task board
 │
-├── gateway/                    # OpenClaw gateway config
-│   ├── gateway.json            # Main gateway configuration
-│   └── channels/               # Channel integrations
-│       ├── slack.json
-│       ├── discord.json
-│       └── terminal.json
+├── agents/                 # Agent configs + system prompts
+│   ├── ceo/                # Duke — strategy & delegation
+│   ├── cto/                # Hackerman — code & deploy
+│   ├── bizdev/             # Borat — market & outreach
+│   └── ops/                # T-800 — monitoring & reports
 │
-├── memory/                     # Shared persistent memory (Markdown)
-│   ├── company-state.md        # Current company status
-│   ├── revenue-log.md          # All revenue transactions
-│   ├── decisions.md            # CEO decision history
-│   └── learnings.md            # What the company learned
+├── symphony/               # Task management
+│   ├── github-sync.py      # GitHub Issues ↔ board.json sync
+│   ├── task-manager.py     # Task CRUD (GitHub or local)
+│   ├── daily-summary.py    # Git + GitHub + board summaries
+│   └── board.json          # Live task board state
 │
-├── dashboard/                  # Mission Control (Builderz fork)
-│   ├── package.json
-│   └── ...
+├── economy/                # Financial tracking
+│   ├── tracker.py          # Revenue/cost tracker
+│   ├── budget.json         # Budget constraints
+│   └── reports/            # Auto-generated P&L
 │
-├── economy/                    # Economic tracking (ClawWork-inspired)
-│   ├── tracker.py              # Revenue/cost tracker
-│   ├── budget.json             # Budget constraints
-│   └── reports/                # Auto-generated P&L reports
-│
-├── symphony/                   # Task board (inspired by OpenAI Symphony)
-│   ├── SPEC.md                 # Task lifecycle specification
-│   ├── board.json              # Live task board state
-│   ├── task-manager.py         # Board operations API
-│   ├── daily-summary.py        # Daily summary generator + email
-│   └── summaries/              # Archived daily summaries
-│
-├── skills/                     # Shared skill library (includes agency-agents)
-│   ├── web-research.md
-│   ├── code-and-ship.md
-│   ├── content-creation.md
-│   ├── market-analysis.md
-│   ├── outreach.md
-│   ├── growth-hacking.md       # from agency-agents
-│   ├── rapid-prototyper.md     # from agency-agents
-│   ├── analytics-reporter.md   # from agency-agents
-│   └── finance-tracker.md      # from agency-agents
-│
-└── scripts/                    # Utility scripts
-    ├── health-check.sh
-    ├── cost-report.sh
-    └── reset-agents.sh
+└── memory/                 # Persistent state (Markdown)
+    ├── company-state.md    # Current company status
+    ├── revenue-log.md      # All revenue transactions
+    ├── decisions.md        # Decision history
+    └── learnings.md        # What the company learned
 ```
 
-## Human Intervention Model
+## Volume Mounts
 
-You (onr) intervene ONLY when needed. The system handles everything else.
+| Mount | Purpose | Mode |
+|-------|---------|------|
+| `./memory` | Agent state, decisions, learnings | rw |
+| `./economy` | Budget, P&L reports | rw |
+| `./symphony` | Task board, daily summaries | rw |
+| `~/.claude` | Claude CLI auth | ro |
+| `~/.codex` | Codex CLI auth | ro |
 
-**What the system handles autonomously:**
-- All planning (CEO/Opus 4.6), all coding (CTO/Codex 5.3)
-- Agent spawning, task assignment, health monitoring
-- Revenue tracking, cost optimization, P&L reporting
-- Market research, opportunity scoring, pivots
+## The Subscription Strategy
 
-**What triggers an intervention request to you:**
-- API keys or credentials needed (X, Stripe, etc.)
-- Account creation on external services
-- Budget approval for spend > $50/day
-- Strategic pivot sign-off (if CEO thinks it's warranted)
-- Legal/compliance questions
+No API keys. Both models run on unlimited subscription plans:
 
-**How you stay informed:**
-- Dashboard at `http://localhost:4200` (real-time, always up)
-- Daily summary emailed to you (configure SMTP in .env)
-- Intervention queue in `memory/intervention-queue.md`
-- All decisions logged in `memory/decisions.md`
+| Model | Plan | Cost | Agents |
+|-------|------|------|--------|
+| Claude Opus 4.6 | Claude Max | $200/mo | CEO, BizDev, Ops |
+| GPT-5.3 Codex | ChatGPT Pro | $200/mo | CTO, coding workers |
 
-## The "Off Mode" Strategy
+Auth is mounted from the host machine's CLI config directories.
 
-Instead of burning API tokens, we run both models on unlimited subscription plans:
+## Deploy
 
-| Model | Plan | Cost | Use Case |
-|-------|------|------|----------|
-| Claude Opus 4.6 | Claude Max ($200/mo) | Flat rate | CEO, BizDev, Ops — all planning & reasoning |
-| GPT-5.3 Codex | ChatGPT Pro ($200/mo) | Flat rate | CTO, all coding workers — code gen & deployment |
+The Docker image runs anywhere:
 
-**How it works:** OpenClaw routes agent requests through Claude Code CLI (for Opus) and Codex CLI (for Codex 5.3) instead of raw API calls. The gateway handles model routing based on agent role.
+```bash
+# Build once
+docker build -t zhc .
 
-**Deploy target:** All products deploy to **Cloudflare** (Pages + Workers + D1 + R2) via `wrangler` CLI. Free tier is extremely generous — no costs until you're doing serious volume.
+# Run anywhere that supports Docker
+# Fly.io, Railway, any VPS, etc.
+```
 
-## Revenue Philosophy
+## Inspired By
 
-The CEO agent doesn't follow a playbook. It:
-1. Scans the market for novel, underserved opportunities
-2. Evaluates ROI based on the company's current capabilities
-3. Prioritizes creative, outside-the-box revenue streams
-4. Avoids commodity plays (no generic freelancing marketplaces)
-5. Ships fast, iterates faster, kills what doesn't work
-
-Think: building micro-SaaS tools for niche markets nobody's serving, creating data products, arbitraging information asymmetries, or inventing entirely new service categories.
-
-## Key Design Principles
-
-- **Truly autonomous**: After initial setup, human intervention is for debugging only
-- **Economically accountable**: Every agent tracks its costs vs revenue generated
-- **Self-healing**: Ops agent monitors and restarts failed services
-- **Memory-first**: All decisions, learnings, and state persisted as Markdown
-- **Visualization**: Mission Control shows the full agent tree, tasks, costs, and earnings in real-time
-
-## Built On / Inspired By
-
-| Project | What We Use From It | Link |
-|---------|-------------------|------|
-| **OpenClaw** | Core agent framework, gateway, memory, skills | [github.com/openclaw/openclaw](https://github.com/openclaw/openclaw) (247K stars) |
-| **ClawWork** | Economic accountability model, revenue tracking | [github.com/HKUDS/ClawWork](https://github.com/HKUDS/ClawWork) (6.6K stars) |
-| **Mission Control** | Dashboard, 28 panels, task board, cost tracking | [github.com/builderz-labs/mission-control](https://github.com/builderz-labs/mission-control) |
-| **Symphony** | Task lifecycle, proof-of-work, autonomous work mgmt | [github.com/openai/symphony](https://github.com/openai/symphony) (4.3K stars) |
-| **Agency Agents** | Specialist agent skills (55+ across 9 divisions) | [github.com/msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) |
-| **ClawDeck** | Alternative dashboard (kanban-style) | [github.com/clawdeckio/clawdeck](https://github.com/clawdeckio/clawdeck) |
+- [OpenAI Symphony](https://github.com/openai/symphony) — Task lifecycle, autonomous work management
+- [Agency Agents](https://github.com/msitarzewski/agency-agents) — Specialist agent skills
