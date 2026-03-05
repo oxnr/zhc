@@ -19,11 +19,14 @@
   },
 
   "skills": [
+    "./agents/ceo/skills/idea-framework.md",
     "./agents/ceo/skills/delegate.md",
     "./agents/ceo/skills/revenue-scan.md",
     "./agents/ceo/skills/strategic-plan.md",
+    "./agents/ceo/skills/agents-orchestrator.md",
     "./skills/web-research.md",
-    "./skills/market-analysis.md"
+    "./skills/market-analysis.md",
+    "./skills/growth-hacking.md"
   ],
 
   "tools": [

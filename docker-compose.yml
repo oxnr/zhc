@@ -1,0 +1,66 @@
+version: "3.9"
+
+# ============================================
+# Zero Human Corp — Docker Compose
+# ============================================
+# Dockerized: dashboard, economic tracker, log watcher
+# NOT dockerized: agents (they need host CLI access to claude/codex/wrangler)
+#
+# Usage:
+#   docker compose up -d          # Start all services
+#   docker compose logs -f        # Watch logs
+#   docker compose down           # Stop all
+#   docker compose up dashboard   # Start just dashboard
+
+services:
+  # ---- Mission Control Dashboard ----
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: ../Dockerfile.dashboard
+    ports:
+      - "${DASHBOARD_PORT:-4200}:4200"
+    volumes:
+      - ./memory:/app/memory:ro
+      - ./economy:/app/economy:ro
+      - ./symphony:/app/symphony:ro
+      - dashboard-db:/app/data
+    environment:
+      - PORT=4200
+      - DB_PATH=/app/data/mission-control.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4200"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ---- Economic Tracker (generates P&L reports) ----
+  tracker:
+    build:
+      context: .
+      dockerfile: Dockerfile.tracker
+    volumes:
+      - ./memory:/app/memory
+      - ./economy:/app/economy
+      - ./symphony:/app/symphony:ro
+    environment:
+      - REVENUE_LOG_PATH=/app/memory/revenue-log.md
+      - REPORT_PATH=/app/economy/reports/
+      - BUDGET_FILE=/app/economy/budget.json
+      - REPORT_INTERVAL=3600
+    restart: unless-stopped
+
+  # ---- Log Watcher / Status Monitor ----
+  watcher:
+    build:
+      context: .
+      dockerfile: Dockerfile.watcher
+    volumes:
+      - ./memory:/app/memory:ro
+      - ./economy:/app/economy:ro
+      - ./symphony:/app/symphony:ro
+    restart: unless-stopped
+
+volumes:
+  dashboard-db:

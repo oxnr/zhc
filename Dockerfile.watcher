@@ -1,0 +1,26 @@
+FROM python:3.12-slim
+
+RUN pip install --no-cache-dir watchdog
+
+WORKDIR /app
+
+# Simple watcher that polls memory files and prints status
+CMD ["python3", "-c", "\
+import time, os, json;\
+\ndef show_status():\n\
+    print('\\n' + '='*50);\n\
+    print(f'Zero Human Corp — {time.strftime(\"%Y-%m-%d %H:%M UTC\", time.gmtime())}');\n\
+    print('='*50);\n\
+    for f in ['memory/company-state.md', 'memory/revenue-log.md', 'memory/decisions.md']:\n\
+        if os.path.exists(f):\n\
+            mtime = os.path.getmtime(f);\n\
+            age = int((time.time() - mtime) / 60);\n\
+            print(f'  {f}: updated {age}m ago');\n\
+    reports = sorted([f for f in os.listdir('economy/reports') if f.endswith('.md')]) if os.path.exists('economy/reports') else [];\n\
+    if reports:\n\
+        print(f'  Latest report: economy/reports/{reports[-1]}');\n\
+    print();\n\
+\nwhile True:\n\
+    show_status();\n\
+    time.sleep(30);\n\
+"]

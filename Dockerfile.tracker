@@ -1,0 +1,18 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir schedule watchdog
+
+COPY economy/tracker.py ./tracker.py
+COPY economy/budget.json ./budget.json
+COPY symphony/daily-summary.py ./daily-summary.py
+
+# Run tracker on a schedule (every hour)
+CMD ["python3", "-c", "\
+import time, schedule;\
+from tracker import generate_report;\
+schedule.every(1).hours.do(generate_report);\
+generate_report();\
+print('Tracker running...');\
+[schedule.run_pending() or time.sleep(60) for _ in iter(int, 1)]"]

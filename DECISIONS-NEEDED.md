@@ -71,7 +71,7 @@ If the company builds a SaaS tool and needs a domain:
 
 ### 9. Email for Daily Summaries
 If you want daily summaries emailed to you:
-- Set `SUMMARY_EMAIL=onur.akpolat@gmail.com` in .env
+- Set `SUMMARY_EMAIL=your-email@example.com` in .env
 - Set up SMTP (Gmail app password works): `SMTP_USER` + `SMTP_PASS`
 - Or skip this and just check the dashboard
 
@@ -123,6 +123,6 @@ STRIPE_SECRET_KEY=sk_test_xxxxx      ❓ Need from you
 VERCEL_TOKEN=xxxxx                   ❓ Need from you
 STARTING_CAPITAL=0                   ❓ Your call
 DAILY_BUDGET_LIMIT=50                ❓ Your call
-SUMMARY_EMAIL=onur.akpolat@gmail.com ❓ Confirm
+SUMMARY_EMAIL=your-email@example.com ❓ Confirm
 CEO_HEARTBEAT_INTERVAL=300           ❓ Depends on rate limits
 ```
