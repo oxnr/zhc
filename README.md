@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">ZHC</h1>
+  <h1 align="center">ZHC - Zero Human Corp</h1>
 </p>
 <p align="center">
   Autonomous AI company in a single Docker container.<br>
