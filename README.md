@@ -4,6 +4,8 @@
 > Claude Opus 4.6 for strategy & reasoning. Codex 5.3 for coding.
 > Both on flat-rate subscriptions — no API burn.
 
+![Mission Control Dashboard](docs/dashboard.png)
+
 ## Architecture
 
 ```
