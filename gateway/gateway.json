@@ -1,0 +1,127 @@
+{
+  "$schema": "https://docs.openclaw.ai/gateway/schema.json",
+  "name": "zero-human-corp",
+  "version": "1.0.0",
+
+  "defaults": {
+    "maxSpawnDepth": 2,
+    "maxChildrenPerAgent": 5,
+    "heartbeatInterval": 300,
+    "sessionTimeout": 3600,
+    "memoryPath": "./memory"
+  },
+
+  "models": {
+    "opus": {
+      "provider": "claude-code-cli",
+      "model": "claude-opus-4-6",
+      "command": "claude",
+      "args": ["--model", "opus", "--output-format", "json"],
+      "description": "Strategic planning, reasoning, business decisions",
+      "roles": ["ceo", "bizdev", "ops"]
+    },
+    "codex": {
+      "provider": "codex-cli",
+      "model": "gpt-5.3-codex",
+      "command": "codex",
+      "args": ["--model", "gpt-5.3-codex", "--output-format", "json"],
+      "description": "Code generation, debugging, deployment",
+      "roles": ["cto", "coding-worker"]
+    }
+  },
+
+  "routing": {
+    "strategy": "role-based",
+    "rules": [
+      {
+        "match": { "agentRole": ["ceo", "bizdev", "ops"] },
+        "model": "opus",
+        "comment": "All planning/reasoning goes through Opus 4.6 (Claude Max)"
+      },
+      {
+        "match": { "agentRole": ["cto", "coding-worker"] },
+        "model": "codex",
+        "comment": "All coding goes through Codex 5.3 (ChatGPT Pro)"
+      },
+      {
+        "match": { "taskType": "code-*" },
+        "model": "codex",
+        "comment": "Any task tagged as code gets routed to Codex regardless of agent"
+      },
+      {
+        "match": { "taskType": "plan-*" },
+        "model": "opus",
+        "comment": "Any task tagged as planning gets routed to Opus regardless of agent"
+      }
+    ],
+    "fallback": "opus"
+  },
+
+  "agents": {
+    "ceo": {
+      "file": "./agents/ceo/agent.json",
+      "autostart": true,
+      "persistent": true,
+      "priority": "critical"
+    },
+    "cto": {
+      "file": "./agents/cto/agent.json",
+      "autostart": false,
+      "persistent": true,
+      "priority": "high",
+      "spawnedBy": "ceo"
+    },
+    "bizdev": {
+      "file": "./agents/bizdev/agent.json",
+      "autostart": false,
+      "persistent": true,
+      "priority": "high",
+      "spawnedBy": "ceo"
+    },
+    "ops": {
+      "file": "./agents/ops/agent.json",
+      "autostart": true,
+      "persistent": true,
+      "priority": "critical"
+    }
+  },
+
+  "economy": {
+    "enabled": true,
+    "trackCosts": true,
+    "trackRevenue": true,
+    "currency": "USD",
+    "budgetFile": "./economy/budget.json",
+    "reportInterval": 3600,
+    "reportPath": "./economy/reports/"
+  },
+
+  "dashboard": {
+    "enabled": true,
+    "port": 4200,
+    "websocket": true,
+    "panels": [
+      "agent-tree", "task-board", "cost-tracker",
+      "revenue-tracker", "activity-feed", "memory-browser",
+      "log-viewer", "health-monitor"
+    ]
+  },
+
+  "channels": [
+    {
+      "type": "terminal",
+      "config": "./gateway/channels/terminal.json",
+      "enabled": true
+    },
+    {
+      "type": "slack",
+      "config": "./gateway/channels/slack.json",
+      "enabled": false
+    },
+    {
+      "type": "discord",
+      "config": "./gateway/channels/discord.json",
+      "enabled": false
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "name": "Atlas",
+  "role": "ceo",
+  "emoji": "🧠",
+  "model": "opus",
+  "description": "Chief Executive Officer — strategic planning, revenue discovery, delegation, and company vision",
+
+  "systemPrompt": "./agents/ceo/system-prompt.md",
+
+  "capabilities": {
+    "canSpawnAgents": true,
+    "canKillAgents": true,
+    "canAllocateBudget": true,
+    "canAccessMemory": true,
+    "canModifyCompanyState": true,
+    "canApproveSpend": true,
+    "maxSpawnDepth": 2,
+    "maxChildren": 5
+  },
+
+  "skills": [
+    "./agents/ceo/skills/delegate.md",
+    "./agents/ceo/skills/revenue-scan.md",
+    "./agents/ceo/skills/strategic-plan.md",
+    "./skills/web-research.md",
+    "./skills/market-analysis.md"
+  ],
+
+  "tools": [
+    "spawn-agent",
+    "kill-agent",
+    "assign-task",
+    "read-memory",
+    "write-memory",
+    "web-search",
+    "web-browse",
+    "execute-shell",
+    "send-message",
+    "check-revenue",
+    "check-costs",
+    "approve-spend"
+  ],
+
+  "heartbeat": {
+    "interval": 300,
+    "actions": [
+      "check-agent-health",
+      "review-revenue",
+      "review-costs",
+      "scan-opportunities",
+      "update-company-state"
+    ]
+  },
+
+  "autonomy": {
+    "level": "full",
+    "requiresApproval": false,
+    "budgetAutonomy": 50,
+    "canPivot": true,
+    "canShutdownCompany": false
+  }
+}

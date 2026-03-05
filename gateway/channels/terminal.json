@@ -1,0 +1,10 @@
+{
+  "type": "terminal",
+  "enabled": true,
+  "description": "Direct terminal interface for agent interaction",
+  "settings": {
+    "interactive": false,
+    "logToStdout": true,
+    "colorOutput": true
+  }
+}

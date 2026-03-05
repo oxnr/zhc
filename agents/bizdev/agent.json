@@ -1,0 +1,36 @@
+{
+  "name": "Scout",
+  "role": "bizdev",
+  "emoji": "🎯",
+  "model": "opus",
+  "description": "Business Development — market research, outreach, content creation, deal closing, revenue generation",
+
+  "systemPrompt": "./agents/bizdev/system-prompt.md",
+
+  "capabilities": {
+    "canSpawnAgents": true,
+    "canAccessMemory": true,
+    "maxSpawnDepth": 1,
+    "maxChildren": 5
+  },
+
+  "skills": [
+    "./skills/web-research.md",
+    "./skills/market-analysis.md",
+    "./skills/content-creation.md",
+    "./skills/outreach.md"
+  ],
+
+  "tools": [
+    "spawn-agent",
+    "assign-task",
+    "read-memory",
+    "write-memory",
+    "web-search",
+    "web-browse",
+    "send-email",
+    "social-media-post",
+    "create-document",
+    "analyze-data"
+  ]
+}

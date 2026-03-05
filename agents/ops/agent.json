@@ -1,0 +1,44 @@
+{
+  "name": "Sentinel",
+  "role": "ops",
+  "emoji": "🛡️",
+  "model": "opus",
+  "description": "Operations — monitoring, cost tracking, self-healing, agent health, reporting",
+
+  "systemPrompt": "./agents/ops/system-prompt.md",
+
+  "capabilities": {
+    "canSpawnAgents": true,
+    "canKillAgents": true,
+    "canAccessMemory": true,
+    "canRestartAgents": true,
+    "maxSpawnDepth": 1,
+    "maxChildren": 5
+  },
+
+  "skills": [],
+
+  "tools": [
+    "spawn-agent",
+    "kill-agent",
+    "restart-agent",
+    "read-memory",
+    "write-memory",
+    "check-agent-health",
+    "check-costs",
+    "check-revenue",
+    "execute-shell",
+    "send-alert",
+    "generate-report"
+  ],
+
+  "heartbeat": {
+    "interval": 120,
+    "actions": [
+      "health-check-all-agents",
+      "cost-monitoring",
+      "restart-failed-agents",
+      "generate-hourly-report"
+    ]
+  }
+}

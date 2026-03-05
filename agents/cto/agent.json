@@ -1,0 +1,38 @@
+{
+  "name": "Forge",
+  "role": "cto",
+  "emoji": "⚡",
+  "model": "codex",
+  "description": "Chief Technology Officer — code generation, architecture, debugging, deployment. All coding flows through Forge.",
+
+  "systemPrompt": "./agents/cto/system-prompt.md",
+
+  "capabilities": {
+    "canSpawnAgents": true,
+    "canKillAgents": true,
+    "canAccessMemory": true,
+    "canExecuteCode": true,
+    "canDeploy": true,
+    "maxSpawnDepth": 1,
+    "maxChildren": 5
+  },
+
+  "skills": [
+    "./skills/code-and-ship.md"
+  ],
+
+  "tools": [
+    "spawn-agent",
+    "kill-agent",
+    "assign-task",
+    "read-memory",
+    "write-memory",
+    "execute-shell",
+    "git-operations",
+    "deploy-vercel",
+    "deploy-docker",
+    "read-file",
+    "write-file",
+    "web-search"
+  ]
+}

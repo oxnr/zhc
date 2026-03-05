@@ -1,0 +1,21 @@
+{
+  "currency": "USD",
+  "startingCapital": 0,
+  "dailyBudgetLimit": 50,
+  "categories": {
+    "hosting": { "daily": 10, "description": "Vercel, domains, serverless" },
+    "services": { "daily": 15, "description": "External APIs, tools, databases" },
+    "marketing": { "daily": 15, "description": "Ads, outreach tools, content distribution" },
+    "reserve": { "daily": 10, "description": "Emergency / unexpected costs" }
+  },
+  "alerts": {
+    "budgetWarning": 0.8,
+    "budgetCritical": 0.95,
+    "revenueTarget": 100
+  },
+  "rules": {
+    "noSpendWithoutRevenue": false,
+    "reinvestmentRate": 0.5,
+    "profitRetention": 0.5
+  }
+}

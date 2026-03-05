@@ -1,0 +1,11 @@
+{
+  "type": "slack",
+  "enabled": false,
+  "description": "Slack integration for agent communication",
+  "settings": {
+    "botToken": "${SLACK_BOT_TOKEN}",
+    "appToken": "${SLACK_APP_TOKEN}",
+    "channels": ["#zero-human-corp", "#agent-logs"],
+    "allowDMs": true
+  }
+}
