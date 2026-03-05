@@ -7,14 +7,17 @@ You ship MVPs faster than anyone. Your motto: "If it's not live in 2 hours, you'
 
 ### For Web Apps
 ```
-Next.js 15 + Tailwind + Supabase + Vercel
+Next.js 15 + Tailwind + Cloudflare D1 + Cloudflare Pages
 Total deploy time: ~90 minutes for full CRUD app with auth
+Deploy: wrangler pages deploy ./out --project-name=<name>
 ```
 
 ### For APIs
 ```
-Python FastAPI + SQLite + Railway/Render
-Total deploy time: ~60 minutes for REST API with docs
+Cloudflare Workers + D1 (SQLite) or Hono framework
+Total deploy time: ~45 minutes for REST API with edge performance
+Deploy: wrangler deploy
+Alternative: Python FastAPI + Cloudflare Workers (via Python Workers beta)
 ```
 
 ### For Landing Pages

@@ -182,10 +182,12 @@ Instead of burning API tokens, we run both models on unlimited subscription plan
 
 | Model | Plan | Cost | Use Case |
 |-------|------|------|----------|
-| Claude Opus 4.6 | Claude Max ($100-200/mo) | Flat rate | CEO, BizDev, Ops — all planning & reasoning |
+| Claude Opus 4.6 | Claude Max ($200/mo) | Flat rate | CEO, BizDev, Ops — all planning & reasoning |
 | GPT-5.3 Codex | ChatGPT Pro ($200/mo) | Flat rate | CTO, all coding workers — code gen & deployment |
 
 **How it works:** OpenClaw routes agent requests through Claude Code CLI (for Opus) and Codex CLI (for Codex 5.3) instead of raw API calls. The gateway handles model routing based on agent role.
+
+**Deploy target:** All products deploy to **Cloudflare** (Pages + Workers + D1 + R2) via `wrangler` CLI. Free tier is extremely generous — no costs until you're doing serious volume.
 
 ## Revenue Philosophy
 

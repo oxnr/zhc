@@ -29,8 +29,9 @@
     "write-memory",
     "execute-shell",
     "git-operations",
-    "deploy-vercel",
-    "deploy-docker",
+    "deploy-cloudflare-pages",
+    "deploy-cloudflare-workers",
+    "wrangler-cli",
     "read-file",
     "write-file",
     "web-search"

@@ -1,7 +1,7 @@
 # Hackathon Setup Guide — Zero Human Corp
 
 > Everything you need to do on YOUR machine to get this running.
-> The Cowork sandbox created the repo; now you bring it to life.
+> Config: Claude Max $200/mo + ChatGPT Pro $200/mo + Cloudflare (free tier)
 
 ---
 
@@ -22,128 +22,148 @@ git push -u origin main
 
 ## Step 1: Install Prerequisites
 
-### Required
-
 ```bash
-# Node.js 22+ (for OpenClaw + dashboard)
+# Node.js 22+ (for OpenClaw + dashboard + wrangler)
 brew install node
 # OR: https://nodejs.org
 
 # Python 3.10+ (for economic tracker)
 brew install python3
-# OR: https://python.org
+
+# GitHub CLI
+brew install gh
 
 # OpenClaw (the agent framework)
 npm install -g openclaw@latest
 
-# Codex CLI (for GPT-5.3 Codex coding agents)
+# Codex CLI (for GPT-5.3 Codex — coding agents)
 npm install -g @openai/codex
 
-# Claude Code CLI (for Opus 4.6 planning agents)
-# Requires Claude Max subscription — install via:
-# https://code.claude.com/docs/en/getting-started
-```
+# Wrangler CLI (Cloudflare Workers/Pages deploy tool)
+npm install -g wrangler
 
-### Optional but Recommended
+# Claude Code CLI (for Opus 4.6 — planning agents)
+# Requires Claude Max $200/mo subscription
+# Install: https://code.claude.com/docs/en/getting-started
 
-```bash
-# GitHub CLI (for repo management)
-brew install gh
-
-# Docker (for containerized deployment later)
-brew install --cask docker
-
-# fswatch (for real-time log watching)
+# Optional: real-time log watching
 brew install fswatch
 ```
 
 ---
 
-## Step 2: Authenticate Models
+## Step 2: Authenticate Everything
 
 ### Claude Code (Opus 4.6)
 ```bash
 claude
-# Follow the auth flow — sign in with your Claude Max account
-# Test: claude --model opus "Say hello"
+# Follow the auth flow — sign in with your Claude Max $200/mo account
+# Test:
+claude --model opus --print "Reply with exactly: OPUS_OK"
 ```
 
 ### Codex CLI (GPT-5.3 Codex)
 ```bash
 codex
 # Select "Sign in with ChatGPT"
-# Sign in with your ChatGPT Pro account
-# Test: codex "Say hello"
+# Sign in with your ChatGPT Pro $200/mo account
+# Test:
+codex "Reply with exactly: CODEX_OK"
+```
+
+### Cloudflare (Wrangler)
+```bash
+wrangler login
+# Opens browser — sign in with your Cloudflare account
+# Test:
+wrangler whoami
+```
+
+### GitHub SSH Key (for CTO agent to push code)
+```bash
+./scripts/setup-github-ssh.sh
+# Generates a deploy key — add the public key to GitHub:
+# https://github.com/settings/keys → New SSH key
 ```
 
 ---
 
-## Step 3: Run OpenClaw Onboarding
+## Step 3: Run Setup
 
 ```bash
 cd zero-human-corp
+./setup.sh
+```
+
+This will:
+- Check all prerequisites
+- Create `.env` from template
+- Generate SSH key for CTO
+- Clone + install Mission Control dashboard
+- Install Python dependencies
+- Test model access
+
+---
+
+## Step 4: Configure .env
+
+```bash
+# Edit .env with your actual credentials:
+nano .env  # or vim, code, etc.
+```
+
+Fill in:
+```
+GITHUB_TOKEN=ghp_xxxxx              # https://github.com/settings/tokens/new (repo scope)
+STRIPE_SECRET_KEY=sk_test_xxxxx     # https://dashboard.stripe.com/apikeys
+CLOUDFLARE_ACCOUNT_ID=xxxxx         # https://dash.cloudflare.com → right sidebar
+CLOUDFLARE_API_TOKEN=xxxxx          # https://dash.cloudflare.com/profile/api-tokens
+```
+
+---
+
+## Step 5: Run OpenClaw Onboarding
+
+```bash
 openclaw onboard
 ```
 
 During onboarding, select:
-- **AI Provider**: Custom (we handle routing ourselves via gateway.json)
-- **Channels**: Terminal (start simple, add Slack/Discord later)
+- **AI Provider**: Custom (we handle routing via gateway.json)
+- **Channels**: Terminal (start simple)
 - **Memory**: Local filesystem (already configured in ./memory/)
 
 ---
 
-## Step 4: Set Up Environment
-
-```bash
-cp .env.example .env
-# Edit .env with your actual credentials
-```
-
----
-
-## Step 5: Install Dashboard
-
-```bash
-# Option A: Mission Control (recommended)
-git clone https://github.com/builderz-labs/mission-control dashboard
-cd dashboard && npm install && cd ..
-
-# Option B: ClawDeck (alternative)
-git clone https://github.com/clawdeckio/clawdeck dashboard
-cd dashboard && bundle install && cd ..
-```
-
----
-
-## Step 6: Launch Everything
+## Step 6: Launch
 
 ```bash
 # Terminal 1: Dashboard
 ./start-dashboard.sh
+# → http://localhost:4200
 
-# Terminal 2: CEO Agent
+# Terminal 2: CEO Agent (Atlas)
 ./start-ceo.sh
+# → Atlas boots, reads strategy, scans market, spawns CTO + BizDev
 
 # Terminal 3: Log Watcher
 ./watch-logs.sh
+# → Live company status, revenue, decisions
 ```
-
-Dashboard at http://localhost:4200
 
 ---
 
-## Step 7: Verify It's Running
+## Step 7: Verify
 
 ```bash
 ./scripts/health-check.sh
 ```
 
-You should see:
+Expected:
 - ✅ CEO (Atlas) — running
 - ✅ Ops (Sentinel) — running
 - ✅ Dashboard — running at :4200
-
-CTO and BizDev will be spawned by the CEO once it starts strategic planning.
+- CTO (Forge) and BizDev (Scout) get spawned by CEO within first 10 minutes
 
 ---
 
@@ -156,17 +176,30 @@ npm install -g openclaw@latest
 
 ### "claude: command not found"
 Install Claude Code: https://code.claude.com/docs/en/getting-started
-Requires Claude Max subscription ($100-200/mo)
+Requires Claude Max $200/mo subscription
 
 ### "codex: command not found"
 ```bash
 npm install -g @openai/codex
 ```
 
+### "wrangler: command not found"
+```bash
+npm install -g wrangler
+```
+
 ### Agent keeps stopping
-Check rate limits — Claude Max has usage limits on Opus 4.6.
-Consider lowering heartbeat interval from 5min to 15min to conserve quota:
-Edit `agents/ceo/agent.json` → set `heartbeat.interval` to 900
+Check rate limits. Even on $200/mo, Opus 4.6 has limits.
+If hitting them, increase heartbeat interval:
+```bash
+# In agents/ceo/agent.json, change heartbeat.interval to 600 (10 min)
+```
+
+### Cloudflare deploy fails
+```bash
+wrangler whoami  # Verify auth
+wrangler pages list  # Check Pages projects
+```
 
 ### Dashboard won't start
 ```bash

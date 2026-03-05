@@ -1,12 +1,17 @@
 {
   "currency": "USD",
   "startingCapital": 0,
-  "dailyBudgetLimit": 50,
+  "dailyBudgetLimit": 100,
+  "subscriptionCosts": {
+    "claudeMax": { "monthly": 200, "daily": 6.67, "description": "Claude Max $200/mo — Opus 4.6 for planning agents" },
+    "chatgptPro": { "monthly": 200, "daily": 6.67, "description": "ChatGPT Pro $200/mo — Codex 5.3 for coding agents" },
+    "note": "These are fixed costs, not tracked per-task. Total: $400/mo = $13.33/day"
+  },
   "categories": {
-    "hosting": { "daily": 10, "description": "Vercel, domains, serverless" },
-    "services": { "daily": 15, "description": "External APIs, tools, databases" },
-    "marketing": { "daily": 15, "description": "Ads, outreach tools, content distribution" },
-    "reserve": { "daily": 10, "description": "Emergency / unexpected costs" }
+    "hosting": { "daily": 20, "description": "Cloudflare Pages/Workers, domains" },
+    "services": { "daily": 30, "description": "External APIs, tools, databases, Stripe fees" },
+    "marketing": { "daily": 30, "description": "Ads, outreach tools, content distribution" },
+    "reserve": { "daily": 20, "description": "Emergency / unexpected costs" }
   },
   "alerts": {
     "budgetWarning": 0.8,

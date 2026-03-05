@@ -55,7 +55,7 @@
   "autonomy": {
     "level": "full",
     "requiresApproval": false,
-    "budgetAutonomy": 50,
+    "budgetAutonomy": 100,
     "canPivot": true,
     "canShutdownCompany": false
   }
