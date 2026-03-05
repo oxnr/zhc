@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero Human Corp — Mission Control</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a25;
+      --border: #1e1e2e;
+      --text-primary: #e0e0e8;
+      --text-secondary: #8888a0;
+      --accent-green: #00ff88;
+      --accent-red: #ff4466;
+      --accent-yellow: #ffaa00;
+      --accent-blue: #4488ff;
+      --accent-purple: #aa66ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      margin: 0;
+      padding: 0;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .card-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .metric {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .green { color: var(--accent-green); }
+    .red { color: var(--accent-red); }
+    .yellow { color: var(--accent-yellow); }
+    .blue { color: var(--accent-blue); }
+    .purple { color: var(--accent-purple); }
+    .dim { color: var(--text-secondary); }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-green { background: rgba(0,255,136,0.15); color: var(--accent-green); }
+    .badge-red { background: rgba(255,68,102,0.15); color: var(--accent-red); }
+    .badge-yellow { background: rgba(255,170,0,0.15); color: var(--accent-yellow); }
+    .badge-blue { background: rgba(68,136,255,0.15); color: var(--accent-blue); }
+    .badge-purple { background: rgba(170,102,255,0.15); color: var(--accent-purple); }
+    .pulse { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .agent-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .agent-node .emoji { font-size: 20px; }
+    .agent-children {
+      padding-left: 32px;
+      border-left: 2px solid var(--border);
+      margin-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .task-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .task-row:last-child { border-bottom: none; }
+    .intervention {
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      border-left: 3px solid var(--accent-yellow);
+      background: rgba(255,170,0,0.05);
+    }
+    .intervention.resolved {
+      border-left-color: var(--accent-green);
+      background: rgba(0,255,136,0.05);
+      opacity: 0.6;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .status-dot.on { background: var(--accent-green); }
+    .status-dot.off { background: var(--accent-red); }
+    .markdown-preview {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 12px;
+      padding: 16px;
+      min-height: 100vh;
+    }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+    }
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span style="font-size:18px;font-weight:700;">Zero Human Corp</span>
+    <span class="badge badge-blue">MISSION CONTROL</span>
+  </div>
+  <div class="connection-status">
+    <span class="status-dot" id="ws-status"></span>
+    <span id="ws-label">Connecting...</span>
+    <span class="dim" style="margin-left:12px;" id="last-update"></span>
+  </div>
+</header>
+
+<div class="grid-layout">
+
+  <!-- Row 1: Key Metrics -->
+  <div class="card">
+    <div class="card-title">Revenue</div>
+    <div class="metric green" id="m-revenue">$0.00</div>
+    <div class="dim" style="font-size:11px;margin-top:4px;" id="m-revenue-count">0 transactions</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Costs</div>
+    <div class="metric red" id="m-costs">$0.00</div>
+    <div class="dim" style="font-size:11px;margin-top:4px;" id="m-costs-count">0 transactions</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Net P&L</div>
+    <div class="metric" id="m-pnl">$0.00</div>
+    <div class="dim" style="font-size:11px;margin-top:4px;" id="m-pnl-status">Not yet started</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Interventions Needed</div>
+    <div class="metric yellow" id="m-interventions">0</div>
+    <div class="dim" style="font-size:11px;margin-top:4px;">items awaiting human action</div>
+  </div>
+
+  <!-- Row 2: Agent Tree + Task Board -->
+  <div class="card span-2">
+    <div class="card-title">Agent Hierarchy</div>
+    <div id="agent-tree">
+      <div class="agent-node">
+        <span class="emoji">🧠</span>
+        <span style="font-weight:600;">Atlas</span>
+        <span class="badge badge-purple">CEO</span>
+        <span class="badge badge-blue">Opus 4.6</span>
+        <span class="status-dot off" style="margin-left:auto;" id="agent-ceo-status"></span>
+      </div>
+      <div class="agent-children">
+        <div class="agent-node">
+          <span class="emoji">⚡</span>
+          <span style="font-weight:600;">Forge</span>
+          <span class="badge badge-green">CTO</span>
+          <span class="badge badge-yellow">Codex 5.3</span>
+          <span class="status-dot off" style="margin-left:auto;" id="agent-cto-status"></span>
+        </div>
+        <div class="agent-node">
+          <span class="emoji">🎯</span>
+          <span style="font-weight:600;">Scout</span>
+          <span class="badge badge-green">BizDev</span>
+          <span class="badge badge-blue">Opus 4.6</span>
+          <span class="status-dot off" style="margin-left:auto;" id="agent-bizdev-status"></span>
+        </div>
+        <div class="agent-node">
+          <span class="emoji">🛡️</span>
+          <span style="font-weight:600;">Sentinel</span>
+          <span class="badge badge-green">Ops</span>
+          <span class="badge badge-blue">Opus 4.6</span>
+          <span class="status-dot off" style="margin-left:auto;" id="agent-ops-status"></span>
+        </div>
+      </div>
+      <div id="worker-pool" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <div class="card span-2">
+    <div class="card-title">Task Board</div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;" id="task-summary">
+      <span class="badge badge-blue">INBOX: 0</span>
+      <span class="badge badge-yellow">IN PROGRESS: 0</span>
+      <span class="badge badge-purple">IN REVIEW: 0</span>
+      <span class="badge badge-green">DONE: 0</span>
+    </div>
+    <div id="task-list" style="max-height:280px;overflow-y:auto;">
+      <div class="dim" style="font-size:12px;">No tasks yet. CEO will create them on boot.</div>
+    </div>
+  </div>
+
+  <!-- Row 3: Company State + Decisions -->
+  <div class="card span-2">
+    <div class="card-title">Company State</div>
+    <div class="markdown-preview" id="company-state">Awaiting CEO boot...</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recent Decisions</div>
+    <div id="decisions-list" style="max-height:300px;overflow-y:auto;">
+      <div class="dim" style="font-size:12px;">No decisions yet.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Intervention Queue</div>
+    <div id="interventions-list" style="max-height:300px;overflow-y:auto;">
+      <div class="dim" style="font-size:12px;">No interventions needed.</div>
+    </div>
+  </div>
+
+  <!-- Row 4: Budget + Learnings + Latest Report -->
+  <div class="card">
+    <div class="card-title">Budget Status</div>
+    <div id="budget-info">
+      <div style="font-size:12px;">
+        <div>Daily limit: <span class="yellow" id="b-limit">$100</span></div>
+        <div>Spent today: <span id="b-spent">$0</span></div>
+        <div style="margin-top:8px;">
+          <div style="background:var(--border);height:6px;border-radius:3px;overflow:hidden;">
+            <div id="b-bar" style="background:var(--accent-green);height:100%;width:0%;transition:width 0.5s;"></div>
+          </div>
+        </div>
+        <div class="dim" style="font-size:10px;margin-top:4px;" id="b-pct">0% utilized</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Learnings</div>
+    <div id="learnings-list" style="max-height:200px;overflow-y:auto;">
+      <div class="dim" style="font-size:12px;">No learnings yet.</div>
+    </div>
+  </div>
+
+  <div class="card span-2">
+    <div class="card-title">Latest P&L Report</div>
+    <div class="markdown-preview" id="latest-report">No reports generated yet.</div>
+  </div>
+
+</div>
+
+<script>
+  // ---- WebSocket Connection ----
+  let ws;
+  let reconnectTimer;
+
+  function connect() {
+    const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    ws = new WebSocket(`${protocol}//${location.host}`);
+
+    ws.onopen = () => {
+      document.getElementById('ws-status').className = 'status-dot on';
+      document.getElementById('ws-label').textContent = 'Connected';
+    };
+
+    ws.onclose = () => {
+      document.getElementById('ws-status').className = 'status-dot off';
+      document.getElementById('ws-label').textContent = 'Reconnecting...';
+      reconnectTimer = setTimeout(connect, 3000);
+    };
+
+    ws.onerror = () => ws.close();
+
+    ws.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      if (msg.type === 'full-state') {
+        updateDashboard(msg.data);
+      }
+    };
+  }
+
+  // ---- Update Dashboard ----
+  function updateDashboard(state) {
+    // Timestamp
+    document.getElementById('last-update').textContent =
+      'Updated ' + new Date(state.timestamp).toLocaleTimeString();
+
+    // Key Metrics
+    const f = state.finance;
+    document.getElementById('m-revenue').textContent = '$' + f.totalRevenue.toFixed(2);
+    document.getElementById('m-revenue-count').textContent = f.revenues.length + ' transactions';
+    document.getElementById('m-costs').textContent = '$' + f.totalCosts.toFixed(2);
+    document.getElementById('m-costs-count').textContent = f.costs.length + ' transactions';
+
+    const pnlEl = document.getElementById('m-pnl');
+    pnlEl.textContent = '$' + f.netPnl.toFixed(2);
+    pnlEl.className = 'metric ' + (f.netPnl > 0 ? 'green' : f.netPnl < 0 ? 'red' : 'dim');
+
+    const pnlStatus = document.getElementById('m-pnl-status');
+    if (f.netPnl > 0) pnlStatus.textContent = 'PROFITABLE';
+    else if (f.totalRevenue === 0 && f.totalCosts === 0) pnlStatus.textContent = 'Not yet started';
+    else if (f.netPnl === 0) pnlStatus.textContent = 'Breaking even';
+    else pnlStatus.textContent = 'Running at loss';
+
+    // Interventions count
+    document.getElementById('m-interventions').textContent = state.openInterventions;
+
+    // Task Board Summary
+    const ts = state.board.summary;
+    document.getElementById('task-summary').innerHTML = [
+      `<span class="badge badge-blue">INBOX: ${ts.INBOX || 0}</span>`,
+      `<span class="badge badge-yellow">IN PROGRESS: ${ts.IN_PROGRESS || 0}</span>`,
+      `<span class="badge badge-purple">IN REVIEW: ${ts.IN_REVIEW || 0}</span>`,
+      `<span class="badge badge-green">DONE: ${ts.DONE || 0}</span>`,
+    ].join('');
+
+    // Task List
+    const taskList = document.getElementById('task-list');
+    if (state.board.tasks.length === 0) {
+      taskList.innerHTML = '<div class="dim" style="font-size:12px;">No tasks yet. CEO will create them on boot.</div>';
+    } else {
+      taskList.innerHTML = state.board.tasks.map(t => `
+        <div class="task-row">
+          <div>
+            <span class="badge badge-${statusColor(t.status)}">${t.status}</span>
+            <span style="margin-left:6px;">${esc(t.title)}</span>
+          </div>
+          <span class="dim">${t.assignee || 'unassigned'}</span>
+        </div>
+      `).join('');
+    }
+
+    // Company State
+    document.getElementById('company-state').textContent = state.companyState;
+
+    // Decisions
+    const decList = document.getElementById('decisions-list');
+    if (state.decisions.length === 0) {
+      decList.innerHTML = '<div class="dim" style="font-size:12px;">No decisions yet.</div>';
+    } else {
+      decList.innerHTML = state.decisions.map(d =>
+        `<div style="font-size:12px;padding:4px 0;border-bottom:1px solid var(--border);">${esc(d)}</div>`
+      ).join('');
+    }
+
+    // Interventions
+    const intList = document.getElementById('interventions-list');
+    if (state.interventions.length === 0) {
+      intList.innerHTML = '<div class="dim" style="font-size:12px;">No interventions needed.</div>';
+    } else {
+      intList.innerHTML = state.interventions.map(i =>
+        `<div class="intervention ${i.open ? '' : 'resolved'}">${esc(i.raw)}</div>`
+      ).join('');
+    }
+
+    // Budget
+    if (state.budget.dailyBudgetLimit) {
+      const limit = state.budget.dailyBudgetLimit;
+      const spent = f.totalCosts;
+      const pct = Math.min(100, (spent / limit) * 100);
+      document.getElementById('b-limit').textContent = '$' + limit;
+      document.getElementById('b-spent').textContent = '$' + spent.toFixed(2);
+      document.getElementById('b-bar').style.width = pct + '%';
+      document.getElementById('b-bar').style.background =
+        pct > 95 ? 'var(--accent-red)' : pct > 80 ? 'var(--accent-yellow)' : 'var(--accent-green)';
+      document.getElementById('b-pct').textContent = pct.toFixed(1) + '% utilized';
+    }
+
+    // Learnings
+    const learnList = document.getElementById('learnings-list');
+    if (state.learnings.length === 0) {
+      learnList.innerHTML = '<div class="dim" style="font-size:12px;">No learnings yet.</div>';
+    } else {
+      learnList.innerHTML = state.learnings.map(l =>
+        `<div style="font-size:12px;padding:3px 0;">${esc(l)}</div>`
+      ).join('');
+    }
+
+    // Latest Report
+    document.getElementById('latest-report').textContent = state.latestReport || 'No reports generated yet.';
+
+    // Agent status (simple heuristic: if company state mentions the agent, it's "on")
+    const stateText = state.companyState.toLowerCase();
+    for (const agent of ['ceo', 'cto', 'bizdev', 'ops']) {
+      const dot = document.getElementById(`agent-${agent}-status`);
+      if (dot) {
+        // CEOs and Ops autostart, others are spawned
+        const isOn = (agent === 'ceo' || agent === 'ops') ? true :
+          stateText.includes(agent) || stateText.includes(state.agents[agent]?.name?.toLowerCase() || '');
+        dot.className = `status-dot ${isOn ? 'on' : 'off'}`;
+      }
+    }
+  }
+
+  function statusColor(status) {
+    const map = { INBOX: 'blue', BACKLOG: 'blue', ASSIGNED: 'blue',
+      IN_PROGRESS: 'yellow', IN_REVIEW: 'purple', DONE: 'green', ARCHIVED: 'green' };
+    return map[status] || 'blue';
+  }
+
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // ---- Init ----
+  connect();
+
+  // Auto-refresh fallback (in case WebSocket fails)
+  setInterval(async () => {
+    if (!ws || ws.readyState !== 1) {
+      try {
+        const res = await fetch('/api/state');
+        const data = await res.json();
+        updateDashboard(data);
+      } catch {}
+    }
+  }, 15000);
+</script>
+
+</body>
+</html>

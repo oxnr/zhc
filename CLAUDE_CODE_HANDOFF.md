@@ -1,29 +1,22 @@
 # Claude Code Handoff — Zero Human Corp
 
-> This document summarizes everything built so far and what to do next in Claude Code.
+> Complete summary of everything built. Read this first in Claude Code.
+> `cat CLAUDE_CODE_HANDOFF.md`
 
 ---
 
 ## Repo Location
 
-**On your machine:** The repo lives wherever your Cowork workspace folder is mapped.
-Look in the folder you selected in Cowork — the `zero-human-corp/` directory is there.
+This repo lives in the folder you selected in Cowork.
+On your machine, find it and `cd` into it:
 
 ```bash
-cd /path/to/your/workspace/zero-human-corp
+cd /path/to/your-cowork-folder/zero-human-corp
 ```
 
 ---
 
-## What's Been Built (4 commits, 53 files)
-
-### Git Log
-```
-572faee  Add Docker, idea framework, security hardening
-302a2be  Switch to Cloudflare/Wrangler, configure for $200 Max tiers
-7de4a04  Add hackathon setup guide and decisions checklist
-458c701  Initial commit: Zero Human Corp scaffold
-```
+## What's Been Built (6 commits, ~58 files)
 
 ### Architecture
 
@@ -36,10 +29,11 @@ CEO (Atlas) ──── Opus 4.6 via Claude Code CLI ($200/mo Max)
   └── Ops (Sentinel) ── Opus 4.6
         └── up to 5 monitoring workers (auto-routed)
 
-Deploy target: Cloudflare (Pages + Workers + D1 + R2) via wrangler CLI
-Dashboard: Mission Control at :4200 (Dockerized)
-Memory: Markdown files in ./memory/ (git-tracked)
-Task Board: Symphony-style in ./symphony/board.json
+Deploy:    Cloudflare (Pages + Workers + D1 + R2) via wrangler CLI
+Dashboard: Custom Mission Control at :4200 (Node + WebSocket, Dockerized)
+Memory:    Markdown files in ./memory/ (git-tracked, real-time watched)
+Tasks:     Symphony-style board in ./symphony/board.json
+Economy:   P&L tracker in ./economy/ (hourly reports, Dockerized)
 ```
 
 ### File Map
@@ -47,173 +41,152 @@ Task Board: Symphony-style in ./symphony/board.json
 ```
 zero-human-corp/
 ├── .env.example                         # All config — NO secrets committed
-├── .gitignore                           # Ignores .env, SSH keys, Docker, reports
+├── .gitignore
 ├── README.md                            # Full architecture doc
-├── HACKATHON-SETUP.md                   # Step-by-step local setup guide
-├── DECISIONS-NEEDED.md                  # Questions to answer before launch
+├── HACKATHON-SETUP.md                   # Step-by-step local setup
+├── DECISIONS-NEEDED.md                  # Open questions
 ├── CLAUDE_CODE_HANDOFF.md               # THIS FILE
 │
 ├── agents/
 │   ├── ceo/
-│   │   ├── agent.json                   # Atlas config (Opus, full autonomy, $100/day budget)
-│   │   ├── system-prompt.md             # CEO personality, directives, constraints
+│   │   ├── agent.json                   # Atlas: Opus, full autonomy, $100/day budget
+│   │   ├── system-prompt.md             # Personality, directives, constraints
 │   │   └── skills/
-│   │       ├── idea-framework.md        # ★ CORE: 6-phase idea discovery → execution pipeline
-│   │       ├── delegate.md              # How to assign tasks to sub-agents
+│   │       ├── idea-framework.md        # ★ CORE: 6-phase DISCOVER→SCORE→VALIDATE→BUILD→MEASURE→SCALE/KILL
+│   │       ├── delegate.md              # Task assignment to sub-agents
 │   │       ├── revenue-scan.md          # Market opportunity scanner
 │   │       ├── strategic-plan.md        # Strategic planning process
 │   │       └── agents-orchestrator.md   # Multi-agent coordination
 │   ├── cto/
-│   │   ├── agent.json                   # Forge config (Codex, deploys to Cloudflare)
-│   │   └── system-prompt.md             # CTO with full Cloudflare stack guide
+│   │   ├── agent.json                   # Forge: Codex 5.3, Cloudflare deploy
+│   │   └── system-prompt.md             # Full Cloudflare stack guide (Pages, Workers, D1, R2)
 │   ├── bizdev/
-│   │   ├── agent.json                   # Scout config (Opus, outreach/content)
+│   │   ├── agent.json                   # Scout: Opus 4.6, outreach/content
 │   │   └── system-prompt.md
 │   └── ops/
-│       ├── agent.json                   # Sentinel config (Opus, self-healing)
+│       ├── agent.json                   # Sentinel: Opus 4.6, self-healing
 │       ├── system-prompt.md
-│       └── skills/
-│           └── daily-summary.md         # Daily P&L + intervention queue
+│       └── skills/daily-summary.md      # Daily P&L + intervention queue
+│
+├── dashboard/                           # ★ CUSTOM Mission Control (tested, working)
+│   ├── package.json                     # express + ws + chokidar
+│   ├── server.js                        # Node server: watches files, WebSocket push
+│   └── index.html                       # Single-page dark UI: agents, tasks, revenue, interventions
 │
 ├── gateway/
-│   ├── gateway.json                     # OpenClaw gateway: model routing, agent registry
-│   └── channels/
-│       ├── terminal.json                # Enabled by default
-│       ├── slack.json                   # Disabled (configure later)
-│       └── discord.json                 # Disabled (configure later)
+│   ├── gateway.json                     # OpenClaw: model routing (Opus for planning, Codex for code)
+│   └── channels/{terminal,slack,discord}.json
 │
-├── memory/                              # Persistent state (Markdown, git-tracked)
-│   ├── company-state.md                 # Current status (updated every heartbeat)
-│   ├── revenue-log.md                   # All revenue + cost transactions
+├── memory/                              # Persistent state (Markdown, watched by dashboard)
+│   ├── company-state.md                 # Updated every CEO heartbeat
+│   ├── revenue-log.md                   # REVENUE: $X | source | timestamp
 │   ├── decisions.md                     # CEO decision log with reasoning
-│   ├── learnings.md                     # What the company learned
-│   └── intervention-queue.md            # Items needing human attention
+│   ├── learnings.md                     # Accumulated learnings
+│   └── intervention-queue.md            # [OPEN] items needing human action
 │
-├── symphony/                            # Task board (Symphony-inspired)
-│   ├── SPEC.md                          # Task lifecycle specification
-│   ├── board.json                       # Live task state
-│   ├── task-manager.py                  # Board CRUD operations
-│   └── daily-summary.py                 # Daily report generator + email
+├── symphony/                            # Task board
+│   ├── board.json                       # INBOX→ASSIGNED→IN_PROGRESS→IN_REVIEW→DONE
+│   ├── task-manager.py                  # Board CRUD API
+│   └── daily-summary.py                 # Report generator + optional email
 │
-├── economy/                             # Financial tracking
-│   ├── budget.json                      # $100/day limit, category breakdown
-│   └── tracker.py                       # P&L report generator
+├── economy/
+│   ├── budget.json                      # $100/day limit, categories
+│   └── tracker.py                       # Hourly P&L report generator
 │
 ├── skills/                              # Shared skill library
-│   ├── web-research.md
-│   ├── code-and-ship.md                 # Cloudflare-first shipping guide
-│   ├── content-creation.md
-│   ├── market-analysis.md
-│   ├── outreach.md
-│   ├── growth-hacking.md               # From agency-agents
-│   ├── rapid-prototyper.md             # Cloudflare stack, speed benchmarks
-│   ├── analytics-reporter.md           # KPI tracking framework
-│   └── finance-tracker.md              # Revenue/cost logging format
+│   ├── code-and-ship.md                 # Cloudflare-first shipping
+│   ├── rapid-prototyper.md              # Speed benchmarks by stack
+│   ├── growth-hacking.md                # Viral loops, channels, experiments
+│   ├── analytics-reporter.md            # KPI framework
+│   ├── finance-tracker.md               # Revenue/cost logging format
+│   ├── {web-research,market-analysis,content-creation,outreach}.md
 │
 ├── scripts/
-│   ├── setup-github-ssh.sh             # Generate SSH deploy key for CTO
-│   ├── health-check.sh                 # Check all agents + services
-│   └── reset-agents.sh                 # Kill all agents, preserve memory
+│   ├── setup-github-ssh.sh              # Generate SSH key for CTO agent
+│   ├── health-check.sh                  # Check all agents + services
+│   └── reset-agents.sh                  # Kill agents, preserve memory
 │
-├── docker-compose.yml                   # Dashboard + tracker + watcher
-├── Dockerfile.dashboard
-├── Dockerfile.tracker
-├── Dockerfile.watcher
-│
-├── setup.sh                             # One-command setup (installs everything)
-├── start-dashboard.sh                   # Launch Mission Control
-├── start-ceo.sh                         # Launch CEO agent
-└── watch-logs.sh                        # Tail live status
+├── docker-compose.yml                   # Dashboard + tracker (agents run on host)
+├── Dockerfile.{dashboard,tracker,watcher}
+├── setup.sh                             # One-command full setup
+├── start-dashboard.sh                   # Launch Mission Control (:4200)
+├── start-ceo.sh                         # Launch CEO agent (Atlas)
+└── watch-logs.sh                        # Terminal log viewer
 ```
 
 ---
 
-## Security Model
+## Security
 
-- **NO secrets in the repo.** All credentials go in `.env` (gitignored).
-- SSH key for CTO agent generated by `scripts/setup-github-ssh.sh`
-- Cloudflare auth via `wrangler login` (browser-based OAuth, no token in repo)
-- Stripe keys in `.env` only
-- Agent configs reference env vars, never hardcoded values
+- Zero secrets in repo. All credentials in `.env` (gitignored).
+- SSH key generated by `scripts/setup-github-ssh.sh` (gitignored).
+- Cloudflare auth via `wrangler login` (OAuth, no token stored).
+- Security audit passed: no hardcoded keys, emails, or tokens.
 
 ---
 
-## What To Do Next in Claude Code
+## How The CEO Finds Ideas
 
-### 1. Push to GitHub
+6-phase pipeline in `agents/ceo/skills/idea-framework.md`:
+
+```
+DISCOVER (30m)  — Pain point mining, underserved niche detection, arbitrage scanning
+    ↓
+SCORE (15m)     — 6 criteria scored 1-5 (need 18/30 to proceed)
+    ↓
+VALIDATE (1-2h) — Landing page test, pre-sell test, competitor gap analysis
+    ↓
+BUILD (2-4h)    — CTO ships MVP to Cloudflare, BizDev prepares launch
+    ↓
+MEASURE (24h)   — Traffic, signups, payment attempts, actual revenue
+    ↓
+SCALE or KILL   — Revenue > $0 → double down. $0 after 48h → kill and pivot.
+```
+
+Portfolio: 2-3 ideas in parallel. Idea A = full build, B = validation, C = research.
+
+---
+
+## Next Steps (in Claude Code)
+
+### Quick Start
 ```bash
 cd /path/to/zero-human-corp
+
+# 1. Push to GitHub
 gh repo create zero-human-corp --public --source=. --push
-```
 
-### 2. Run Setup
-```bash
+# 2. Run setup
 ./setup.sh
+
+# 3. Fill in .env (Cloudflare, Stripe, GitHub tokens)
+nano .env
+
+# 4. Auth CLIs
+claude                          # Claude Max
+codex                           # ChatGPT Pro
+wrangler login                  # Cloudflare
+./scripts/setup-github-ssh.sh   # SSH key → add to GitHub
+
+# 5. Start dashboard (Docker or direct)
+./start-dashboard.sh            # http://localhost:4200
+
+# 6. Launch the company
+./start-ceo.sh                  # Atlas boots → discovers ideas → spawns agents
 ```
 
-### 3. Fill in .env
-You need:
-- `CLOUDFLARE_ACCOUNT_ID` — from dash.cloudflare.com right sidebar
-- `CLOUDFLARE_API_TOKEN` — dash.cloudflare.com/profile/api-tokens → "Edit Workers"
-- `STRIPE_SECRET_KEY` — dashboard.stripe.com/apikeys (use sk_test_ for now)
-- `GITHUB_TOKEN` — github.com/settings/tokens/new (repo scope)
-
-### 4. Authenticate CLIs
-```bash
-claude                    # Sign in with Claude Max account
-codex                     # Sign in with ChatGPT Pro account
-wrangler login            # Sign in with Cloudflare account
-./scripts/setup-github-ssh.sh  # Generate + add SSH key to GitHub
-```
-
-### 5. Start Docker Services
-```bash
-docker compose up -d      # Dashboard, tracker, watcher
-```
-
-### 6. Launch the Company
-```bash
-./start-ceo.sh            # Atlas boots, discovers ideas, spawns agents
-```
-
----
-
-## The Idea Framework (How The CEO Decides What To Build)
-
-The CEO follows a 6-phase pipeline defined in `agents/ceo/skills/idea-framework.md`:
-
-```
-DISCOVER (30m) → SCORE (15m) → VALIDATE (1-2h) → BUILD (2-4h) → MEASURE (24h) → SCALE or KILL
-```
-
-**Key scoring criteria** (1-5 each, need 18/30 to proceed):
-Pain Severity, Market Size, Build Speed, Revenue Speed, AI Moat, Recurring Revenue
-
-**Portfolio approach**: Run 2-3 ideas in parallel. Idea A gets full build,
-Idea B gets landing page validation, Idea C gets research only.
-
-**Kill discipline**: $0 revenue after 48 hours = kill and pivot immediately.
-
----
-
-## What Can Run Overnight
-
-Once setup is complete and the CEO agent is booted:
-1. Atlas will discover and score ideas (Phase 1-2)
-2. Atlas will spawn CTO + BizDev
-3. CTO will build MVP(s)
-4. BizDev will prepare launch content
-5. Ops monitors everything, generates hourly reports
-6. Check `memory/company-state.md` and the dashboard in the morning
-
-**Rate limit note**: On $200/mo Max, Opus 4.6 will throttle eventually.
-If agents stall, increase heartbeat interval in `agents/ceo/agent.json`.
+### What To Build Next
+1. Wire OpenClaw gateway to actually spawn agents via `claude` and `codex` CLIs
+2. Test the full CEO → CTO → deploy flow end-to-end
+3. Add Stripe webhook endpoint for real-time revenue tracking
+4. Add Cloudflare Pages deploy script that CTO calls
+5. Consider: should the dashboard be deployed to Cloudflare too? (for mobile access)
 
 ---
 
 ## Decisions Still Open
 
-1. Starting capital ($0 or seed it?)
-2. Revenue guardrails (any off-limits industries/tactics?)
-3. Hackathon demo goal (first revenue? shipped product? agent tree?)
-4. Stripe: test mode or live mode?
+1. Starting capital: $0 (bootstrap) or seed some budget?
+2. Revenue guardrails: any industries or tactics off-limits?
+3. Stripe: test mode (sk_test_) or live mode (sk_live_)?
+4. Hackathon demo goal: first $1 revenue? Shipped product? Agent tree running?

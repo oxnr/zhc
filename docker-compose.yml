@@ -3,7 +3,7 @@ version: "3.9"
 # ============================================
 # Zero Human Corp — Docker Compose
 # ============================================
-# Dockerized: dashboard, economic tracker, log watcher
+# Dockerized: dashboard, economic tracker
 # NOT dockerized: agents (they need host CLI access to claude/codex/wrangler)
 #
 # Usage:
@@ -14,28 +14,31 @@ version: "3.9"
 
 services:
   # ---- Mission Control Dashboard ----
+  # Custom single-pane-of-glass dashboard
+  # Watches memory/, economy/, symphony/ via chokidar
+  # Pushes real-time updates via WebSocket
   dashboard:
     build:
-      context: ./dashboard
-      dockerfile: ../Dockerfile.dashboard
+      context: .
+      dockerfile: Dockerfile.dashboard
     ports:
       - "${DASHBOARD_PORT:-4200}:4200"
     volumes:
-      - ./memory:/app/memory:ro
-      - ./economy:/app/economy:ro
-      - ./symphony:/app/symphony:ro
-      - dashboard-db:/app/data
+      - ./memory:/zhc/memory:ro
+      - ./economy:/zhc/economy:ro
+      - ./symphony:/zhc/symphony:ro
+      - ./agents:/zhc/agents:ro
     environment:
       - PORT=4200
-      - DB_PATH=/app/data/mission-control.db
+      - ZHC_ROOT=/zhc
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4200"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:4200/api/state"]
       interval: 30s
       timeout: 5s
       retries: 3
 
-  # ---- Economic Tracker (generates P&L reports) ----
+  # ---- Economic Tracker (generates P&L reports hourly) ----
   tracker:
     build:
       context: .
@@ -50,17 +53,3 @@ services:
       - BUDGET_FILE=/app/economy/budget.json
       - REPORT_INTERVAL=3600
     restart: unless-stopped
-
-  # ---- Log Watcher / Status Monitor ----
-  watcher:
-    build:
-      context: .
-      dockerfile: Dockerfile.watcher
-    volumes:
-      - ./memory:/app/memory:ro
-      - ./economy:/app/economy:ro
-      - ./symphony:/app/symphony:ro
-    restart: unless-stopped
-
-volumes:
-  dashboard-db:
