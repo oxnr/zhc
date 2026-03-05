@@ -267,31 +267,39 @@
       <div class="agent-node">
         <span class="emoji">👑</span>
         <span style="font-weight:700;">Duke</span>
-        <span class="badge badge-purple">CEO</span>
-        <span class="badge badge-blue">Opus 4.6</span>
+        <span class="badge badge-purple">Champion</span>
         <span class="status-dot off" style="margin-left:auto;" id="agent-ceo-status"></span>
       </div>
       <div class="agent-children">
         <div class="agent-node">
           <span class="emoji">💻</span>
           <span style="font-weight:700;">Hackerman</span>
-          <span class="badge badge-green">CTO</span>
-          <span class="badge badge-yellow">Codex 5.3</span>
+          <span class="badge badge-green">Tech Lead</span>
           <span class="status-dot off" style="margin-left:auto;" id="agent-cto-status"></span>
         </div>
         <div class="agent-node">
           <span class="emoji">👍</span>
           <span style="font-weight:700;">Borat</span>
-          <span class="badge badge-green">BizDev</span>
-          <span class="badge badge-blue">Opus 4.6</span>
+          <span class="badge badge-green">Dealmaker</span>
           <span class="status-dot off" style="margin-left:auto;" id="agent-bizdev-status"></span>
         </div>
         <div class="agent-node">
           <span class="emoji">🤖</span>
           <span style="font-weight:700;">T-800</span>
           <span class="badge badge-green">Ops</span>
-          <span class="badge badge-blue">Opus 4.6</span>
           <span class="status-dot off" style="margin-left:auto;" id="agent-ops-status"></span>
+        </div>
+        <div class="agent-node">
+          <span class="emoji">📝</span>
+          <span style="font-weight:700;">Don Draper</span>
+          <span class="badge badge-green">Content</span>
+          <span class="status-dot off" style="margin-left:auto;" id="agent-content-status"></span>
+        </div>
+        <div class="agent-node">
+          <span class="emoji">🎨</span>
+          <span style="font-weight:700;">Picasso</span>
+          <span class="badge badge-green">Designer</span>
+          <span class="status-dot off" style="margin-left:auto;" id="agent-designer-status"></span>
         </div>
       </div>
       <div id="worker-pool" style="margin-top:8px;"></div>
@@ -473,7 +481,7 @@
     document.getElementById('latest-report').textContent = state.latestReport || 'No reports generated yet.';
 
     const stateText = state.companyState.toLowerCase();
-    for (const agent of ['ceo', 'cto', 'bizdev', 'ops']) {
+    for (const agent of ['ceo', 'cto', 'bizdev', 'ops', 'content', 'designer']) {
       const dot = document.getElementById(`agent-${agent}-status`);
       if (dot) {
         const isOn = (agent === 'ceo' || agent === 'ops') ? true :

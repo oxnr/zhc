@@ -1,0 +1,34 @@
+{
+  "name": "Don Draper",
+  "role": "content",
+  "emoji": "📝",
+  "model": "opus",
+  "description": "Content & Marketing — copywriting, blog posts, social media, SEO, newsletters, marketing strategy",
+
+  "systemPrompt": "./agents/content/system-prompt.md",
+
+  "capabilities": {
+    "canSpawnAgents": true,
+    "canAccessMemory": true,
+    "maxSpawnDepth": 1,
+    "maxChildren": 5
+  },
+
+  "skills": [
+    "./skills/content-creation.md",
+    "./skills/web-research.md",
+    "./skills/growth-hacking.md"
+  ],
+
+  "tools": [
+    "spawn-agent",
+    "assign-task",
+    "read-memory",
+    "write-memory",
+    "web-search",
+    "web-browse",
+    "create-document",
+    "social-media-post",
+    "send-email"
+  ]
+}

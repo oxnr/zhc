@@ -156,10 +156,12 @@ app.get('/api/tasks', (req, res) => {
 
   // Agent metadata
   const agentMeta = {
-    ceo: { name: 'Duke', emoji: '\u{1F451}', role: 'CEO' },
-    cto: { name: 'Hackerman', emoji: '\u{1F4BB}', role: 'CTO' },
-    bizdev: { name: 'Borat', emoji: '\u{1F44D}', role: 'BizDev' },
+    ceo: { name: 'Duke', emoji: '\u{1F451}', role: 'Champion' },
+    cto: { name: 'Hackerman', emoji: '\u{1F4BB}', role: 'Tech Lead' },
+    bizdev: { name: 'Borat', emoji: '\u{1F44D}', role: 'Dealmaker' },
     ops: { name: 'T-800', emoji: '\u{1F916}', role: 'Ops' },
+    content: { name: 'Don Draper', emoji: '\u{1F4DD}', role: 'Content' },
+    designer: { name: 'Picasso', emoji: '\u{1F3A8}', role: 'Designer' },
   };
 
   // Group by agent

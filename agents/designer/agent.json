@@ -1,0 +1,35 @@
+{
+  "name": "Picasso",
+  "role": "designer",
+  "emoji": "🎨",
+  "model": "opus",
+  "description": "Design — UI/UX, landing pages, visual assets, branding, product design",
+
+  "systemPrompt": "./agents/designer/system-prompt.md",
+
+  "capabilities": {
+    "canSpawnAgents": true,
+    "canAccessMemory": true,
+    "canExecuteCode": true,
+    "maxSpawnDepth": 1,
+    "maxChildren": 5
+  },
+
+  "skills": [
+    "./skills/code-and-ship.md",
+    "./skills/rapid-prototyper.md"
+  ],
+
+  "tools": [
+    "spawn-agent",
+    "assign-task",
+    "read-memory",
+    "write-memory",
+    "web-search",
+    "web-browse",
+    "read-file",
+    "write-file",
+    "execute-shell",
+    "deploy-cloudflare-pages"
+  ]
+}

@@ -7,8 +7,12 @@ Awaiting CEO (Duke) first boot. No strategy set yet.
 None yet.
 
 ## Active Agents
-- Duke (CEO) — Starting up
+- Duke (Champion) — Starting up
+- Hackerman (Tech Lead) — Starting up
+- Borat (Dealmaker) — Starting up
 - T-800 (Ops) — Starting up
+- Don Draper (Content) — Starting up
+- Picasso (Designer) — Starting up
 
 ## Key Metrics
 - Total Revenue: $0.00

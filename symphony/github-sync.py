@@ -45,6 +45,8 @@ LABEL_AGENT_MAP = {
     "agent:hackerman": "cto",
     "agent:borat": "bizdev",
     "agent:t-800": "ops",
+    "agent:don-draper": "content",
+    "agent:picasso": "designer",
 }
 
 
@@ -217,6 +219,8 @@ def ensure_labels():
         "agent:hackerman": "0E8A16",
         "agent:borat": "1D76DB",
         "agent:t-800": "FBCA04",
+        "agent:don-draper": "D93F0B",
+        "agent:picasso": "C2E0C6",
     }
     existing_raw = gh("label", "list", "--json", "name")
     existing = set()

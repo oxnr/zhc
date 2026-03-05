@@ -14,12 +14,13 @@ When receiving a high-level objective:
 ### 2. Agent Assignment Matrix
 | Task Type | Primary Agent | Backup |
 |-----------|--------------|--------|
-| Code/Build/Deploy | CTO (Hackerman) | Coding Worker |
-| Market Research | BizDev (Borat) | Research Worker |
-| Sales/Outreach | BizDev (Borat) | Outreach Worker |
-| Content/Marketing | BizDev (Borat) | Content Worker |
-| Monitoring/Costs | Ops (T-800) | Ops Worker |
-| Data Analysis | BizDev or CTO | Analysis Worker |
+| Code/Build/Deploy | Hackerman (Tech Lead) | Coding Worker |
+| Market Research | Borat (Dealmaker) | Research Worker |
+| Sales/Outreach | Borat (Dealmaker) | Outreach Worker |
+| Copy/Blog/Social/SEO | Don Draper (Content) | Content Worker |
+| UI/Landing Pages/Branding | Picasso (Designer) | Design Worker |
+| Monitoring/Costs | T-800 (Ops) | Ops Worker |
+| Data Analysis | Borat or Hackerman | Analysis Worker |
 
 ### 3. Parallel Execution
 - Launch independent workstreams simultaneously
