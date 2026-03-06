@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — ZeroIntel</title>
+    <meta name="description" content="Competitive intelligence insights, guides, and templates for startups and SaaS founders.">
+    <meta property="og:title" content="Blog — ZeroIntel">
+    <meta property="og:description" content="Competitive intelligence insights, guides, and templates for startups and SaaS founders.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
+        .grid-pattern {
+            background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white grid-pattern antialiased">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
+            <div class="flex gap-6 text-sm">
+                <a href="../index.html" class="text-slate-400 hover:text-white transition">Home</a>
+                <a href="../sample-report.html" class="text-slate-400 hover:text-white transition">Sample Report</a>
+                <a href="../order.html" class="text-indigo-400 hover:text-indigo-300 transition font-medium">Order</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-3xl sm:text-4xl font-bold mb-3">Blog</h1>
+            <p class="text-slate-400 mb-12">Competitive intelligence insights for founders who'd rather build than research.</p>
+
+            <div class="space-y-8">
+                <a href="competitive-intelligence-startups.html" class="block group">
+                    <article class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-indigo-500/30 transition">
+                        <p class="text-xs text-indigo-400 font-medium mb-2">Guide</p>
+                        <h2 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">Competitive Intelligence for Startups: The $49 Alternative to $5K Consultants</h2>
+                        <p class="text-sm text-slate-400">Why most startups skip competitive analysis, what they miss, and how AI changes the cost equation entirely.</p>
+                    </article>
+                </a>
+
+                <a href="competitor-analysis-template.html" class="block group">
+                    <article class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-indigo-500/30 transition">
+                        <p class="text-xs text-indigo-400 font-medium mb-2">Template</p>
+                        <h2 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">Free Competitor Analysis Template (+ How to Automate It)</h2>
+                        <p class="text-sm text-slate-400">A practical framework for competitive analysis you can use today, plus how to automate the entire process.</p>
+                    </article>
+                </a>
+
+                <a href="how-to-analyze-competitors-saas.html" class="block group">
+                    <article class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-indigo-500/30 transition">
+                        <p class="text-xs text-indigo-400 font-medium mb-2">Guide</p>
+                        <h2 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">How to Analyze Competitors: A Step-by-Step Guide for SaaS Founders</h2>
+                        <p class="text-sm text-slate-400">A practical walkthrough of competitor analysis methodology, with a real example from our Linear vs Shortcut vs Plane report.</p>
+                    </article>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>
+                <span class="text-sm text-slate-600">by Zero Human Corp</span>
+            </div>
+            <div class="flex gap-6 text-sm text-slate-500">
+                <a href="mailto:onur.akpolat@gmail.com" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

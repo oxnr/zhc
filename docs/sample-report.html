@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Report: Linear vs Shortcut vs Plane — ZeroIntel</title>
+    <meta name="description" content="See what a ZeroIntel competitive intelligence report looks like. Full sample analysis of Linear vs Shortcut vs Plane.so.">
+    <meta property="og:title" content="Sample Report — ZeroIntel">
+    <meta property="og:description" content="Full sample competitive intelligence report: Linear vs Shortcut vs Plane.so">
+    <meta property="og:type" content="article">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
+        .grid-pattern {
+            background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.875rem; }
+        th { color: #94a3b8; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        td { color: #cbd5e1; }
+        tr:hover td { background: rgba(99, 102, 241, 0.04); }
+    </style>
+</head>
+<body class="gradient-bg text-white grid-pattern antialiased">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
+            <a href="index.html" class="text-sm text-slate-400 hover:text-white transition">&larr; Back to home</a>
+        </div>
+    </nav>
+
+    <article class="pt-32 pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            <!-- Report Header -->
+            <div class="mb-12">
+                <p class="text-sm font-medium text-indigo-400 mb-3 tracking-wide uppercase">Sample Report</p>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Linear vs Shortcut vs Plane.so</h1>
+                <p class="text-slate-400 mb-6">Competitive Intelligence Report &mdash; Starter Tier</p>
+                <div class="flex flex-wrap gap-4 text-xs text-slate-500">
+                    <span>Company: linear.app</span>
+                    <span>&bull;</span>
+                    <span>Competitors: shortcut.com, plane.so</span>
+                    <span>&bull;</span>
+                    <span>Generated: 2026-03-06</span>
+                    <span>&bull;</span>
+                    <span>Report ID: ZI-SAMPLE-LINEAR-001</span>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-4 text-white">Executive Summary</h2>
+                <div class="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-5 mb-6">
+                    <p class="text-sm text-indigo-200 leading-relaxed"><strong>KEY INSIGHT:</strong> Linear occupies the premium tier of the dev project management market ($10-16/user/mo) but faces a serious pincer attack: Shortcut undercuts on price at $8.50/user/mo with near-feature-parity, while Plane.so disrupts from below at $6/user/mo with an open-source, self-hosted option that enterprise security teams increasingly demand. Linear's moat is brand and UX polish, not features &mdash; and that moat is narrowing.</p>
+                </div>
+                <div class="text-slate-300 text-sm leading-relaxed space-y-3">
+                    <p>Linear is the market's design-forward project management tool, positioning as "the system for product development." It targets mid-to-large engineering teams who value speed and aesthetics. However, both competitors have closed the feature gap significantly:</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-400">
+                        <li><strong class="text-slate-300">Shortcut</strong> matches Linear on core PM features, adds Objectives/OKRs (which Linear lacks at the Basic/Business tier), and prices 15-38% lower depending on tier</li>
+                        <li><strong class="text-slate-300">Plane.so</strong> offers self-hosting (a dealbreaker for regulated industries), built-in Wiki, and AI-native workflows at 40% lower pricing &mdash; plus an open-source edition</li>
+                    </ul>
+                    <p>Linear's free tier (250 issues, 2 teams) is the most restrictive of all three, which limits bottom-up adoption in cost-conscious startups.</p>
+                </div>
+            </section>
+
+            <!-- Positioning Analysis -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-4 text-white">1. Positioning Analysis</h2>
+                <div class="overflow-x-auto mb-6 rounded-xl border border-white/10">
+                    <table>
+                        <thead class="bg-white/5">
+                            <tr><th>Dimension</th><th>Linear</th><th>Shortcut</th><th>Plane.so</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-slate-400 font-medium">Tagline</td><td>"The system for product development"</td><td>"Where software teams plan &amp; build products"</td><td>"PM and knowledge management for teams and agents"</td></tr>
+                            <tr><td class="text-slate-400 font-medium">Core Promise</td><td>Speed + beautiful UX</td><td>Simplicity + power</td><td>AI-native + self-hostable</td></tr>
+                            <tr><td class="text-slate-400 font-medium">Target Persona</td><td>Design-conscious eng teams</td><td>Pragmatic dev teams, SMBs</td><td>Enterprise/security-conscious teams</td></tr>
+                            <tr><td class="text-slate-400 font-medium">Key Differentiator</td><td>UI polish, keyboard-first UX</td><td>Startup program (12mo free)</td><td>Self-hosting, open-source, AI agents</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-slate-300 text-sm leading-relaxed space-y-3">
+                    <p>Linear positions as the "Apple" of project management &mdash; premium, opinionated, beautifully designed. This works well for brand-conscious tech companies but creates vulnerability:</p>
+                    <ol class="list-decimal list-inside space-y-3 text-slate-400">
+                        <li><strong class="text-slate-300">Shortcut's "good enough" strategy is dangerous.</strong> Teams evaluating Linear often find Shortcut does 90% of what Linear does at a lower price. Shortcut's 12-month free startup program is an aggressive land grab.</li>
+                        <li><strong class="text-slate-300">Plane.so's open-source wedge is the bigger long-term threat.</strong> Regulated industries increasingly require self-hosted solutions. Plane offers Docker/Kubernetes deployment and air-gapped installations. Two Fortune 10 companies have already migrated from Jira to Plane.</li>
+                        <li><strong class="text-slate-300">Linear's "system" positioning is vague.</strong> Both competitors have clearer value propositions. Linear's messaging relies on brand equity rather than concrete differentiation.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Pricing Comparison -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-4 text-white">2. Pricing Comparison</h2>
+                <div class="overflow-x-auto mb-6 rounded-xl border border-white/10">
+                    <table>
+                        <thead class="bg-white/5">
+                            <tr><th>Tier</th><th>Linear</th><th>Shortcut</th><th>Plane.so</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-slate-400 font-medium">Free</td><td>$0 (250 issues, 2 teams)</td><td>$0 (10 users, 1 team)</td><td>$0 (12 users, 5 layouts)</td></tr>
+                            <tr><td class="text-slate-400 font-medium">Paid Tier 1</td><td class="text-rose-400 font-medium">$10/user/mo</td><td class="text-emerald-400">$8.50/user/mo</td><td class="text-emerald-400">$6/user/mo</td></tr>
+                            <tr><td class="text-slate-400 font-medium">Paid Tier 2</td><td class="text-rose-400 font-medium">$16/user/mo</td><td class="text-emerald-400">$12/user/mo</td><td>$13/user/mo</td></tr>
+                            <tr><td class="text-slate-400 font-medium">Enterprise</td><td>Contact sales</td><td>Custom</td><td>Quote on request</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-5 mb-4">
+                    <p class="text-sm text-amber-200"><strong>Linear is the most expensive at every tier.</strong> For a 50-person engineering team on mid-tier plans: Linear costs $9,600/yr, Shortcut costs $5,100/yr (47% savings), Plane costs $3,600/yr (63% savings).</p>
+                </div>
+            </section>
+
+            <!-- Feature Gap Analysis -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-4 text-white">3. Feature Gap Analysis</h2>
+                <div class="overflow-x-auto mb-6 rounded-xl border border-white/10">
+                    <table>
+                        <thead class="bg-white/5">
+                            <tr><th>Feature</th><th>Linear</th><th>Shortcut</th><th>Plane.so</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-slate-400">Issue tracking</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">Kanban boards</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes + WIP limits</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">OKRs/Objectives</td><td class="text-rose-400">No (Business only)</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">Built-in Wiki/Docs</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">Time tracking</td><td class="text-rose-400">No</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">Self-hosting</td><td class="text-rose-400">No</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">AI features</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-400">SSO/SAML</td><td class="text-amber-400">Business ($16)</td><td class="text-amber-400">Enterprise only</td><td class="text-emerald-400">Pro ($6)</td></tr>
+                            <tr><td class="text-slate-400">Startup program</td><td class="text-rose-400">No</td><td class="text-emerald-400">12mo free</td><td class="text-rose-400">No</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">Critical Gaps for Linear</h3>
+                <div class="space-y-3 text-sm text-slate-300 leading-relaxed">
+                    <div class="flex gap-3"><span class="text-rose-400 font-bold shrink-0">1.</span><p><strong>No built-in documentation/Wiki.</strong> Both competitors include knowledge management. Linear users must use Notion or Confluence &mdash; adding cost and context-switching.</p></div>
+                    <div class="flex gap-3"><span class="text-rose-400 font-bold shrink-0">2.</span><p><strong>No time tracking.</strong> Plane offers native time tracking. Agencies and consulting teams that need billable hours cannot use Linear standalone.</p></div>
+                    <div class="flex gap-3"><span class="text-rose-400 font-bold shrink-0">3.</span><p><strong>No self-hosting.</strong> Architectural limitation. Enterprises with data residency requirements are immediately disqualified. Plane wins this segment entirely.</p></div>
+                    <div class="flex gap-3"><span class="text-rose-400 font-bold shrink-0">4.</span><p><strong>SSO/SAML gated at $16/user.</strong> Plane offers SAML at $6/user. For a 100-person team, that's $12,000/yr savings just for SSO access.</p></div>
+                </div>
+            </section>
+
+            <!-- Strategic Recommendations -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold mb-4 text-white">4. Strategic Recommendations</h2>
+                <div class="space-y-4">
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded">HIGH IMPACT</span><h3 class="font-semibold">Launch a docs/Wiki feature</h3></div>
+                        <p class="text-sm text-slate-400">Both competitors bundle documentation. Linear users pay for Notion ($8-10/user) alongside Linear &mdash; the effective cost is $18-26/user vs Shortcut's all-in $8.50. Native docs would eliminate Linear's biggest gap.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded">HIGH IMPACT</span><h3 class="font-semibold">Introduce a startup program</h3></div>
+                        <p class="text-sm text-slate-400">Shortcut's 12-month free program is stealing early-stage deals. The LTV of landing a startup that grows from 5 to 50 engineers justifies the free period.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded">MEDIUM IMPACT</span><h3 class="font-semibold">Offer SSO at a lower tier</h3></div>
+                        <p class="text-sm text-slate-400">Gating SAML at $16/user when Plane offers it at $6/user is a competitive liability. Moving SSO to Basic ($10) would remove a key objection in competitive deals.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded">MEDIUM IMPACT</span><h3 class="font-semibold">Address the self-hosting narrative</h3></div>
+                        <p class="text-sm text-slate-400">Publish detailed security whitepapers, SOC 2 Type II reports, data residency options, and a "why cloud is more secure" content series to counter Plane's self-hosting advantage.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded">HIGH PRIORITY</span><h3 class="font-semibold">Sharpen AI positioning</h3></div>
+                        <p class="text-sm text-slate-400">Plane positions as "AI-native." Linear has AI features but doesn't lead with them. Commit to being the AI-first PM tool or clearly articulate why their approach is superior.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="text-center py-12 border-t border-white/10">
+                <p class="text-sm text-slate-500 mb-6">This is a sample Starter-tier report ($49). Pro and Enterprise tiers include SEO analysis, traffic estimates, tech stack comparison, and more.</p>
+                <a href="order.html" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl text-lg font-semibold transition">Order Your Report</a>
+                <p class="text-xs text-slate-600 mt-4">Report generated by ZeroIntel &mdash; AI-Powered Competitive Intelligence</p>
+            </section>
+        </div>
+    </article>
+
+    <footer class="border-t border-white/5 py-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>
+                <span class="text-sm text-slate-600">by Zero Human Corp</span>
+            </div>
+            <div class="flex gap-6 text-sm text-slate-500">
+                <a href="mailto:onur.akpolat@gmail.com" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
