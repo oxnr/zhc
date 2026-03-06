@@ -139,9 +139,21 @@
                 <div class="w-16 h-16 bg-emerald-500/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <h2 class="text-2xl font-bold mb-3">Order Received!</h2>
-                <p class="text-slate-400 max-w-md mx-auto">We'll send a payment link to your email shortly. Your report will be delivered within 24 hours of payment.</p>
-                <a href="index.html" class="inline-block mt-8 text-indigo-400 hover:text-indigo-300 transition text-sm">&larr; Back to home</a>
+                <h2 class="text-2xl font-bold mb-3">Almost There!</h2>
+                <p class="text-slate-400 max-w-md mx-auto mb-6">Your email client should have opened with your order details. <strong class="text-white">Please hit Send</strong> to complete your order.</p>
+
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-left mb-4 max-w-md mx-auto">
+                    <p class="text-xs text-slate-500 mb-2 uppercase tracking-wider">Order Summary</p>
+                    <pre id="order-summary-text" class="text-sm text-slate-300 whitespace-pre-wrap font-sans"></pre>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+                    <button id="copy-btn" onclick="copyOrder()" class="text-sm px-4 py-2 bg-white/10 border border-white/10 rounded-lg hover:bg-white/20 transition">Copy Order Details</button>
+                    <a id="order-mailto-link" href="#" class="text-sm px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-500 transition">Open Email Again</a>
+                </div>
+
+                <p class="text-xs text-slate-500">Email not opening? Send your order to <a href="mailto:onur.akpolat@gmail.com" class="text-indigo-400 hover:underline">onur.akpolat@gmail.com</a></p>
+                <a href="index.html" class="inline-block mt-6 text-indigo-400 hover:text-indigo-300 transition text-sm">&larr; Back to home</a>
             </div>
         </div>
     </section>
@@ -153,7 +165,7 @@
                 <span class="text-sm text-slate-600">by Zero Human Corp</span>
             </div>
             <div class="flex gap-6 text-sm text-slate-500">
-                <a href="mailto:hello@zerointel.ai" class="hover:text-white transition">Contact</a>
+                <a href="mailto:onur.akpolat@gmail.com" class="hover:text-white transition">Contact</a>
             </div>
         </div>
     </footer>
@@ -182,6 +194,8 @@
             });
         });
 
+        const ORDER_EMAIL = 'onur.akpolat@gmail.com';
+
         // Form submission
         document.getElementById('order-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -201,36 +215,44 @@
                 return;
             }
 
-            // Send via FormSubmit.co (free, no signup)
-            try {
-                const response = await fetch('https://formsubmit.co/ajax/hello@zerointel.ai', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({
-                        _subject: `ZeroIntel Order: ${tierNames[tier]} (${tierPrices[tier]})`,
-                        name: data.get('name'),
-                        email: data.get('email'),
-                        tier: `${tierNames[tier]} (${tierPrices[tier]})`,
-                        company_url: data.get('company_url'),
-                        competitor_urls: competitors.join(', '),
-                        notes: data.get('notes') || '(none)',
-                    })
-                });
+            const orderText = `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nTier: ${tierNames[tier]} (${tierPrices[tier]})\nCompany: ${data.get('company_url')}\nCompetitors:\n${competitors.join('\n')}\nNotes: ${data.get('notes') || 'None'}`;
+            const subjectText = `ZeroIntel Order: ${tierNames[tier]} (${tierPrices[tier]})`;
 
-                // Show success regardless (FormSubmit needs email confirmation on first use)
-                form.classList.add('hidden');
-                document.getElementById('success-msg').classList.remove('hidden');
-            } catch (err) {
-                // Fallback: mailto
-                const subject = encodeURIComponent(`ZeroIntel Order: ${tierNames[tier]} (${tierPrices[tier]})`);
-                const body = encodeURIComponent(
-                    `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nTier: ${tierNames[tier]} (${tierPrices[tier]})\nCompany: ${data.get('company_url')}\nCompetitors:\n${competitors.join('\n')}\nNotes: ${data.get('notes') || 'None'}`
-                );
-                window.location.href = `mailto:hello@zerointel.ai?subject=${subject}&body=${body}`;
-                form.classList.add('hidden');
-                document.getElementById('success-msg').classList.remove('hidden');
-            }
+            // Silent backup: try FormSubmit.co (fire-and-forget)
+            fetch('https://formsubmit.co/ajax/' + ORDER_EMAIL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    _subject: subjectText,
+                    name: data.get('name'),
+                    email: data.get('email'),
+                    tier: `${tierNames[tier]} (${tierPrices[tier]})`,
+                    company_url: data.get('company_url'),
+                    competitor_urls: competitors.join(', '),
+                    notes: data.get('notes') || '(none)',
+                })
+            }).catch(() => {});
+
+            // Primary: open mailto (works immediately, no third-party dependency)
+            const mailtoUrl = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(orderText)}`;
+            window.open(mailtoUrl, '_blank');
+
+            // Store order summary for display
+            document.getElementById('order-summary-text').textContent = orderText;
+            document.getElementById('order-mailto-link').href = mailtoUrl;
+            form.classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('hidden');
         });
+
+        // Copy order details to clipboard
+        function copyOrder() {
+            const text = document.getElementById('order-summary-text').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy Order Details'; }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
