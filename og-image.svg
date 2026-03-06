@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+    <path d="M64 0V64H0" fill="none" stroke="rgba(99,102,241,0.04)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Glow effect behind text -->
+  <ellipse cx="600" cy="280" rx="350" ry="200" fill="rgba(99,102,241,0.08)"/>
+
+  <!-- Logo -->
+  <text x="600" y="180" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="36" fill="white">
+    Zero<tspan fill="#818cf8">Intel</tspan>
+  </text>
+
+  <!-- Headline -->
+  <text x="600" y="280" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="56" fill="white">
+    AI-Powered Competitive
+  </text>
+  <text x="600" y="350" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="800" font-size="56" fill="white">
+    Intelligence Reports
+  </text>
+
+  <!-- Subhead -->
+  <text x="600" y="420" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="26" fill="#94a3b8">
+    A $5,000 competitor analysis for $49. Delivered in 24 hours.
+  </text>
+
+  <!-- CTA pill -->
+  <rect x="460" y="470" width="280" height="56" rx="28" fill="url(#accent)"/>
+  <text x="600" y="505" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-weight="600" font-size="22" fill="white">
+    Get Your Report
+  </text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="610" width="1200" height="20" fill="url(#accent)" opacity="0.6"/>
+</svg>

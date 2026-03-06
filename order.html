@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Your Report — ZeroIntel</title>
+    <meta name="description" content="Order your AI-powered competitive intelligence report. Submit your company and competitor URLs.">
+    <meta property="og:title" content="Order Your Report — ZeroIntel">
+    <meta property="og:description" content="Submit your company and competitor URLs. Get an AI-powered competitive intelligence report in 24 hours.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
+        .glow { box-shadow: 0 0 50px rgba(99, 102, 241, 0.25), 0 0 100px rgba(99, 102, 241, 0.1); }
+        .grid-pattern {
+            background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white grid-pattern antialiased">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
+            <a href="index.html" class="text-sm text-slate-400 hover:text-white transition">&larr; Back to home</a>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-24 px-6">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center mb-3">Order Your Report</h1>
+            <p class="text-slate-400 text-center mb-10">Submit your details and we'll deliver your AI-powered competitive intelligence report within 24 hours.</p>
+
+            <form id="order-form" class="space-y-6">
+                <!-- Tier Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-3">Select Your Tier</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="tier" value="starter" class="hidden peer" checked>
+                            <div class="peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 border border-white/10 rounded-xl p-4 text-center transition hover:border-white/20">
+                                <div class="font-bold text-lg">$49</div>
+                                <div class="text-xs text-slate-400">Starter</div>
+                                <div class="text-xs text-slate-500 mt-1">3 competitors</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="tier" value="pro" class="hidden peer">
+                            <div class="peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 border border-white/10 rounded-xl p-4 text-center transition hover:border-white/20">
+                                <div class="font-bold text-lg">$99</div>
+                                <div class="text-xs text-slate-400">Pro</div>
+                                <div class="text-xs text-slate-500 mt-1">5 competitors</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="tier" value="enterprise" class="hidden peer">
+                            <div class="peer-checked:border-indigo-500 peer-checked:bg-indigo-500/10 border border-white/10 rounded-xl p-4 text-center transition hover:border-white/20">
+                                <div class="font-bold text-lg">$249</div>
+                                <div class="text-xs text-slate-400">Enterprise</div>
+                                <div class="text-xs text-slate-500 mt-1">10 competitors</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Your Name</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                        placeholder="Jane Smith">
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                        placeholder="jane@company.com">
+                </div>
+
+                <!-- Company URL -->
+                <div>
+                    <label for="company-url" class="block text-sm font-medium text-slate-300 mb-2">Your Company URL</label>
+                    <input type="url" id="company-url" name="company_url" required
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                        placeholder="https://yourcompany.com">
+                </div>
+
+                <!-- Competitor URLs -->
+                <div>
+                    <label for="competitors" class="block text-sm font-medium text-slate-300 mb-2">Competitor URLs <span class="text-slate-500">(one per line)</span></label>
+                    <textarea id="competitors" name="competitor_urls" required rows="4"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-none"
+                        placeholder="https://competitor1.com&#10;https://competitor2.com&#10;https://competitor3.com"></textarea>
+                    <p class="text-xs text-slate-500 mt-1" id="comp-limit">Starter: up to 3 competitors</p>
+                </div>
+
+                <!-- Additional Notes -->
+                <div>
+                    <label for="notes" class="block text-sm font-medium text-slate-300 mb-2">Anything specific you want analyzed? <span class="text-slate-500">(optional)</span></label>
+                    <textarea id="notes" name="notes" rows="2"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition resize-none"
+                        placeholder="e.g., Focus on pricing strategy, or compare our onboarding flow..."></textarea>
+                </div>
+
+                <!-- Submit -->
+                <div class="pt-2">
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl text-lg font-semibold transition glow">
+                        Submit Order
+                    </button>
+                    <p class="text-xs text-slate-500 text-center mt-3">We'll send a payment link to your email. Report delivered within 24 hours of payment.</p>
+                </div>
+            </form>
+
+            <!-- Success State -->
+            <div id="success-msg" class="hidden text-center py-16">
+                <div class="w-16 h-16 bg-emerald-500/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h2 class="text-2xl font-bold mb-3">Order Received!</h2>
+                <p class="text-slate-400 max-w-md mx-auto">We'll send a payment link to your email shortly. Your report will be delivered within 24 hours of payment.</p>
+                <a href="index.html" class="inline-block mt-8 text-indigo-400 hover:text-indigo-300 transition text-sm">&larr; Back to home</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>
+                <span class="text-sm text-slate-600">by Zero Human Corp</span>
+            </div>
+            <div class="flex gap-6 text-sm text-slate-500">
+                <a href="mailto:onur.akpolat@gmail.com" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Pre-select tier from URL param
+        const urlTier = new URLSearchParams(window.location.search).get('tier');
+        if (urlTier && ['starter', 'pro', 'enterprise'].includes(urlTier)) {
+            const radio = document.querySelector(`input[name="tier"][value="${urlTier}"]`);
+            if (radio) {
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change'));
+            }
+        }
+
+        // Update competitor limit text based on tier
+        const tierLimits = { starter: 3, pro: 5, enterprise: 10 };
+        const tierNames = { starter: 'Starter', pro: 'Pro', enterprise: 'Enterprise' };
+        const tierPrices = { starter: '$49', pro: '$99', enterprise: '$249' };
+
+        document.querySelectorAll('input[name="tier"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const tier = radio.value;
+                document.getElementById('comp-limit').textContent =
+                    `${tierNames[tier]}: up to ${tierLimits[tier]} competitors`;
+            });
+        });
+
+        // Form submission
+        document.getElementById('order-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            const data = new FormData(form);
+            const tier = data.get('tier');
+            const competitors = data.get('competitor_urls').trim().split('\n').filter(Boolean);
+
+            if (competitors.length > tierLimits[tier]) {
+                alert(`${tierNames[tier]} tier supports up to ${tierLimits[tier]} competitors. You entered ${competitors.length}.`);
+                btn.disabled = false;
+                btn.textContent = 'Submit Order';
+                return;
+            }
+
+            // Send via FormSubmit.co (free, no signup)
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/onur.akpolat@gmail.com', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        _subject: `ZeroIntel Order: ${tierNames[tier]} (${tierPrices[tier]})`,
+                        name: data.get('name'),
+                        email: data.get('email'),
+                        tier: `${tierNames[tier]} (${tierPrices[tier]})`,
+                        company_url: data.get('company_url'),
+                        competitor_urls: competitors.join(', '),
+                        notes: data.get('notes') || '(none)',
+                    })
+                });
+
+                // Show success regardless (FormSubmit needs email confirmation on first use)
+                form.classList.add('hidden');
+                document.getElementById('success-msg').classList.remove('hidden');
+            } catch (err) {
+                // Fallback: mailto
+                const subject = encodeURIComponent(`ZeroIntel Order: ${tierNames[tier]} (${tierPrices[tier]})`);
+                const body = encodeURIComponent(
+                    `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nTier: ${tierNames[tier]} (${tierPrices[tier]})\nCompany: ${data.get('company_url')}\nCompetitors:\n${competitors.join('\n')}\nNotes: ${data.get('notes') || 'None'}`
+                );
+                window.location.href = `mailto:onur.akpolat@gmail.com?subject=${subject}&body=${body}`;
+                form.classList.add('hidden');
+                document.getElementById('success-msg').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
