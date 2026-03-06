@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroIntel Report — {{COMPANY_DOMAIN}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-indigo: #6366f1;
+            --brand-violet: #8b5cf6;
+            --brand-dark: #0f172a;
+            --brand-darker: #020617;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: rgba(255,255,255,0.06);
+            --surface: rgba(255,255,255,0.03);
+            --emerald: #34d399;
+            --amber: #fbbf24;
+            --rose: #fb7185;
+            --cyan: #22d3ee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--brand-darker);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === COVER PAGE === */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: radial-gradient(ellipse at top, #1e1b4b 0%, var(--brand-darker) 60%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        .cover-content { position: relative; z-index: 1; max-width: 640px; }
+
+        .cover-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99,102,241,0.1);
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 999px;
+            padding: 0.375rem 1rem;
+            font-size: 0.75rem;
+            color: #a5b4fc;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .cover-badge-dot {
+            width: 6px; height: 6px;
+            background: var(--emerald);
+            border-radius: 50%;
+        }
+
+        .cover-logo {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cover-logo span { color: var(--brand-indigo); }
+
+        .cover h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .cover h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--brand-indigo), var(--brand-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cover-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-top: 3rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cover-meta-item {
+            background: var(--brand-darker);
+            padding: 1.25rem;
+        }
+
+        .cover-meta-label {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .cover-meta-value {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* === LAYOUT === */
+        .report-body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* === SECTION === */
+        .section {
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .section-number {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--brand-indigo);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* === EXECUTIVE SUMMARY === */
+        .exec-summary {
+            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.04));
+            border: 1px solid rgba(99,102,241,0.15);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .exec-summary h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #c7d2fe;
+        }
+
+        .exec-summary p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        /* === KEY METRICS ROW === */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .metric {
+            background: var(--brand-darker);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 0.25rem;
+        }
+
+        /* === TABLE === */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .data-table thead th {
+            background: rgba(255,255,255,0.03);
+            padding: 0.875rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tbody td {
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .data-table tbody tr:last-child td { border-bottom: none; }
+
+        .data-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+        .data-table .company-cell {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .data-table .highlight-cell {
+            color: var(--brand-indigo);
+            font-weight: 600;
+        }
+
+        /* === SCORE BADGES === */
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .score-high { background: rgba(52,211,153,0.1); color: var(--emerald); border: 1px solid rgba(52,211,153,0.2); }
+        .score-medium { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+        .score-low { background: rgba(251,113,133,0.1); color: var(--rose); border: 1px solid rgba(251,113,133,0.2); }
+
+        /* === INSIGHT CARDS === */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .insight-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        .insight-card-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .insight-card h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
+        }
+
+        .insight-card p {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* === CHART PLACEHOLDER === */
+        .chart-placeholder {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-placeholder-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 0.75rem;
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+
+        .chart-bar {
+            width: 2.5rem;
+            border-radius: 0.375rem 0.375rem 0 0;
+            position: relative;
+        }
+
+        .chart-bar-label {
+            position: absolute;
+            bottom: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .chart-bar-value {
+            position: absolute;
+            top: -1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* === RECOMMENDATION CARDS === */
+        .rec-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .rec-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .rec-priority {
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            white-space: nowrap;
+            margin-top: 0.125rem;
+        }
+
+        .rec-priority-high { background: rgba(251,113,133,0.1); color: var(--rose); }
+        .rec-priority-medium { background: rgba(251,191,36,0.1); color: var(--amber); }
+        .rec-priority-low { background: rgba(34,211,238,0.1); color: var(--cyan); }
+
+        .rec-content h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .rec-content p {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* === DIVIDER === */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 3rem 0;
+        }
+
+        /* === FOOTER === */
+        .report-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        .report-footer-logo {
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .report-footer-logo span { color: var(--brand-indigo); }
+
+        .report-footer p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* === FEATURE MATRIX === */
+        .feature-check { color: var(--emerald); font-weight: 700; font-size: 1rem; }
+        .feature-cross { color: var(--rose); font-weight: 700; font-size: 1rem; }
+        .feature-partial { color: var(--amber); font-weight: 700; font-size: 0.75rem; }
+        .feature-legend {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* === HORIZONTAL BAR CHART === */
+        .hbar-chart { margin: 1.5rem 0; }
+        .hbar-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.625rem;
+        }
+        .hbar-label {
+            width: 120px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .hbar-track {
+            flex: 1;
+            height: 28px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .hbar-fill {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .hbar-fill.bar-primary { background: linear-gradient(90deg, #4f46e5, #6366f1); }
+        .hbar-fill.bar-secondary { background: linear-gradient(90deg, #475569, #64748b); }
+        .hbar-fill.bar-accent { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+
+        /* === MARKET SIZING === */
+        .market-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .market-value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        .market-label {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 0.25rem;
+        }
+        .market-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        /* === PRINT === */
+        @media print {
+            body { background: white; color: #1e293b; }
+            .cover { background: linear-gradient(135deg, #f8fafc, #eef2ff); min-height: auto; padding: 3rem 2rem; page-break-after: always; color: #0f172a; }
+            .cover::before { display: none; }
+            .cover h1 { color: #0f172a; }
+            .cover h1 em { color: var(--brand-indigo); -webkit-text-fill-color: var(--brand-indigo); }
+            .cover-badge { background: #eef2ff; border-color: #c7d2fe; color: #4f46e5; }
+            .cover-logo { color: #0f172a; }
+            .cover-meta, .data-table, .insight-card, .rec-item, .exec-summary, .chart-placeholder, .metrics-row, .market-card { border-color: #e2e8f0; }
+            .cover-meta-item, .metric { background: white; }
+            .cover-meta-label { color: #64748b; }
+            .cover-meta-value { color: #0f172a; }
+            .data-table thead th { background: #f8fafc; color: #475569; }
+            .data-table tbody td { color: #475569; }
+            .section h2 { color: #0f172a; }
+            .section-number { color: #4f46e5; }
+            .section-desc, .insight-card p, .rec-content p, .exec-summary p { color: #64748b; }
+            .insight-card h4, .rec-content h4 { color: #0f172a; }
+            .metric-value { -webkit-text-fill-color: #0f172a; color: #0f172a; }
+            .metric-label { color: #64748b; }
+            .market-value { color: #0f172a; }
+            .market-label, .market-desc { color: #64748b; }
+            .hbar-track { background: #e2e8f0; }
+            .report-footer { color: #64748b; }
+            .report-footer-logo { color: #0f172a; }
+            .section { page-break-inside: avoid; }
+        }
+
+        @media (max-width: 640px) {
+            .cover h1 { font-size: 1.75rem; }
+            .cover-meta { grid-template-columns: 1fr 1fr; }
+            .section h2 { font-size: 1.375rem; }
+            .report-body { padding: 2rem 1rem; }
+            .insight-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ====== COVER PAGE ====== -->
+    <div class="cover">
+        <div class="cover-content">
+            <div class="cover-logo">Zero<span>Intel</span></div>
+            <div class="cover-badge">
+                <span class="cover-badge-dot"></span>
+                Competitive Intelligence Report
+            </div>
+            <h1>Competitive Analysis:<br><em>{{COMPANY_DOMAIN}}</em></h1>
+            <div class="cover-meta">
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Company</div>
+                    <div class="cover-meta-value">{{COMPANY_DOMAIN}}</div>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Tier</div>
+                    <div class="cover-meta-value">{{TIER}}</div>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Competitors</div>
+                    <div class="cover-meta-value">{{COMPETITOR_COUNT}}</div>
+                </div>
+                <div class="cover-meta-item">
+                    <div class="cover-meta-label">Generated</div>
+                    <div class="cover-meta-value">{{DATE}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== REPORT BODY ====== -->
+    <div class="report-body">
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <div class="section-number">Section 01</div>
+            <h2>Executive Summary</h2>
+            <div class="exec-summary">
+                <h3>Overview</h3>
+                <p>This report analyzes <strong>{{COMPANY_DOMAIN}}</strong> against {{COMPETITOR_COUNT}} competitor(s) across positioning, pricing, features, SEO performance, and market dynamics. Key findings and strategic recommendations are summarized below.</p>
+            </div>
+            <div class="metrics-row">
+                <div class="metric">
+                    <div class="metric-value">{{COMPETITOR_COUNT}}</div>
+                    <div class="metric-label">Competitors Analyzed</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">6</div>
+                    <div class="metric-label">Dimensions Covered</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">{{REC_COUNT}}</div>
+                    <div class="metric-label">Recommendations</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">{{DATA_POINTS}}</div>
+                    <div class="metric-label">Data Points</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Positioning Analysis -->
+        <div class="section">
+            <div class="section-number">Section 02</div>
+            <h2>Positioning Analysis</h2>
+            <p class="section-desc">How each company positions itself in the market — messaging, value proposition, and target audience.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Headline / Value Prop</th>
+                        <th>Target Audience</th>
+                        <th>Positioning Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-cell">{{COMPANY_DOMAIN}}</td>
+                        <td>{{COMPANY_HEADLINE}}</td>
+                        <td>{{COMPANY_AUDIENCE}}</td>
+                        <td><span class="score-badge score-high">Strong</span></td>
+                    </tr>
+                    <!-- {{COMPETITOR_ROWS}} -->
+                    <tr>
+                        <td class="company-cell">competitor1.com</td>
+                        <td>Example headline from competitor</td>
+                        <td>SMBs, Startups</td>
+                        <td><span class="score-badge score-medium">Moderate</span></td>
+                    </tr>
+                    <tr>
+                        <td class="company-cell">competitor2.com</td>
+                        <td>Another competitor's value prop</td>
+                        <td>Enterprise</td>
+                        <td><span class="score-badge score-low">Weak</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <div class="insight-card-icon" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);">
+                        <svg width="16" height="16" fill="none" stroke="#818cf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h4>Key Differentiator</h4>
+                    <p>{{COMPANY_DOMAIN}} leads with a distinct value proposition that competitors haven't effectively countered.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-card-icon" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);">
+                        <svg width="16" height="16" fill="none" stroke="#fbbf24" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                    </div>
+                    <h4>Gap Identified</h4>
+                    <p>Competitor messaging targets a segment you're not addressing. Consider expanding positioning.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Pricing Comparison -->
+        <div class="section">
+            <div class="section-number">Section 03</div>
+            <h2>Pricing Comparison</h2>
+            <p class="section-desc">Side-by-side pricing breakdown with tier analysis and pricing strategy insights.</p>
+
+            <div class="chart-placeholder">
+                <div class="chart-placeholder-bars">
+                    <div class="chart-bar" style="height:60%;background:var(--brand-indigo);">
+                        <span class="chart-bar-value">$49</span>
+                        <span class="chart-bar-label">You</span>
+                    </div>
+                    <div class="chart-bar" style="height:80%;background:rgba(255,255,255,0.1);">
+                        <span class="chart-bar-value">$79</span>
+                        <span class="chart-bar-label">Comp 1</span>
+                    </div>
+                    <div class="chart-bar" style="height:100%;background:rgba(255,255,255,0.1);">
+                        <span class="chart-bar-value">$99</span>
+                        <span class="chart-bar-label">Comp 2</span>
+                    </div>
+                    <div class="chart-bar" style="height:45%;background:rgba(255,255,255,0.1);">
+                        <span class="chart-bar-value">$39</span>
+                        <span class="chart-bar-label">Comp 3</span>
+                    </div>
+                </div>
+                <p style="font-size:0.75rem;color:var(--text-muted);margin-top:2rem;">Entry-tier pricing comparison (monthly)</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Entry Price</th>
+                        <th>Mid Tier</th>
+                        <th>Enterprise</th>
+                        <th>Free Tier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-cell">{{COMPANY_DOMAIN}}</td>
+                        <td class="highlight-cell">$49/mo</td>
+                        <td>$99/mo</td>
+                        <td>Custom</td>
+                        <td>Yes</td>
+                    </tr>
+                    <!-- {{PRICING_ROWS}} -->
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Feature Gap Analysis -->
+        <div class="section">
+            <div class="section-number">Section 04</div>
+            <h2>Feature Gap Analysis</h2>
+            <p class="section-desc">What your competitors offer that you don't — and where you have the edge.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>{{COMPANY_DOMAIN}}</th>
+                        <th>Competitor 1</th>
+                        <th>Competitor 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-cell">Core Feature A</td>
+                        <td><span class="feature-check">&#10003;</span></td>
+                        <td><span class="feature-check">&#10003;</span></td>
+                        <td><span class="feature-cross">&#10007;</span></td>
+                    </tr>
+                    <tr>
+                        <td class="company-cell">Core Feature B</td>
+                        <td><span class="feature-check">&#10003;</span></td>
+                        <td><span class="feature-cross">&#10007;</span></td>
+                        <td><span class="feature-check">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td class="company-cell">Advanced Feature C</td>
+                        <td><span class="feature-cross">&#10007;</span></td>
+                        <td><span class="feature-check">&#10003;</span></td>
+                        <td><span class="feature-partial">&#9679; Partial</span></td>
+                    </tr>
+                    <!-- {{FEATURE_ROWS}} -->
+                </tbody>
+            </table>
+            <div class="feature-legend">
+                <span><span class="feature-check">&#10003;</span> Full support</span>
+                <span><span class="feature-partial">&#9679;</span> Partial</span>
+                <span><span class="feature-cross">&#10007;</span> Not available</span>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- SEO Audit (Pro+) -->
+        <div class="section">
+            <div class="section-number">Section 05</div>
+            <h2>SEO Audit</h2>
+            <p class="section-desc">Keyword overlap, domain authority comparison, and organic search opportunities.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>{{COMPANY_DOMAIN}}</th>
+                        <th>Competitor 1</th>
+                        <th>Competitor 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-cell">Title Tag Length</td>
+                        <td>58 chars</td>
+                        <td>72 chars</td>
+                        <td>45 chars</td>
+                    </tr>
+                    <tr>
+                        <td class="company-cell">Meta Description</td>
+                        <td><span class="score-badge score-high">Present</span></td>
+                        <td><span class="score-badge score-high">Present</span></td>
+                        <td><span class="score-badge score-low">Missing</span></td>
+                    </tr>
+                    <tr>
+                        <td class="company-cell">H1 Tags</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td class="company-cell">Content Sections (H2s)</td>
+                        <td>8</td>
+                        <td>12</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-placeholder" style="text-align:left;">
+                <p style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Estimated Monthly Organic Traffic</p>
+                <div class="hbar-chart">
+                    <div class="hbar-row">
+                        <span class="hbar-label">{{COMPANY_DOMAIN}}</span>
+                        <div class="hbar-track"><div class="hbar-fill bar-primary" style="width:{{COMPANY_TRAFFIC_PCT}}%">{{COMPANY_TRAFFIC}}</div></div>
+                    </div>
+                    <div class="hbar-row">
+                        <span class="hbar-label">Competitor 1</span>
+                        <div class="hbar-track"><div class="hbar-fill bar-secondary" style="width:{{COMP1_TRAFFIC_PCT}}%">{{COMP1_TRAFFIC}}</div></div>
+                    </div>
+                    <div class="hbar-row">
+                        <span class="hbar-label">Competitor 2</span>
+                        <div class="hbar-track"><div class="hbar-fill bar-accent" style="width:{{COMP2_TRAFFIC_PCT}}%">{{COMP2_TRAFFIC}}</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Market Sizing (Pro+) -->
+        <div class="section">
+            <div class="section-number">Section 06</div>
+            <h2>Market Sizing</h2>
+            <p class="section-desc">TAM/SAM/SOM estimates, growth trends, and market dynamics for your competitive landscape.</p>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
+                <div class="market-card">
+                    <div class="market-value">{{TAM}}</div>
+                    <div class="market-label">Total Addressable Market</div>
+                    <div class="market-desc">{{TAM_DESC}}</div>
+                </div>
+                <div class="market-card">
+                    <div class="market-value">{{SAM}}</div>
+                    <div class="market-label">Serviceable Market</div>
+                    <div class="market-desc">{{SAM_DESC}}</div>
+                </div>
+                <div class="market-card">
+                    <div class="market-value">{{SOM}}</div>
+                    <div class="market-label">Obtainable Market</div>
+                    <div class="market-desc">{{SOM_DESC}}</div>
+                </div>
+            </div>
+
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <div class="insight-card-icon" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);">
+                        <svg width="16" height="16" fill="none" stroke="#34d399" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <h4>Growth Rate</h4>
+                    <p>{{GROWTH_INSIGHT}}</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-card-icon" style="background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2);">
+                        <svg width="16" height="16" fill="none" stroke="#22d3ee" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h4>Market Dynamics</h4>
+                    <p>{{MARKET_DYNAMICS}}</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Strategic Recommendations -->
+        <div class="section">
+            <div class="section-number">Section 07</div>
+            <h2>Strategic Recommendations</h2>
+            <p class="section-desc">Concrete next steps ranked by impact and effort.</p>
+
+            <h3 style="font-size:0.875rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Immediate Actions (This Week)</h3>
+            <ul class="rec-list" style="margin-bottom:2rem;">
+                <li class="rec-item">
+                    <span class="rec-priority rec-priority-high">High</span>
+                    <div class="rec-content">
+                        <h4>Strengthen differentiation messaging</h4>
+                        <p>Based on competitor positioning analysis, identify 1-2 unique angles not covered by competitors and update homepage copy.</p>
+                    </div>
+                </li>
+                <li class="rec-item">
+                    <span class="rec-priority rec-priority-high">High</span>
+                    <div class="rec-content">
+                        <h4>Review pricing visibility</h4>
+                        <p>Ensure competitive pricing positioning. Consider A/B testing price anchoring against competitor rates.</p>
+                    </div>
+                </li>
+                <li class="rec-item">
+                    <span class="rec-priority rec-priority-medium">Med</span>
+                    <div class="rec-content">
+                        <h4>Fill content gaps</h4>
+                        <p>Address the feature and content gaps identified in Sections 04 and 05 with targeted landing pages.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="font-size:0.875rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Medium-Term (This Month)</h3>
+            <ul class="rec-list">
+                <li class="rec-item">
+                    <span class="rec-priority rec-priority-medium">Med</span>
+                    <div class="rec-content">
+                        <h4>Address SEO gaps</h4>
+                        <p>Fix the issues identified in the SEO audit. Prioritize meta descriptions and content depth.</p>
+                    </div>
+                </li>
+                <li class="rec-item">
+                    <span class="rec-priority rec-priority-low">Low</span>
+                    <div class="rec-content">
+                        <h4>Create comparison content</h4>
+                        <p>Develop "vs" pages targeting competitor brand keywords to capture comparison shoppers.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="report-footer">
+            <div class="report-footer-logo">Zero<span>Intel</span></div>
+            <p>AI-Powered Competitive Intelligence</p>
+            <p style="margin-top:0.5rem;">Report ID: {{REPORT_ID}} | Generated {{DATE}}</p>
+            <p style="margin-top:0.25rem;">Zero Human Corp</p>
+        </div>
+    </div>
+</body>
+</html>
