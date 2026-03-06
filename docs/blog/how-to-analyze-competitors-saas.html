@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Analyze Competitors: A Step-by-Step Guide for SaaS Founders | ZeroIntel</title>
-    <meta name="description" content="A practical step-by-step guide to analyzing your SaaS competitors. Covers websites, pricing, features, reviews, SEO, and how to turn research into action.">
+    <meta name="description" content="A practical step-by-step walkthrough of competitor analysis for SaaS companies. Real methodology, real examples, no fluff.">
     <meta property="og:title" content="How to Analyze Competitors: A Step-by-Step Guide for SaaS Founders">
-    <meta property="og:description" content="A practical step-by-step guide to competitive analysis for SaaS founders. From research to action items.">
+    <meta property="og:description" content="A practical step-by-step walkthrough of competitor analysis for SaaS companies. Real methodology with real examples.">
     <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +26,7 @@
         }
     </script>
     <style>
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', system-ui, sans-serif; }
         .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
         .grid-pattern {
@@ -34,153 +34,160 @@
                               linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
             background-size: 64px 64px;
         }
-        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #e2e8f0; }
-        .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #cbd5e1; }
-        .prose p { margin-bottom: 1.25rem; line-height: 1.8; }
-        .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose ul li { list-style-type: disc; }
-        .prose ol li { list-style-type: decimal; }
-        .prose strong { color: #e2e8f0; }
-        .prose blockquote { border-left: 3px solid #6366f1; padding-left: 1rem; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
     </style>
 </head>
 <body class="gradient-bg text-white grid-pattern antialiased">
     <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
-            <div class="hidden sm:flex items-center gap-8 text-sm text-slate-400">
-                <a href="../#what-you-get" class="hover:text-white transition">Features</a>
-                <a href="../#pricing" class="hover:text-white transition">Pricing</a>
-                <a href="./" class="hover:text-white transition text-white">Blog</a>
+            <a href="../index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
+            <div class="flex gap-6 text-sm">
+                <a href="../index.html" class="text-slate-400 hover:text-white transition">Home</a>
+                <a href="index.html" class="text-slate-400 hover:text-white transition">Blog</a>
+                <a href="../order.html" class="text-indigo-400 hover:text-indigo-300 transition font-medium">Order</a>
             </div>
-            <a href="../order.html" class="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-lg text-sm font-medium transition">Get Your Report</a>
         </div>
     </nav>
 
     <article class="pt-32 pb-24 px-6">
-        <div class="max-w-2xl mx-auto">
+        <div class="max-w-3xl mx-auto">
             <div class="mb-8">
-                <a href="./" class="text-indigo-400 text-sm hover:text-indigo-300 transition">&larr; Back to Blog</a>
+                <a href="index.html" class="text-indigo-400 text-sm hover:text-indigo-300 transition">&larr; Back to Blog</a>
             </div>
             <div class="text-sm text-slate-500 mb-4">March 2026 &middot; 8 min read</div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-6">How to Analyze Competitors: A Step-by-Step Guide for SaaS Founders</h1>
-            <p class="text-lg text-slate-400 mb-12 leading-relaxed">A practical walkthrough of competitive analysis methodology. No theory, no fluff. Just the steps that produce useful intelligence.</p>
+            <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-6 text-white">How to Analyze Competitors: A Step-by-Step Guide for SaaS Founders</h1>
+            <p class="text-lg text-slate-400 mb-12 leading-relaxed">A practical walkthrough of competitor analysis methodology. We will use real examples from our Linear vs Shortcut vs Plane report to show exactly how each step works.</p>
 
-            <div class="prose text-slate-300">
-                <h2>Before you start: define what you're looking for</h2>
-                <p>Competitive analysis without a goal is just browsing. Before you open a single competitor's website, write down what decisions you're trying to make:</p>
-                <ul>
-                    <li>"We're about to set pricing for our new tier. What do competitors charge?"</li>
-                    <li>"We lost three deals to CompetitorX last quarter. What are they doing that we're not?"</li>
-                    <li>"We're preparing a Series A deck and need a clear competitive positioning slide."</li>
-                    <li>"We're planning next quarter's roadmap and need to know which features are table stakes."</li>
+            <div class="space-y-5 text-slate-300 leading-relaxed">
+                <h2 class="text-2xl font-bold text-white pt-4">Why competitor analysis matters more than you think</h2>
+
+                <p>Most SaaS founders have a vague sense of their competitive landscape. They know the two or three names that come up in sales calls. They have probably visited their competitors' websites a few times. But having awareness is not the same as having analysis.</p>
+
+                <p>Analysis means structured understanding. It means knowing not just who your competitors are, but how they price, how they position, where their customers are happy, where they are frustrated, and what all of that means for your next move. The difference between awareness and analysis is the difference between guessing and deciding.</p>
+
+                <p>Here is how to do it properly, step by step.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Step 1: Define your competitive set</h2>
+
+                <p>Before you analyze anyone, you need to decide who to analyze. This sounds obvious, but most founders either cast too wide a net or too narrow a one.</p>
+
+                <p><strong class="text-white">Three categories of competitors:</strong></p>
+
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong class="text-white">Direct competitors:</strong> Companies that solve the same problem for the same audience with a similar product. These are the ones showing up in your deals. For our sample report, this was Linear, Shortcut, and Plane -- all project management tools targeting software development teams.</li>
+                    <li><strong class="text-white">Indirect competitors:</strong> Companies that solve the same problem differently. For a project management tool, this might include Notion (docs-first approach) or GitHub Projects (built into the dev workflow). They do not look like you, but they win the same budgets.</li>
+                    <li><strong class="text-white">Emerging competitors:</strong> New entrants that are small today but growing fast. Check Product Hunt, Hacker News launches, and recent funding rounds in your space. These are tomorrow's direct competitors.</li>
                 </ul>
-                <p>The goal shapes the analysis. A pricing-focused analysis is very different from a feature comparison. Trying to do everything at once is how competitive analysis projects die.</p>
 
-                <h2>Step 1: Identify your real competitors</h2>
-                <p>Most founders can name 2-3 competitors off the top of their head. That list is usually incomplete and sometimes wrong.</p>
-                <p><strong>How to build a complete competitor list:</strong></p>
-                <ol>
-                    <li><strong>Search your category keywords.</strong> Google what your customers would search. "project management tool," "invoice software," "CRM for startups." The first page results are your SEO competitors.</li>
-                    <li><strong>Check review sites.</strong> G2 and Capterra have category pages. Find your category and see who else is listed. Sort by number of reviews to identify market leaders.</li>
-                    <li><strong>Ask your sales team.</strong> "Who do we keep running into in deals?" The competitors your prospects mention are the ones that matter most.</li>
-                    <li><strong>Search "alternative to [your product]."</strong> These pages list every substitute a prospect might consider.</li>
-                    <li><strong>Check Product Hunt and Hacker News.</strong> Search for your category. New entrants show up here before they appear on review sites.</li>
+                <p><strong class="text-white">How many to analyze:</strong> Start with 3-5. More than that dilutes your focus. Less than that leaves blind spots. Pick the ones your sales team hears about most, plus one wildcard you are watching.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Step 2: Analyze their positioning</h2>
+
+                <p>Go to each competitor's homepage and read it carefully. Not skim -- read. Every word on a homepage was chosen deliberately. It tells you exactly how a company wants to be perceived.</p>
+
+                <p><strong class="text-white">What to capture:</strong></p>
+
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>The hero headline and subheadline (this is their core value proposition)</li>
+                    <li>Who they target (check case studies, testimonial logos, and industry pages)</li>
+                    <li>What they claim as differentiators (usually in a "Why us" or features section)</li>
+                    <li>The overall tone (enterprise-serious, developer-hip, startup-scrappy)</li>
+                </ul>
+
+                <p><strong class="text-white">Real example:</strong> In our <a href="../sample-report.html" class="text-indigo-400 hover:text-indigo-300">Linear vs Shortcut vs Plane analysis</a>, we found that Linear positions on speed and design quality ("Built for the way you work"), Shortcut targets teams that want simplicity without losing power, and Plane leans into open-source and self-hosting. Three products in the same category, three distinct positioning strategies. The analysis revealed that none of them were strongly claiming the "enterprise-ready" position, which represents a gap.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Step 3: Compare pricing and packaging</h2>
+
+                <p>Pricing tells you more about a company's strategy than almost anything else. Go to each competitor's pricing page and document everything.</p>
+
+                <p><strong class="text-white">What to capture:</strong></p>
+
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Number of tiers and what each includes</li>
+                    <li>Price per seat at each tier (monthly and annual)</li>
+                    <li>What features are gated behind higher tiers</li>
+                    <li>Whether there is a free tier and how limited it is</li>
+                    <li>Enterprise pricing model (per-seat, flat, or custom)</li>
+                    <li>Any startup programs, discounts, or special offers</li>
+                </ul>
+
+                <p><strong class="text-white">What to look for:</strong> Pay attention to what gets gated. If a competitor puts SSO behind their enterprise tier, that is a deliberate choice to extract more money from larger teams. If someone offers generous free tiers, they are betting on product-led growth and conversion over time. Pricing structure reveals strategy.</p>
+
+                <p><strong class="text-white">Real example:</strong> Our project management analysis showed that Linear charges $8/user/month for their standard plan while Plane offers unlimited users on their free plan with self-hosting. That pricing gap is not an accident. It reflects fundamentally different go-to-market strategies and tells you who is competing for which segment.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Step 4: Map features systematically</h2>
+
+                <p>This is the step most people do poorly because it is tedious. Do not just skim the features page. Go through each competitor's documentation, changelog, and product tours to build a real feature matrix.</p>
+
+                <p><strong class="text-white">How to organize it:</strong></p>
+
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>List features in rows, competitors in columns</li>
+                    <li>Group features by category (core workflow, integrations, security, platform)</li>
+                    <li>Mark each cell as Yes, No, Partial, or Paid-tier-only</li>
+                    <li>Note which features are new (last 6 months) vs. established</li>
+                </ul>
+
+                <p>The goal is not just to see who has what. It is to identify patterns. Where do all competitors have gaps? That is a market opportunity. Where does one competitor have something nobody else does? That is their moat, or at least their differentiation.</p>
+
+                <p><strong class="text-white">Real example:</strong> The Linear/Shortcut/Plane analysis revealed that built-in documentation was a gap across all three products. None of them offered native docs alongside project management. Meanwhile, Notion (an indirect competitor) was winning users specifically because it combined both. That feature gap analysis pointed to a clear product opportunity.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Step 5: Read what their customers actually say</h2>
+
+                <p>Review sites are the most underused source of competitive intelligence. G2, Capterra, and TrustRadius contain thousands of detailed user reviews that tell you exactly where products succeed and fail.</p>
+
+                <p><strong class="text-white">How to do this efficiently:</strong></p>
+
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Start with 1-star and 2-star reviews. These contain the real pain points.</li>
+                    <li>Look for recurring themes, not individual complaints. One person complaining about onboarding is an anecdote. Twenty people complaining about onboarding is a signal.</li>
+                    <li>Check review dates. A product that had bad reviews two years ago but good ones recently is on an upward trajectory. The reverse is a product losing quality.</li>
+                    <li>Read the "What do you dislike?" sections specifically. These are your sales ammunition.</li>
                 </ol>
-                <p>You'll end up with 5-15 names. Narrow to 3-5 for deep analysis. Pick the ones you actually lose deals to, plus any that are growing fast.</p>
 
-                <h2>Step 2: Analyze their websites</h2>
-                <p>A competitor's website is their public strategy document. They're telling you exactly how they position themselves, who they target, and what they think matters.</p>
-                <p><strong>What to capture from each competitor's site:</strong></p>
-                <ul>
-                    <li><strong>Homepage hero:</strong> What's the headline? What problem do they lead with? What's the primary CTA?</li>
-                    <li><strong>Navigation structure:</strong> What sections do they prioritize? "Enterprise" in the nav means they're going upmarket. "Developers" means they're API-first.</li>
-                    <li><strong>Social proof:</strong> Who are their customers? What logos do they display? The customer list reveals their target market better than any positioning statement.</li>
-                    <li><strong>About page:</strong> Team size, funding, mission statement. A 200-person company with $50M in funding plays differently than a 10-person bootstrap.</li>
-                    <li><strong>Careers page:</strong> What roles are they hiring for? A burst of sales hiring signals go-to-market push. ML engineers signal AI investment. These are leading indicators of their strategy.</li>
+                <p><strong class="text-white">Real example:</strong> In the project management report, customer reviews revealed that Shortcut users consistently praised its simplicity but complained about limited reporting. Linear users loved the speed but wanted better documentation features. Plane users valued self-hosting but noted the product was still maturing. Each complaint pattern maps directly to a competitive opportunity for the others.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Step 6: Check for strategic signals</h2>
+
+                <p>Beyond the product itself, look for signals about where competitors are headed:</p>
+
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong class="text-white">Job postings:</strong> If a competitor is hiring 5 machine learning engineers, they are building AI features. If they are hiring enterprise sales reps, they are moving upmarket. Job boards tell you the roadmap 6-12 months ahead.</li>
+                    <li><strong class="text-white">Funding and financials:</strong> Recent fundraising means aggressive growth spending is coming. No recent raise plus layoffs means they may be struggling.</li>
+                    <li><strong class="text-white">Content and thought leadership:</strong> What topics do they write about on their blog? What webinars do they run? Content strategy reveals what market they are trying to own.</li>
+                    <li><strong class="text-white">Partnership announcements:</strong> New integrations and partnerships signal strategic direction and which ecosystems they are betting on.</li>
                 </ul>
 
-                <h2>Step 3: Reverse-engineer their pricing</h2>
-                <p>Pricing is the most important competitive data point. It tells you how a company values its product, who they think their customer is, and where they're positioned in the market.</p>
-                <p><strong>What to capture:</strong></p>
-                <ul>
-                    <li>Number of tiers and names</li>
-                    <li>Price per tier (monthly and annual)</li>
-                    <li>What's included in each tier (feature gates)</li>
-                    <li>Free tier limits</li>
-                    <li>Per-seat vs. flat pricing model</li>
-                    <li>Any startup/discount programs</li>
-                </ul>
-                <p><strong>What to analyze:</strong></p>
-                <ul>
-                    <li><strong>Price anchoring:</strong> What's the "most popular" tier? That's where they make most revenue. Price yours relative to it.</li>
-                    <li><strong>Feature gates:</strong> Which features are free vs. paid? This reveals what they consider commoditized vs. valuable. If SSO is free at Competitor A but paid at Competitor B, that's a positioning difference.</li>
-                    <li><strong>Unit economics:</strong> Calculate cost per user at different team sizes (10, 50, 100 users). Pricing that looks similar for small teams can diverge dramatically at scale.</li>
-                </ul>
-                <p>When we analyzed Linear vs. Shortcut vs. Plane, the pricing analysis revealed that Linear is the most expensive at every tier. For a 50-person team, Plane's Pro plan saves $6,000/year vs. Linear's Business plan. That data point alone changes how you position against them.</p>
+                <h2 class="text-2xl font-bold text-white pt-4">Step 7: Synthesize into actions</h2>
 
-                <h2>Step 4: Build a feature matrix</h2>
-                <p>Feature comparison is the most time-consuming part of competitive analysis. But it's also the most actionable.</p>
-                <p><strong>How to do it efficiently:</strong></p>
-                <ol>
-                    <li>List the 15-20 features that matter most in your category</li>
-                    <li>Check each competitor's features page, documentation, and changelog</li>
-                    <li>Mark each cell: Yes, No, Partial, or which tier it requires</li>
-                    <li>Highlight your advantages in green and gaps in red</li>
+                <p>This is the step that separates useful analysis from an academic exercise. After gathering all of the data, force yourself to answer five questions:</p>
+
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li><strong class="text-white">Pricing:</strong> Should we adjust our pricing based on what the market looks like? Are we leaving money on the table or pricing ourselves out?</li>
+                    <li><strong class="text-white">Product:</strong> What feature gaps should we prioritize? What should we build next based on competitor weaknesses and customer pain?</li>
+                    <li><strong class="text-white">Positioning:</strong> How do we differentiate our messaging from what everyone else says? What is the unclaimed territory?</li>
+                    <li><strong class="text-white">Sales:</strong> What specific talking points can our sales team use against each competitor? What are their weaknesses that matter to buyers?</li>
+                    <li><strong class="text-white">Threats:</strong> What is the biggest competitive risk we face in the next 12 months, and what do we do about it?</li>
                 </ol>
-                <p><strong>The output you want:</strong> A clear picture of where you lead, where you trail, and where everyone is at parity. Parity features are table stakes. Gaps are vulnerabilities. Advantages are your sales ammunition.</p>
-                <p>Don't try to be comprehensive. Focus on the features that come up in sales conversations and customer requests. If nobody has ever asked you for a Gantt chart, don't waste time comparing Gantt chart implementations.</p>
 
-                <h2>Step 5: Read their reviews</h2>
-                <p>Customer reviews are the most underused source of competitive intelligence. Your competitors' customers will tell you things their marketing never will.</p>
-                <p><strong>Where to read reviews:</strong></p>
-                <ul>
-                    <li>G2 (most comprehensive for B2B SaaS)</li>
-                    <li>Capterra</li>
-                    <li>TrustRadius</li>
-                    <li>Reddit (search "competitor name" + "review" or "experience")</li>
-                    <li>Twitter/X (search for complaints and praise)</li>
-                </ul>
-                <p><strong>What to look for:</strong></p>
-                <ul>
-                    <li><strong>Common complaints:</strong> If 30% of reviews mention slow customer support, that's a real weakness you can exploit in sales conversations.</li>
-                    <li><strong>Praise patterns:</strong> What do users love? If everyone praises their onboarding, study it. Either match it or differentiate away from it.</li>
-                    <li><strong>Switching reasons:</strong> "We switched from X because..." is the most valuable sentence in any review. It tells you exactly what drives churn.</li>
-                    <li><strong>Missing features:</strong> "I wish it had..." tells you what their roadmap should include. If they haven't built it, maybe you should.</li>
-                </ul>
-                <p>Start with the 1-star and 2-star reviews. They're where the real intelligence lives.</p>
+                <p>Every piece of data you gathered in steps 1-6 should feed into one of these five buckets. If it does not, you collected noise, not signal.</p>
 
-                <h2>Step 6: Check their SEO and content</h2>
-                <p>A competitor's content strategy reveals what keywords they're betting on and what audience they're building.</p>
-                <p><strong>Quick SEO analysis (no paid tools needed):</strong></p>
-                <ul>
-                    <li><strong>Google their brand name:</strong> What shows up? Reviews, comparisons, alternatives pages? This is what your shared prospects see.</li>
-                    <li><strong>Read their blog:</strong> What topics do they write about? How often do they publish? The blog reveals their content strategy and target audience.</li>
-                    <li><strong>Check their backlinks:</strong> Use a free tool like Ahrefs Webmaster or Ubersuggest to see who links to them. Guest posts, directories, and PR tell you about their distribution strategy.</li>
-                    <li><strong>Search "your keyword" + their brand:</strong> Are they ranking for the terms you want? If they're on page 1 for "best project management tool" and you're not, that's a content gap to close.</li>
-                </ul>
+                <h2 class="text-2xl font-bold text-white pt-4">How often to repeat this</h2>
 
-                <h2>Step 7: Turn research into action items</h2>
-                <p>Research without action is just reading. The final step is the one that matters: what are you going to do differently?</p>
-                <p>After completing steps 1-6, write down your action items in this format:</p>
-                <ul>
-                    <li><strong>This week:</strong> 1-2 things you can do immediately (update pricing page, add a comparison section, brief sales on a competitor weakness)</li>
-                    <li><strong>This month:</strong> 2-3 changes that need some work (adjust pricing tiers, prioritize a feature gap, create a competitive battlecard)</li>
-                    <li><strong>This quarter:</strong> 1-2 strategic moves (launch a startup program, build a missing feature, reposition messaging)</li>
-                </ul>
-                <p>Each action item should be specific enough that someone could execute it without asking you for clarification.</p>
+                <p>Competitor analysis is not a one-time exercise. Markets move. Competitors ship new features, change pricing, and pivot positioning. A quarterly refresh is the minimum for fast-moving SaaS markets. Monthly is better if you are in a crowded space.</p>
 
-                <blockquote>"Launch a startup program to counter Shortcut's 12-month free offer" is an action item. "Consider our competitive positioning" is not.</blockquote>
+                <p>The problem, of course, is that repeating a 6-10 hour manual process every quarter is not realistic for most startup teams. This is exactly why we built <a href="../index.html" class="text-indigo-400 hover:text-indigo-300">ZeroIntel</a>. The methodology above is what our AI executes for every report. Same steps, same rigor, delivered in 24 hours instead of a week.</p>
 
-                <h2>How often to repeat this</h2>
-                <p>Markets move. Competitors ship features, change pricing, and pivot positioning. A competitive analysis has a shelf life of about 3-6 months before it needs refreshing.</p>
-                <p>Set a calendar reminder. Or, if you'd rather not spend another 10 hours on manual research, let AI do the refresh.</p>
+                <p>You can see the output of this methodology applied to a real market in our <a href="../sample-report.html" class="text-indigo-400 hover:text-indigo-300">Linear vs Shortcut vs Plane sample report</a>. It covers positioning, pricing, features, customer sentiment, and strategic recommendations -- all seven steps, fully executed.</p>
+
+                <p>Whether you run through these steps manually or let us handle it, the important thing is that you do competitive analysis at all. The SaaS founders who understand their competitive landscape make better decisions. The ones who do not are guessing. And in a crowded market, guessing is expensive.</p>
 
                 <div class="mt-12 bg-gradient-to-br from-indigo-600/20 to-violet-600/10 border border-indigo-500/20 rounded-2xl p-8 text-center">
-                    <h3 class="text-xl font-bold text-white mb-3" style="margin-top:0;">Get this analysis done in 24 hours</h3>
-                    <p class="text-slate-300 mb-6" style="margin-bottom:1.5rem;">Submit URLs. Get a structured competitive intelligence report. Starting at $49.</p>
-                    <a href="../order.html" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3.5 rounded-xl font-semibold transition text-white">Order Your Report</a>
+                    <h3 class="text-xl font-bold text-white mb-3">Get this analysis done for your market</h3>
+                    <p class="text-slate-300 mb-6">Same methodology. AI-powered. Delivered in 24 hours. Starting at $49.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="../order.html" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3.5 rounded-xl font-semibold transition text-white">Order Your Report</a>
+                        <a href="../sample-report.html" class="inline-block border border-white/20 hover:border-white/40 px-8 py-3.5 rounded-xl font-semibold transition text-slate-300 hover:text-white">See Sample Report</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -197,5 +204,6 @@
             </div>
         </div>
     </footer>
+    <script data-goatcounter="https://zerointel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

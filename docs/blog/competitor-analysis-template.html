@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Competitor Analysis Template (+ How to Automate It) | ZeroIntel</title>
-    <meta name="description" content="A practical competitor analysis template you can use today. Covers positioning, pricing, features, and SEO. Plus how to automate the entire process with AI.">
+    <meta name="description" content="A practical competitor analysis template you can use today. Covers positioning, pricing, features, and customer sentiment. Plus how to automate the entire process with AI.">
     <meta property="og:title" content="Free Competitor Analysis Template (+ How to Automate It)">
-    <meta property="og:description" content="A practical competitor analysis template with positioning, pricing, features, and SEO analysis frameworks.">
+    <meta property="og:description" content="A practical competitor analysis template with positioning, pricing, features, and sentiment analysis frameworks.">
     <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +26,7 @@
         }
     </script>
     <style>
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', system-ui, sans-serif; }
         .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
         .grid-pattern {
@@ -34,176 +34,193 @@
                               linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
             background-size: 64px 64px;
         }
-        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #e2e8f0; }
-        .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #cbd5e1; }
-        .prose p { margin-bottom: 1.25rem; line-height: 1.8; }
-        .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose ul li { list-style-type: disc; }
-        .prose ol li { list-style-type: decimal; }
-        .prose strong { color: #e2e8f0; }
-        .prose blockquote { border-left: 3px solid #6366f1; padding-left: 1rem; margin: 1.5rem 0; color: #94a3b8; font-style: italic; }
-        .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
-        .prose th { text-align: left; padding: 0.75rem; color: #94a3b8; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .prose td { padding: 0.75rem; color: #cbd5e1; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .prose code { background: rgba(255,255,255,0.05); padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.875em; color: #a5b4fc; }
     </style>
 </head>
 <body class="gradient-bg text-white grid-pattern antialiased">
     <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
-            <div class="hidden sm:flex items-center gap-8 text-sm text-slate-400">
-                <a href="../#what-you-get" class="hover:text-white transition">Features</a>
-                <a href="../#pricing" class="hover:text-white transition">Pricing</a>
-                <a href="./" class="hover:text-white transition text-white">Blog</a>
+            <a href="../index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
+            <div class="flex gap-6 text-sm">
+                <a href="../index.html" class="text-slate-400 hover:text-white transition">Home</a>
+                <a href="index.html" class="text-slate-400 hover:text-white transition">Blog</a>
+                <a href="../order.html" class="text-indigo-400 hover:text-indigo-300 transition font-medium">Order</a>
             </div>
-            <a href="../order.html" class="bg-indigo-600 hover:bg-indigo-500 px-5 py-2 rounded-lg text-sm font-medium transition">Get Your Report</a>
         </div>
     </nav>
 
     <article class="pt-32 pb-24 px-6">
-        <div class="max-w-2xl mx-auto">
+        <div class="max-w-3xl mx-auto">
             <div class="mb-8">
-                <a href="./" class="text-indigo-400 text-sm hover:text-indigo-300 transition">&larr; Back to Blog</a>
+                <a href="index.html" class="text-indigo-400 text-sm hover:text-indigo-300 transition">&larr; Back to Blog</a>
             </div>
             <div class="text-sm text-slate-500 mb-4">March 2026 &middot; 6 min read</div>
-            <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-6">Free Competitor Analysis Template (+ How to Automate It)</h1>
+            <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-6 text-white">Free Competitor Analysis Template (+ How to Automate It)</h1>
             <p class="text-lg text-slate-400 mb-12 leading-relaxed">A framework you can use right now to analyze any competitor. Copy it, fill it in, and start making better decisions today.</p>
 
-            <div class="prose text-slate-300">
-                <h2>The template</h2>
-                <p>Below is the framework we use at ZeroIntel for every competitive intelligence report. You can run through it manually for free, or let our AI do it in 24 hours. Either way, this is the structure that produces actionable intelligence.</p>
+            <div class="space-y-5 text-slate-300 leading-relaxed">
+                <h2 class="text-2xl font-bold text-white pt-4">Why most competitor analysis falls apart</h2>
 
-                <h3>Section 1: Company overview</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Dimension</th>
-                            <th>Your Company</th>
-                            <th>Competitor 1</th>
-                            <th>Competitor 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Website URL</td><td></td><td></td><td></td></tr>
-                        <tr><td>Tagline / Hero Copy</td><td></td><td></td><td></td></tr>
-                        <tr><td>Target Audience</td><td></td><td></td><td></td></tr>
-                        <tr><td>Core Value Prop</td><td></td><td></td><td></td></tr>
-                        <tr><td>Founded / Stage</td><td></td><td></td><td></td></tr>
-                        <tr><td>Team Size (est.)</td><td></td><td></td><td></td></tr>
-                    </tbody>
-                </table>
-                <p><strong>Where to find it:</strong> Homepage, about page, LinkedIn company page, Crunchbase.</p>
+                <p>Most competitor analysis attempts fail for the same reason: they start without structure. Someone opens a Google Doc, writes down a few competitor names, and starts Googling. Two hours later, they have scattered notes about pricing, half-read feature pages, and no clear picture of anything.</p>
 
-                <h3>Section 2: Pricing comparison</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tier</th>
-                            <th>Your Price</th>
-                            <th>Competitor 1</th>
-                            <th>Competitor 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Free tier limits</td><td></td><td></td><td></td></tr>
-                        <tr><td>Entry paid plan</td><td></td><td></td><td></td></tr>
-                        <tr><td>Mid-tier plan</td><td></td><td></td><td></td></tr>
-                        <tr><td>Enterprise plan</td><td></td><td></td><td></td></tr>
-                        <tr><td>Annual discount %</td><td></td><td></td><td></td></tr>
-                        <tr><td>Per-seat or flat?</td><td></td><td></td><td></td></tr>
-                    </tbody>
-                </table>
-                <p><strong>Where to find it:</strong> Pricing page. If "contact us" pricing, check G2 reviews (users often mention pricing) or ask a sales rep.</p>
-                <p><strong>What to look for:</strong> Who's cheapest at each tier? What features get gated behind higher tiers? Is there a free tier and how restricted is it? Any startup/discount programs?</p>
+                <p>The fix is simple. Use a template. Below is the exact framework we use at ZeroIntel for every competitive intelligence report we produce. You can run through it manually for free, or let our AI handle it. Either way, this structure produces actionable output instead of a mess of browser tabs.</p>
 
-                <h3>Section 3: Feature matrix</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>You</th>
-                            <th>Comp 1</th>
-                            <th>Comp 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Core feature A</td><td></td><td></td><td></td></tr>
-                        <tr><td>Core feature B</td><td></td><td></td><td></td></tr>
-                        <tr><td>Core feature C</td><td></td><td></td><td></td></tr>
-                        <tr><td>Integration X</td><td></td><td></td><td></td></tr>
-                        <tr><td>Integration Y</td><td></td><td></td><td></td></tr>
-                        <tr><td>SSO / Security</td><td></td><td></td><td></td></tr>
-                        <tr><td>API access</td><td></td><td></td><td></td></tr>
-                        <tr><td>Mobile app</td><td></td><td></td><td></td></tr>
-                    </tbody>
-                </table>
-                <p><strong>Where to find it:</strong> Features page, documentation, changelog, product tours.</p>
-                <p><strong>Pro tip:</strong> Mark each cell as <code>Yes</code>, <code>No</code>, <code>Partial</code>, or <code>Paid tier only</code>. The nuance matters. A feature that exists only on the enterprise plan is different from one that's available on free.</p>
+                <h2 class="text-2xl font-bold text-white pt-4">The template</h2>
 
-                <h3>Section 4: Positioning analysis</h3>
-                <p>For each competitor, answer these questions:</p>
-                <ol>
-                    <li><strong>What problem do they claim to solve?</strong> (Read their homepage hero section)</li>
-                    <li><strong>Who do they target?</strong> (Check case studies, testimonials, industries listed)</li>
-                    <li><strong>What's their unique differentiator?</strong> (What do they emphasize that others don't?)</li>
-                    <li><strong>What's their content angle?</strong> (Blog topics, webinar subjects, social media themes)</li>
-                    <li><strong>What objections do they preempt?</strong> (FAQ page is gold for this)</li>
+                <h3 class="text-xl font-semibold text-slate-200 pt-2">Section 1: Company overview</h3>
+
+                <p>Start here. Get the basics down for each competitor before you go deep on anything.</p>
+
+                <div class="overflow-x-auto my-6">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Dimension</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Your Company</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Competitor 1</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Competitor 2</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Website URL</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Tagline / Hero Copy</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Target Audience</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Core Value Prop</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Founded / Stage</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Team Size (est.)</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong class="text-white">Where to find this:</strong> Homepage, about page, LinkedIn company page, Crunchbase. The tagline and hero copy are the most revealing. They tell you exactly how a competitor wants to be perceived.</p>
+
+                <h3 class="text-xl font-semibold text-slate-200 pt-2">Section 2: Pricing comparison</h3>
+
+                <p>Pricing is where most competitive analysis delivers immediate value. You cannot set your prices intelligently without knowing the market.</p>
+
+                <div class="overflow-x-auto my-6">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Tier</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Your Price</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Competitor 1</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Competitor 2</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Free tier limits</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Entry paid plan</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Mid-tier plan</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Enterprise plan</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Annual discount %</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Per-seat or flat?</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong class="text-white">Where to find this:</strong> Pricing page. If it says "contact us," check G2 reviews (users often mention what they pay) or request a sales call. Also look for startup programs, nonprofit discounts, and annual vs. monthly differences.</p>
+
+                <p><strong class="text-white">What to look for:</strong> Who is cheapest at each tier? What features get gated behind higher plans? Is there a meaningful free tier or just a trial? Are there hidden costs like per-seat charges that scale badly?</p>
+
+                <h3 class="text-xl font-semibold text-slate-200 pt-2">Section 3: Feature matrix</h3>
+
+                <div class="overflow-x-auto my-6">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Feature</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">You</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Comp 1</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Comp 2</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Core feature A</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Core feature B</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Core feature C</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Integrations</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">SSO / Security</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">API access</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Mobile app</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Self-hosting</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong class="text-white">How to fill it in:</strong> Mark each cell as <span class="text-indigo-400 font-medium">Yes</span>, <span class="text-indigo-400 font-medium">No</span>, <span class="text-indigo-400 font-medium">Partial</span>, or <span class="text-indigo-400 font-medium">Paid only</span>. The nuance matters. A feature that exists only on the enterprise plan is functionally absent for most buyers.</p>
+
+                <p><strong class="text-white">Where to find this:</strong> Features page, documentation, changelog, product tours, and comparison pages that competitors publish themselves (these are biased but still useful data).</p>
+
+                <h3 class="text-xl font-semibold text-slate-200 pt-2">Section 4: Positioning analysis</h3>
+
+                <p>For each competitor, answer five questions:</p>
+
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li><strong class="text-white">What problem do they claim to solve?</strong> Read their homepage hero section word by word.</li>
+                    <li><strong class="text-white">Who do they target?</strong> Check case studies, testimonials, and which industries they highlight.</li>
+                    <li><strong class="text-white">What is their unique differentiator?</strong> What do they emphasize that nobody else does?</li>
+                    <li><strong class="text-white">What is their content angle?</strong> Blog topics, webinar subjects, social media themes reveal strategic priorities.</li>
+                    <li><strong class="text-white">What objections do they preempt?</strong> The FAQ page is gold for understanding what prospects worry about.</li>
                 </ol>
-                <p><strong>The insight you're looking for:</strong> Where is the positioning overlap? If three companies all say "simple, powerful, and easy to use," none of them are differentiated. The gap in the market is the message nobody's claiming.</p>
 
-                <h3>Section 5: Customer sentiment</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Source</th>
-                            <th>You</th>
-                            <th>Comp 1</th>
-                            <th>Comp 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>G2 rating</td><td></td><td></td><td></td></tr>
-                        <tr><td>G2 review count</td><td></td><td></td><td></td></tr>
-                        <tr><td>Capterra rating</td><td></td><td></td><td></td></tr>
-                        <tr><td>Top praise theme</td><td></td><td></td><td></td></tr>
-                        <tr><td>Top complaint theme</td><td></td><td></td><td></td></tr>
-                        <tr><td>Recent trend (up/down)</td><td></td><td></td><td></td></tr>
-                    </tbody>
-                </table>
-                <p><strong>Where to find it:</strong> G2, Capterra, TrustRadius, Reddit, Twitter. Read the 1-star and 2-star reviews first. They tell you where the product fails.</p>
+                <p>The insight you are looking for: where does positioning overlap? If three companies all say "simple, powerful, and easy to use," none of them are actually differentiated. The gap in the market is the message nobody is claiming.</p>
 
-                <h3>Section 6: Action items</h3>
-                <p>This is the section that makes the entire exercise worthwhile. After filling in sections 1-5, answer:</p>
-                <ol>
-                    <li><strong>Price:</strong> Are we over- or under-priced relative to features delivered?</li>
-                    <li><strong>Features:</strong> What do competitors offer that we're missing? Which gaps are urgent?</li>
-                    <li><strong>Positioning:</strong> How do we differentiate from what everyone else claims?</li>
-                    <li><strong>Weaknesses:</strong> Where are competitors weak that we can attack in sales collateral?</li>
-                    <li><strong>Threats:</strong> What is the most dangerous competitor trend we need to respond to?</li>
+                <h3 class="text-xl font-semibold text-slate-200 pt-2">Section 5: Customer sentiment</h3>
+
+                <div class="overflow-x-auto my-6">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Source</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">You</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Comp 1</th>
+                                <th class="text-left py-3 px-4 text-slate-400 font-semibold text-xs uppercase tracking-wider">Comp 2</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">G2 rating</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">G2 review count</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Capterra rating</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Top praise theme</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Top complaint theme</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                            <tr class="border-b border-white/5"><td class="py-3 px-4">Sentiment trend</td><td class="py-3 px-4"></td><td class="py-3 px-4"></td><td class="py-3 px-4"></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong class="text-white">Pro tip:</strong> Read the 1-star and 2-star reviews first. They tell you where the product actually fails. The 5-star reviews are mostly noise. Focus on recurring complaints -- those are the vulnerabilities you can exploit in your positioning and sales collateral.</p>
+
+                <h3 class="text-xl font-semibold text-slate-200 pt-2">Section 6: Action items</h3>
+
+                <p>This is the section that makes the entire exercise worthwhile. After filling in sections 1-5, force yourself to answer:</p>
+
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li><strong class="text-white">Price:</strong> Are we over- or under-priced relative to features delivered?</li>
+                    <li><strong class="text-white">Features:</strong> What do competitors offer that we are missing? Which gaps are urgent?</li>
+                    <li><strong class="text-white">Positioning:</strong> How should we differentiate from what everyone else claims?</li>
+                    <li><strong class="text-white">Weaknesses:</strong> Where are competitors weakest? What can we attack in sales conversations?</li>
+                    <li><strong class="text-white">Threats:</strong> What is the most dangerous competitor trend we need to respond to?</li>
                 </ol>
-                <p>Rank each action by impact (high/medium/low) and effort (high/medium/low). Do the high-impact, low-effort items this week.</p>
 
-                <h2>How long this takes manually</h2>
-                <p>If you're thorough, filling in this template for 3 competitors takes 6-10 hours. You need to:</p>
-                <ul>
-                    <li>Read through each competitor's entire website</li>
-                    <li>Compare pricing across different page formats</li>
-                    <li>Read dozens of reviews on multiple platforms</li>
-                    <li>Cross-reference features across documentation</li>
-                    <li>Synthesize everything into recommendations</li>
-                </ul>
-                <p>Most people start this process with good intentions and abandon it halfway through. The second competitor gets less attention than the first. The third barely gets a skim.</p>
+                <p>Rank each action by impact (high/medium/low) and effort (high/medium/low). Do the high-impact, low-effort items this week. Schedule the rest.</p>
 
-                <h2>Skip the manual work</h2>
-                <p>This template is the exact framework our AI uses when generating ZeroIntel reports. The difference: AI doesn't get bored on competitor #3, doesn't skip the reviews section because it's tedious, and delivers the complete analysis in 24 hours.</p>
-                <p>Submit your company URL and competitor URLs. We fill in the template, run the analysis, and deliver structured recommendations.</p>
-                <p>$49 for a Starter report (3 competitors). $99 for Pro (5 competitors + SEO). $249 for Enterprise (10 competitors + full market analysis).</p>
+                <h2 class="text-2xl font-bold text-white pt-4">How long this takes manually</h2>
+
+                <p>If you are thorough, filling in this template for 3 competitors takes 6-10 hours. You need to read through each competitor's entire website, compare pricing across different formats, read dozens of reviews on multiple platforms, cross-reference features across documentation, and synthesize everything into recommendations.</p>
+
+                <p>Most people start this process with good intentions and abandon it halfway through. The second competitor gets less attention than the first. The third barely gets a skim. The action items section never gets written because by that point you are exhausted.</p>
+
+                <p>This is the gap we built ZeroIntel to fill.</p>
+
+                <h2 class="text-2xl font-bold text-white pt-4">Skip the manual work</h2>
+
+                <p>This template is the exact framework our AI uses when generating ZeroIntel reports. The difference: AI does not get bored on competitor number three, does not skip the reviews section because it is tedious, and delivers the complete analysis in 24 hours instead of 10.</p>
+
+                <p>Three tiers: $49 for Starter (3 competitors), $99 for Pro (5 competitors + SEO analysis), $249 for Enterprise (10 competitors + full market map). All delivered within 24 hours.</p>
 
                 <div class="mt-12 bg-gradient-to-br from-indigo-600/20 to-violet-600/10 border border-indigo-500/20 rounded-2xl p-8 text-center">
-                    <h3 class="text-xl font-bold text-white mb-3" style="margin-top:0;">Let AI fill in the template for you</h3>
-                    <p class="text-slate-300 mb-6" style="margin-bottom:1.5rem;">Same framework. Fraction of the time. $49.</p>
+                    <h3 class="text-xl font-bold text-white mb-3">Let AI fill in the template for you</h3>
+                    <p class="text-slate-300 mb-6">Same framework. Fraction of the time. Starting at $49.</p>
                     <a href="../order.html" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-3.5 rounded-xl font-semibold transition text-white">Order Your Report</a>
                 </div>
             </div>
@@ -221,5 +238,6 @@
             </div>
         </div>
     </footer>
+    <script data-goatcounter="https://zerointel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
