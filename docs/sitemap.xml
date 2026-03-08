@@ -72,4 +72,34 @@
     <loc>https://oxnr.github.io/zhc/blog/competitor-analysis-template.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/blog/how-to-choose-crm-sales-team.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/blog/best-open-source-saas-alternatives.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/blog/saas-pricing-hidden-costs.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/blog/when-to-switch-project-management-tool.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/blog/real-cost-bad-competitive-intelligence.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>
