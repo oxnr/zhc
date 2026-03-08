@@ -57,6 +57,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://oxnr.github.io/zhc/comparisons/clickup-vs-monday.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/comparisons/monday-vs-asana.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/comparisons/jira-vs-linear.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oxnr.github.io/zhc/comparisons/amplitude-vs-mixpanel.html</loc>
+    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://oxnr.github.io/zhc/blog/</loc>
     <priority>0.7</priority>
   </url>
