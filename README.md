@@ -11,7 +11,11 @@
   <a href="https://github.com/openclaw/openclaw"><img src="https://img.shields.io/badge/openclaw-powered-FF6B35?style=for-the-badge" alt="OpenClaw"></a>
 </p>
 
-![Mission Control Dashboard](docs/dashboard.png)
+## Live Product
+
+**[ZeroIntel](https://oxnr.github.io/zhc/)** — AI-Powered Competitive Intelligence Reports. Get a $5,000 competitor analysis for $49. [Order a report](https://oxnr.github.io/zhc/order.html) | [Sample report](https://oxnr.github.io/zhc/sample-report.html)
+
+---
 
 ## Quick Start
 
