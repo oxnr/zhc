@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ZeroIntel Blog</title>
+  <subtitle>AI-Powered Competitive Intelligence Insights</subtitle>
+  <link href="https://zerointel.xyz/blog/" rel="alternate"/>
+  <link href="https://zerointel.xyz/feed.xml" rel="self"/>
+  <id>https://zerointel.xyz/blog/</id>
+  <updated>2026-03-10T00:00:00Z</updated>
+  <author>
+    <name>ZeroIntel</name>
+  </author>
+
+  <entry>
+    <title>How to Do Competitive Analysis: A Practical Guide for 2026</title>
+    <link href="https://zerointel.xyz/blog/how-to-do-competitive-analysis.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/how-to-do-competitive-analysis.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>A practical guide to competitive analysis in 2026, covering frameworks, tools, and actionable steps.</summary>
+  </entry>
+
+  <entry>
+    <title>How to Analyze Competitors: A Step-by-Step Guide for SaaS Founders</title>
+    <link href="https://zerointel.xyz/blog/how-to-analyze-competitors-saas.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/how-to-analyze-competitors-saas.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Step-by-step competitor analysis guide specifically for SaaS founders.</summary>
+  </entry>
+
+  <entry>
+    <title>Best Competitive Intelligence Tools in 2026: What Actually Works</title>
+    <link href="https://zerointel.xyz/blog/competitive-intelligence-tools-2026.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/competitive-intelligence-tools-2026.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Review of the best competitive intelligence tools available in 2026.</summary>
+  </entry>
+
+  <entry>
+    <title>Competitive Intelligence for Startups: The $49 Alternative to $5K Consultants</title>
+    <link href="https://zerointel.xyz/blog/competitive-intelligence-startups.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/competitive-intelligence-startups.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>How startups can get competitive intelligence without paying $5K for consultants.</summary>
+  </entry>
+
+  <entry>
+    <title>Free Competitor Analysis Template (+ How to Automate It)</title>
+    <link href="https://zerointel.xyz/blog/competitor-analysis-template.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/competitor-analysis-template.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Free competitor analysis template with automation tips.</summary>
+  </entry>
+
+  <entry>
+    <title>SaaS Competitor Analysis Template: The Framework Top Founders Use</title>
+    <link href="https://zerointel.xyz/blog/saas-competitor-analysis-template.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/saas-competitor-analysis-template.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>The competitor analysis framework used by top SaaS founders.</summary>
+  </entry>
+
+  <entry>
+    <title>The Real Cost of Bad Competitive Intelligence</title>
+    <link href="https://zerointel.xyz/blog/real-cost-bad-competitive-intelligence.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/real-cost-bad-competitive-intelligence.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>What bad competitive intelligence actually costs your business.</summary>
+  </entry>
+
+  <entry>
+    <title>Best Open-Source Alternatives to Popular SaaS Tools in 2026</title>
+    <link href="https://zerointel.xyz/blog/best-open-source-saas-alternatives.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/best-open-source-saas-alternatives.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Top open-source alternatives to popular SaaS tools in 2026.</summary>
+  </entry>
+
+  <entry>
+    <title>SaaS Pricing Comparison: Hidden Costs Nobody Talks About</title>
+    <link href="https://zerointel.xyz/blog/saas-pricing-hidden-costs.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/saas-pricing-hidden-costs.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Uncovering hidden costs in SaaS pricing that vendors don't advertise.</summary>
+  </entry>
+
+  <entry>
+    <title>How to Choose a CRM for Your Sales Team in 2026</title>
+    <link href="https://zerointel.xyz/blog/how-to-choose-crm-sales-team.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/how-to-choose-crm-sales-team.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Guide to choosing the right CRM for your sales team in 2026.</summary>
+  </entry>
+
+  <entry>
+    <title>When to Switch Your Project Management Tool (And How to Do It Right)</title>
+    <link href="https://zerointel.xyz/blog/when-to-switch-project-management-tool.html" rel="alternate"/>
+    <id>https://zerointel.xyz/blog/when-to-switch-project-management-tool.html</id>
+    <updated>2026-03-10T00:00:00Z</updated>
+    <summary>Signs it's time to switch project management tools and how to migrate smoothly.</summary>
+  </entry>
+</feed>
