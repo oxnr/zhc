@@ -34,7 +34,7 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #020617; color: #e2e8f0; }
         .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
         .glow { box-shadow: 0 0 30px rgba(99, 102, 241, 0.2); }
         .glow-sm { box-shadow: 0 0 20px rgba(99, 102, 241, 0.12); }
@@ -53,19 +53,19 @@
         .price-popular { background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%); }
         .stat-glow { text-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
         .report-preview { background: #0c0f1a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.5); }
-        .preview-bar { background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 10px 16px; display: flex; align-items: center; gap: 6px; }
+        .preview-bar { background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.10); padding: 10px 16px; display: flex; align-items: center; gap: 6px; }
         .preview-dot { width: 8px; height: 8px; border-radius: 50%; }
         .preview-body { padding: 24px; }
         .preview-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 16px; }
-        .preview-metric { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 16px; text-align: center; }
+        .preview-metric { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: 10px; padding: 16px; text-align: center; }
         .preview-metric .val { font-size: 1.35rem; font-weight: 800; }
-        .preview-metric .lbl { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+        .preview-metric .lbl { font-size: 0.8rem; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
         .preview-hbar { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .preview-hbar-lbl { width: 90px; font-size: 0.8rem; color: #94a3b8; text-align: right; flex-shrink: 0; }
+        .preview-hbar-lbl { width: 90px; font-size: 0.8rem; color: #cbd5e1; text-align: right; flex-shrink: 0; }
         .preview-hbar-track { flex: 1; height: 20px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
         .preview-hbar-fill { height: 100%; border-radius: 4px; }
         .preview-table { width: 100%; font-size: 0.875rem; margin-top: 16px; border-collapse: collapse; }
-        .preview-table th { text-align: left; padding: 10px 14px; color: #94a3b8; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .preview-table th { text-align: left; padding: 10px 14px; color: #cbd5e1; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .preview-table td { padding: 10px 14px; color: #cbd5e1; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .pcheck { color: #34d399; font-weight: 700; }
         .pcross { color: #f87171; font-weight: 700; }
@@ -79,10 +79,10 @@
 </head>
 <body class="gradient-bg text-white grid-pattern antialiased">
     <!-- Nav -->
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></div>
-            <div class="hidden sm:flex items-center gap-8 text-sm text-slate-400">
+            <div class="hidden sm:flex items-center gap-8 text-sm text-slate-300">
                 <a href="sample-report.html" class="hover:text-white transition">Sample Report</a>
                 <a href="#pricing" class="hover:text-white transition">Pricing</a>
                 <a href="comparisons/" class="hover:text-white transition">Comparisons</a>
@@ -103,7 +103,7 @@
             <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
                 Your competitors just<br>got analyzed. For <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">$49</span>.
             </h1>
-            <p class="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
                 AI-powered competitive intelligence reports that replace $5K consultant engagements. Submit URLs, get insights in 24 hours.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -114,24 +114,24 @@
     </section>
 
     <!-- Stats Bar -->
-    <section class="py-16 px-6 border-y border-white/5">
+    <section class="py-16 px-6 border-y border-white/10">
         <div class="max-w-4xl mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
                     <div class="text-3xl sm:text-4xl font-extrabold text-white stat-glow">24h</div>
-                    <div class="text-sm text-slate-400 mt-1">Delivery Time</div>
+                    <div class="text-sm text-slate-300 mt-1">Delivery Time</div>
                 </div>
                 <div>
                     <div class="text-3xl sm:text-4xl font-extrabold text-white stat-glow">100x</div>
-                    <div class="text-sm text-slate-400 mt-1">Cheaper Than Consultants</div>
+                    <div class="text-sm text-slate-300 mt-1">Cheaper Than Consultants</div>
                 </div>
                 <div>
                     <div class="text-3xl sm:text-4xl font-extrabold text-white stat-glow">$49</div>
-                    <div class="text-sm text-slate-400 mt-1">Starting Price</div>
+                    <div class="text-sm text-slate-300 mt-1">Starting Price</div>
                 </div>
                 <div>
                     <div class="text-3xl sm:text-4xl font-extrabold text-white stat-glow">7-day</div>
-                    <div class="text-sm text-slate-400 mt-1">Money-Back Guarantee</div>
+                    <div class="text-sm text-slate-300 mt-1">Money-Back Guarantee</div>
                 </div>
             </div>
         </div>
@@ -146,17 +146,17 @@
                 <div class="text-center">
                     <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5 glow-sm">1</div>
                     <h3 class="font-semibold text-lg mb-2">Submit URLs</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Enter your company URL and your competitor URLs. Pick your tier.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Enter your company URL and your competitor URLs. Pick your tier.</p>
                 </div>
                 <div class="text-center">
                     <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5 glow-sm">2</div>
                     <h3 class="font-semibold text-lg mb-2">AI Analyzes</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Our AI scrapes, analyzes, and cross-references data across dozens of dimensions.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Our AI scrapes, analyzes, and cross-references data across dozens of dimensions.</p>
                 </div>
                 <div class="text-center">
                     <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-5 glow-sm">3</div>
                     <h3 class="font-semibold text-lg mb-2">Get Your Report</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Receive a comprehensive competitive intelligence report within 24 hours.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Receive a comprehensive competitive intelligence report within 24 hours.</p>
                 </div>
             </div>
         </div>
@@ -167,7 +167,7 @@
         <div class="max-w-5xl mx-auto">
             <p class="text-sm font-medium text-indigo-400 text-center mb-3 tracking-wide uppercase">See your report</p>
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">Here's what you'll get.</h2>
-            <p class="text-slate-400 text-center mb-12 max-w-xl mx-auto">A data-rich competitive intelligence report that looks like it cost $5,000. Because the analysis is just as deep.</p>
+            <p class="text-slate-300 text-center mb-12 max-w-xl mx-auto">A data-rich competitive intelligence report that looks like it cost $5,000. Because the analysis is just as deep.</p>
             <div class="report-preview max-w-3xl mx-auto">
                 <div class="preview-bar">
                     <div class="preview-dot" style="background:#ef4444;"></div>
@@ -235,49 +235,49 @@
         <div class="max-w-6xl mx-auto">
             <p class="text-sm font-medium text-indigo-400 text-center mb-3 tracking-wide uppercase">What's included</p>
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">What consultants charge thousands for,<br class="hidden sm:block"> we deliver overnight.</h2>
-            <p class="text-slate-400 text-center mb-16 max-w-xl mx-auto">Every report is a deep-dive competitive analysis powered by AI, covering the metrics that matter.</p>
+            <p class="text-slate-300 text-center mb-16 max-w-xl mx-auto">Every report is a deep-dive competitive analysis powered by AI, covering the metrics that matter.</p>
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 card-hover">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 card-hover">
                     <div class="w-10 h-10 bg-indigo-500/10 border border-indigo-500/20 rounded-xl flex items-center justify-center text-lg mb-4">
                         <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Positioning Analysis</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Where you stand vs. competitors on pricing, messaging, features, and market share. No guesswork.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Where you stand vs. competitors on pricing, messaging, features, and market share. No guesswork.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 card-hover">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 card-hover">
                     <div class="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-lg mb-4">
                         <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Pricing Comparison</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Side-by-side pricing breakdown with tier analysis, feature mapping, and pricing strategy insights.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Side-by-side pricing breakdown with tier analysis, feature mapping, and pricing strategy insights.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 card-hover">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 card-hover">
                     <div class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center text-lg mb-4">
                         <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Feature Gap Analysis</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">What your competitors offer that you don't — and where you have the edge. Actionable feature roadmap insights.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">What your competitors offer that you don't — and where you have the edge. Actionable feature roadmap insights.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 card-hover">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 card-hover">
                     <div class="w-10 h-10 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center text-lg mb-4">
                         <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">SEO Audit</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Keyword overlap, domain authority comparison, content strategy analysis, and organic search opportunities.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Keyword overlap, domain authority comparison, content strategy analysis, and organic search opportunities.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 card-hover">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 card-hover">
                     <div class="w-10 h-10 bg-violet-500/10 border border-violet-500/20 rounded-xl flex items-center justify-center text-lg mb-4">
                         <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Market Sizing</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">TAM/SAM/SOM estimates, growth trends, and market dynamics for your competitive landscape.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">TAM/SAM/SOM estimates, growth trends, and market dynamics for your competitive landscape.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 card-hover">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 card-hover">
                     <div class="w-10 h-10 bg-rose-500/10 border border-rose-500/20 rounded-xl flex items-center justify-center text-lg mb-4">
                         <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Strategic Recommendations</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Concrete next steps — where to attack, what to defend, and quick wins for your go-to-market strategy.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Concrete next steps — where to attack, what to defend, and quick wins for your go-to-market strategy.</p>
                 </div>
             </div>
         </div>
@@ -289,26 +289,26 @@
             <p class="text-sm font-medium text-indigo-400 text-center mb-3 tracking-wide uppercase">Why ZeroIntel</p>
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16">Built by AI researchers, for founders who move fast.</h2>
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 text-center">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 text-center">
                     <div class="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
                         <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h3 class="font-semibold text-lg mb-2">Powered by Claude AI</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">We use frontier AI models to analyze competitor data and surface insights a human analyst would take days to find.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">We use frontier AI models to analyze competitor data and surface insights a human analyst would take days to find.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 text-center">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 text-center">
                     <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
                         <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
                     <h3 class="font-semibold text-lg mb-2">Launch Special Pricing</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Early adopters get our lowest-ever pricing. Same quality analysis that consultants charge $5,000+ for.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Early adopters get our lowest-ever pricing. Same quality analysis that consultants charge $5,000+ for.</p>
                 </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-7 text-center">
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-7 text-center">
                     <div class="w-12 h-12 bg-violet-500/10 border border-violet-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
                         <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <h3 class="font-semibold text-lg mb-2">24-Hour Delivery</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Order today, get your full competitive intelligence report by tomorrow. No back-and-forth, no waiting weeks.</p>
+                    <p class="text-slate-300 text-sm leading-relaxed">Order today, get your full competitive intelligence report by tomorrow. No back-and-forth, no waiting weeks.</p>
                 </div>
             </div>
         </div>
@@ -319,16 +319,16 @@
         <div class="max-w-5xl mx-auto">
             <p class="text-sm font-medium text-indigo-400 text-center mb-3 tracking-wide uppercase">Pricing</p>
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">One report. One price. No subscriptions.</h2>
-            <p class="text-slate-400 text-center mb-16 max-w-lg mx-auto">Choose the depth of analysis that fits your needs. Every tier includes a 7-day money-back guarantee.</p>
+            <p class="text-slate-300 text-center mb-16 max-w-lg mx-auto">Choose the depth of analysis that fits your needs. Every tier includes a 7-day money-back guarantee.</p>
             <div class="grid md:grid-cols-3 gap-6 items-start">
                 <!-- Starter -->
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 card-hover">
-                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">Starter</h3>
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-8 card-hover">
+                    <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-3">Starter</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="text-5xl font-extrabold">$49</span>
                     </div>
-                    <div class="text-slate-400 text-sm mb-6">one-time payment</div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Quick competitive snapshot. You vs. 3 competitors. Perfect for validating your gut feeling with data.</p>
+                    <div class="text-slate-300 text-sm mb-6">one-time payment</div>
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">Quick competitive snapshot. You vs. 3 competitors. Perfect for validating your gut feeling with data.</p>
                     <ul class="space-y-3 text-sm text-slate-300 mb-8">
                         <li class="flex items-start gap-2.5"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Up to 3 competitors</li>
                         <li class="flex items-start gap-2.5"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Positioning analysis</li>
@@ -345,8 +345,8 @@
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="text-5xl font-extrabold">$99</span>
                     </div>
-                    <div class="text-slate-400 text-sm mb-6">one-time payment</div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">Full competitive landscape. The report that replaces your quarterly strategy offsite.</p>
+                    <div class="text-slate-300 text-sm mb-6">one-time payment</div>
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">Full competitive landscape. The report that replaces your quarterly strategy offsite.</p>
                     <ul class="space-y-3 text-sm text-slate-300 mb-8">
                         <li class="flex items-start gap-2.5"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Up to 5 competitors</li>
                         <li class="flex items-start gap-2.5"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Everything in Starter</li>
@@ -358,13 +358,13 @@
                     <a href="order.html?tier=pro" class="block text-center bg-indigo-600 hover:bg-indigo-500 px-6 py-3.5 rounded-xl font-medium transition glow-sm text-sm">Get Pro Report</a>
                 </div>
                 <!-- Enterprise -->
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 card-hover">
-                    <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">Enterprise</h3>
+                <div class="bg-white/[0.05] border border-white/[0.10] rounded-2xl p-8 card-hover">
+                    <h3 class="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-3">Enterprise</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="text-5xl font-extrabold">$249</span>
                     </div>
-                    <div class="text-slate-400 text-sm mb-6">one-time payment</div>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">War room intelligence. The complete picture with executive summary and full market analysis.</p>
+                    <div class="text-slate-300 text-sm mb-6">one-time payment</div>
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">War room intelligence. The complete picture with executive summary and full market analysis.</p>
                     <ul class="space-y-3 text-sm text-slate-300 mb-8">
                         <li class="flex items-start gap-2.5"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Up to 10 competitors</li>
                         <li class="flex items-start gap-2.5"><svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Everything in Pro</li>
@@ -386,54 +386,54 @@
             <p class="text-sm font-medium text-indigo-400 text-center mb-3 tracking-wide uppercase">FAQ</p>
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16">Frequently Asked Questions</h2>
             <div class="space-y-3">
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group" open>
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group" open>
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         How does ZeroIntel generate reports?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">We use AI to analyze publicly available data -- websites, pricing pages, review sites, social presence, content strategy, SEO metrics, and more. The result is a structured competitive analysis that would take a human analyst days to compile.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">We use AI to analyze publicly available data -- websites, pricing pages, review sites, social presence, content strategy, SEO metrics, and more. The result is a structured competitive analysis that would take a human analyst days to compile.</p>
                 </details>
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group">
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group">
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         How is this different from hiring a consultant?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">Consultants charge $5K-$50K and take 2-6 weeks. We deliver in 24 hours for a fraction of the cost. For most startups and SMBs, our reports provide the strategic clarity you need without the enterprise price tag.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">Consultants charge $5K-$50K and take 2-6 weeks. We deliver in 24 hours for a fraction of the cost. For most startups and SMBs, our reports provide the strategic clarity you need without the enterprise price tag.</p>
                 </details>
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group">
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group">
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         What data sources do you use?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">Public websites, pricing pages, G2/Capterra reviews, social media profiles, job postings, blog/content output, SEO rankings, and web traffic estimates. We don't use any private or scraped data that violates terms of service.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">Public websites, pricing pages, G2/Capterra reviews, social media profiles, job postings, blog/content output, SEO rankings, and web traffic estimates. We don't use any private or scraped data that violates terms of service.</p>
                 </details>
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group">
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group">
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         How accurate are the reports?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">Our analysis is based on publicly available data as of the report date. We clearly label estimates vs. confirmed data points. The AI cross-references multiple pages per competitor to surface patterns and insights. If data is insufficient for any section, we say so honestly rather than filling with guesswork.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">Our analysis is based on publicly available data as of the report date. We clearly label estimates vs. confirmed data points. The AI cross-references multiple pages per competitor to surface patterns and insights. If data is insufficient for any section, we say so honestly rather than filling with guesswork.</p>
                 </details>
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group">
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group">
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         What if I'm not satisfied?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">If the report doesn't meet your expectations, email us within 7 days and we'll either revise it or refund you. No games.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">If the report doesn't meet your expectations, email us within 7 days and we'll either revise it or refund you. No games.</p>
                 </details>
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group">
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group">
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         What kind of companies can I analyze?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">Any company with a website. We analyze SaaS, e-commerce, agencies, local businesses -- if they have a web presence, we can analyze them.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">Any company with a website. We analyze SaaS, e-commerce, agencies, local businesses -- if they have a web presence, we can analyze them.</p>
                 </details>
-                <details class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 group">
+                <details class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-5 group">
                     <summary class="font-medium cursor-pointer list-none flex justify-between items-center gap-4">
                         How is the report delivered?
                         <span class="faq-icon text-slate-500 transition-transform text-xl shrink-0">+</span>
                     </summary>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">You'll receive an email with a link to your report in both HTML and PDF formats. You can view it online or download it.</p>
+                    <p class="text-slate-300 text-sm mt-3 leading-relaxed">You'll receive an email with a link to your report in both HTML and PDF formats. You can view it online or download it.</p>
                 </details>
             </div>
         </div>
@@ -446,13 +446,13 @@
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">Stop guessing. Start knowing.</h2>
                 <p class="text-slate-300 mb-8 max-w-lg mx-auto">Your competitors aren't waiting. Get the intelligence you need to move faster.</p>
                 <a href="#pricing" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl text-lg font-semibold transition glow">Get Your Competitive Report</a>
-                <p class="text-slate-400 text-sm mt-4">No subscription. No commitment. Just intelligence.</p>
+                <p class="text-slate-300 text-sm mt-4">No subscription. No commitment. Just intelligence.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-white/5 py-8 px-6">
+    <footer class="border-t border-white/10 py-8 px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>

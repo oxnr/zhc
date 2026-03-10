@@ -28,7 +28,7 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #020617; color: #e2e8f0; }
         .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
         .grid-pattern {
             background-image: linear-gradient(rgba(99, 102, 241, 0.02) 1px, transparent 1px),
@@ -37,7 +37,7 @@
         }
         table { border-collapse: collapse; width: 100%; }
         th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.875rem; line-height: 1.6; }
-        th { color: #94a3b8; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        th { color: #cbd5e1; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
         td { color: #e2e8f0; }
         tr:hover td { background: rgba(99, 102, 241, 0.04); }
         a:focus-visible, button:focus-visible { outline: 2px solid #818cf8; outline-offset: 2px; border-radius: 4px; }
@@ -47,10 +47,10 @@
     </style>
 </head>
 <body class="gradient-bg text-white grid-pattern antialiased">
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
-            <a href="index.html" class="text-sm text-slate-400 hover:text-white transition">&larr; Back to home</a>
+            <a href="index.html" class="text-sm text-slate-300 hover:text-white transition">&larr; Back to home</a>
         </div>
     </nav>
 
@@ -60,7 +60,7 @@
             <div class="mb-12">
                 <p class="text-sm font-medium text-indigo-400 mb-3 tracking-wide uppercase">Sample Report</p>
                 <h1 class="text-3xl sm:text-4xl font-bold mb-4">Linear vs Shortcut vs Plane.so</h1>
-                <p class="text-slate-400 mb-6">Competitive Intelligence Report &mdash; Starter Tier</p>
+                <p class="text-slate-300 mb-6">Competitive Intelligence Report &mdash; Starter Tier</p>
                 <div class="flex flex-wrap gap-4 text-xs text-slate-500">
                     <span>Company: linear.app</span>
                     <span>&bull;</span>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="text-slate-300 text-sm leading-relaxed space-y-3">
                     <p>Linear is the market's design-forward project management tool, positioning as "the system for product development." It targets mid-to-large engineering teams who value speed and aesthetics. However, both competitors have closed the feature gap significantly:</p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-400">
+                    <ul class="list-disc list-inside space-y-2 text-slate-300">
                         <li><strong class="text-slate-300">Shortcut</strong> matches Linear on core PM features, adds Objectives/OKRs (which Linear lacks at the Basic/Business tier), and prices 15-38% lower depending on tier</li>
                         <li><strong class="text-slate-300">Plane.so</strong> offers self-hosting (a dealbreaker for regulated industries), built-in Wiki, and AI-native workflows at 40% lower pricing &mdash; plus an open-source edition</li>
                     </ul>
@@ -97,16 +97,16 @@
                             <tr><th>Dimension</th><th>Linear</th><th>Shortcut</th><th>Plane.so</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td class="text-slate-400 font-medium">Tagline</td><td>"The system for product development"</td><td>"Where software teams plan &amp; build products"</td><td>"PM and knowledge management for teams and agents"</td></tr>
-                            <tr><td class="text-slate-400 font-medium">Core Promise</td><td>Speed + beautiful UX</td><td>Simplicity + power</td><td>AI-native + self-hostable</td></tr>
-                            <tr><td class="text-slate-400 font-medium">Target Persona</td><td>Design-conscious eng teams</td><td>Pragmatic dev teams, SMBs</td><td>Enterprise/security-conscious teams</td></tr>
-                            <tr><td class="text-slate-400 font-medium">Key Differentiator</td><td>UI polish, keyboard-first UX</td><td>Startup program (12mo free)</td><td>Self-hosting, open-source, AI agents</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Tagline</td><td>"The system for product development"</td><td>"Where software teams plan &amp; build products"</td><td>"PM and knowledge management for teams and agents"</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Core Promise</td><td>Speed + beautiful UX</td><td>Simplicity + power</td><td>AI-native + self-hostable</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Target Persona</td><td>Design-conscious eng teams</td><td>Pragmatic dev teams, SMBs</td><td>Enterprise/security-conscious teams</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Key Differentiator</td><td>UI polish, keyboard-first UX</td><td>Startup program (12mo free)</td><td>Self-hosting, open-source, AI agents</td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="text-slate-300 text-sm leading-relaxed space-y-3">
                     <p>Linear positions as the "Apple" of project management &mdash; premium, opinionated, beautifully designed. This works well for brand-conscious tech companies but creates vulnerability:</p>
-                    <ol class="list-decimal list-inside space-y-3 text-slate-400">
+                    <ol class="list-decimal list-inside space-y-3 text-slate-300">
                         <li><strong class="text-slate-300">Shortcut's "good enough" strategy is dangerous.</strong> Teams evaluating Linear often find Shortcut does 90% of what Linear does at a lower price. Shortcut's 12-month free startup program is an aggressive land grab.</li>
                         <li><strong class="text-slate-300">Plane.so's open-source wedge is the bigger long-term threat.</strong> Regulated industries increasingly require self-hosted solutions. Plane offers Docker/Kubernetes deployment and air-gapped installations. Two Fortune 10 companies have already migrated from Jira to Plane.</li>
                         <li><strong class="text-slate-300">Linear's "system" positioning is vague.</strong> Both competitors have clearer value propositions. Linear's messaging relies on brand equity rather than concrete differentiation.</li>
@@ -123,10 +123,10 @@
                             <tr><th>Tier</th><th>Linear</th><th>Shortcut</th><th>Plane.so</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td class="text-slate-400 font-medium">Free</td><td>$0 (250 issues, 2 teams)</td><td>$0 (10 users, 1 team)</td><td>$0 (12 users, 5 layouts)</td></tr>
-                            <tr><td class="text-slate-400 font-medium">Paid Tier 1</td><td class="text-rose-400 font-medium">$10/user/mo</td><td class="text-emerald-400">$8.50/user/mo</td><td class="text-emerald-400">$6/user/mo</td></tr>
-                            <tr><td class="text-slate-400 font-medium">Paid Tier 2</td><td class="text-rose-400 font-medium">$16/user/mo</td><td class="text-emerald-400">$12/user/mo</td><td>$13/user/mo</td></tr>
-                            <tr><td class="text-slate-400 font-medium">Enterprise</td><td>Contact sales</td><td>Custom</td><td>Quote on request</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Free</td><td>$0 (250 issues, 2 teams)</td><td>$0 (10 users, 1 team)</td><td>$0 (12 users, 5 layouts)</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Paid Tier 1</td><td class="text-rose-400 font-medium">$10/user/mo</td><td class="text-emerald-400">$8.50/user/mo</td><td class="text-emerald-400">$6/user/mo</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Paid Tier 2</td><td class="text-rose-400 font-medium">$16/user/mo</td><td class="text-emerald-400">$12/user/mo</td><td>$13/user/mo</td></tr>
+                            <tr><td class="text-slate-300 font-medium">Enterprise</td><td>Contact sales</td><td>Custom</td><td>Quote on request</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -144,15 +144,15 @@
                             <tr><th>Feature</th><th>Linear</th><th>Shortcut</th><th>Plane.so</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td class="text-slate-400">Issue tracking</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">Kanban boards</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes + WIP limits</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">OKRs/Objectives</td><td class="text-rose-400">No (Business only)</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">Built-in Wiki/Docs</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">Time tracking</td><td class="text-rose-400">No</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">Self-hosting</td><td class="text-rose-400">No</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">AI features</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
-                            <tr><td class="text-slate-400">SSO/SAML</td><td class="text-amber-400">Business ($16)</td><td class="text-amber-400">Enterprise only</td><td class="text-emerald-400">Pro ($6)</td></tr>
-                            <tr><td class="text-slate-400">Startup program</td><td class="text-rose-400">No</td><td class="text-emerald-400">12mo free</td><td class="text-rose-400">No</td></tr>
+                            <tr><td class="text-slate-300">Issue tracking</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">Kanban boards</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes + WIP limits</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">OKRs/Objectives</td><td class="text-rose-400">No (Business only)</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">Built-in Wiki/Docs</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">Time tracking</td><td class="text-rose-400">No</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">Self-hosting</td><td class="text-rose-400">No</td><td class="text-rose-400">No</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">AI features</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td><td class="text-emerald-400">Yes</td></tr>
+                            <tr><td class="text-slate-300">SSO/SAML</td><td class="text-amber-400">Business ($16)</td><td class="text-amber-400">Enterprise only</td><td class="text-emerald-400">Pro ($6)</td></tr>
+                            <tr><td class="text-slate-300">Startup program</td><td class="text-rose-400">No</td><td class="text-emerald-400">12mo free</td><td class="text-rose-400">No</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -171,23 +171,23 @@
                 <div class="space-y-4">
                     <div class="bg-white/5 border border-white/10 rounded-xl p-5">
                         <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded">HIGH IMPACT</span><h3 class="font-semibold">Launch a docs/Wiki feature</h3></div>
-                        <p class="text-sm text-slate-400">Both competitors bundle documentation. Linear users pay for Notion ($8-10/user) alongside Linear &mdash; the effective cost is $18-26/user vs Shortcut's all-in $8.50. Native docs would eliminate Linear's biggest gap.</p>
+                        <p class="text-sm text-slate-300">Both competitors bundle documentation. Linear users pay for Notion ($8-10/user) alongside Linear &mdash; the effective cost is $18-26/user vs Shortcut's all-in $8.50. Native docs would eliminate Linear's biggest gap.</p>
                     </div>
                     <div class="bg-white/5 border border-white/10 rounded-xl p-5">
                         <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded">HIGH IMPACT</span><h3 class="font-semibold">Introduce a startup program</h3></div>
-                        <p class="text-sm text-slate-400">Shortcut's 12-month free program is stealing early-stage deals. The LTV of landing a startup that grows from 5 to 50 engineers justifies the free period.</p>
+                        <p class="text-sm text-slate-300">Shortcut's 12-month free program is stealing early-stage deals. The LTV of landing a startup that grows from 5 to 50 engineers justifies the free period.</p>
                     </div>
                     <div class="bg-white/5 border border-white/10 rounded-xl p-5">
                         <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded">MEDIUM IMPACT</span><h3 class="font-semibold">Offer SSO at a lower tier</h3></div>
-                        <p class="text-sm text-slate-400">Gating SAML at $16/user when Plane offers it at $6/user is a competitive liability. Moving SSO to Basic ($10) would remove a key objection in competitive deals.</p>
+                        <p class="text-sm text-slate-300">Gating SAML at $16/user when Plane offers it at $6/user is a competitive liability. Moving SSO to Basic ($10) would remove a key objection in competitive deals.</p>
                     </div>
                     <div class="bg-white/5 border border-white/10 rounded-xl p-5">
                         <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded">MEDIUM IMPACT</span><h3 class="font-semibold">Address the self-hosting narrative</h3></div>
-                        <p class="text-sm text-slate-400">Publish detailed security whitepapers, SOC 2 Type II reports, data residency options, and a "why cloud is more secure" content series to counter Plane's self-hosting advantage.</p>
+                        <p class="text-sm text-slate-300">Publish detailed security whitepapers, SOC 2 Type II reports, data residency options, and a "why cloud is more secure" content series to counter Plane's self-hosting advantage.</p>
                     </div>
                     <div class="bg-white/5 border border-white/10 rounded-xl p-5">
                         <div class="flex items-center gap-2 mb-2"><span class="text-xs font-bold bg-rose-500/20 text-rose-400 px-2 py-0.5 rounded">HIGH PRIORITY</span><h3 class="font-semibold">Sharpen AI positioning</h3></div>
-                        <p class="text-sm text-slate-400">Plane positions as "AI-native." Linear has AI features but doesn't lead with them. Commit to being the AI-first PM tool or clearly articulate why their approach is superior.</p>
+                        <p class="text-sm text-slate-300">Plane positions as "AI-native." Linear has AI features but doesn't lead with them. Commit to being the AI-first PM tool or clearly articulate why their approach is superior.</p>
                     </div>
                 </div>
             </section>
@@ -201,7 +201,7 @@
         </div>
     </article>
 
-    <footer class="border-t border-white/5 py-8 px-6">
+    <footer class="border-t border-white/10 py-8 px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>

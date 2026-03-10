@@ -28,15 +28,15 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #020617; color: #e2e8f0; }
         .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
         .grid-pattern {
             background-image: linear-gradient(rgba(99, 102, 241, 0.02) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(99, 102, 241, 0.02) 1px, transparent 1px);
             background-size: 64px 64px;
         }
-        .comparison-table th, .comparison-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .comparison-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; }
+        .comparison-table th, .comparison-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.10); }
+        .comparison-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #cbd5e1; }
         .check { color: #34d399; } .cross { color: #f87171; } .partial { color: #fbbf24; }
             a:focus-visible, button:focus-visible { outline: 2px solid #818cf8; outline-offset: 2px; border-radius: 4px; }
     </style>
@@ -53,13 +53,13 @@
     </script>
 </head>
 <body class="gradient-bg text-white grid-pattern antialiased">
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="../index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
             <div class="flex gap-6 text-sm">
-                <a href="../index.html" class="text-slate-400 hover:text-white transition">Home</a>
-                <a href="index.html" class="text-slate-400 hover:text-white transition">Comparisons</a>
-                <a href="../blog/" class="text-slate-400 hover:text-white transition">Blog</a>
+                <a href="../index.html" class="text-slate-300 hover:text-white transition">Home</a>
+                <a href="index.html" class="text-slate-300 hover:text-white transition">Comparisons</a>
+                <a href="../blog/" class="text-slate-300 hover:text-white transition">Blog</a>
                 <a href="../order.html" class="text-indigo-400 hover:text-indigo-300 transition font-medium">Order Report</a>
             </div>
         </div>
@@ -72,7 +72,7 @@
             </div>
             <div class="text-sm text-slate-500 mb-4">Updated March 2026 &middot; 8 min read</div>
             <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-6">Linear vs Shortcut: Comprehensive Comparison 2026</h1>
-            <p class="text-lg text-slate-400 mb-12 leading-relaxed">Linear and Shortcut are both modern project management tools built specifically for software teams that outgrew Jira. They share a similar audience — engineering-led startups and mid-size product organizations — but differ significantly in philosophy. Linear is opinionated, keyboard-driven, and optimized for speed. Shortcut (formerly Clubhouse) is more flexible, collaborative, and designed to bridge the gap between engineering and product teams. Here's everything you need to know to choose between them.</p>
+            <p class="text-lg text-slate-300 mb-12 leading-relaxed">Linear and Shortcut are both modern project management tools built specifically for software teams that outgrew Jira. They share a similar audience — engineering-led startups and mid-size product organizations — but differ significantly in philosophy. Linear is opinionated, keyboard-driven, and optimized for speed. Shortcut (formerly Clubhouse) is more flexible, collaborative, and designed to bridge the gap between engineering and product teams. Here's everything you need to know to choose between them.</p>
 
             <div class="space-y-8 text-slate-300 leading-relaxed">
 
@@ -91,7 +91,7 @@
                     <div class="overflow-x-auto">
                         <table class="comparison-table w-full bg-white/[0.02] rounded-xl overflow-hidden">
                             <thead>
-                                <tr class="bg-white/[0.03]">
+                                <tr class="bg-white/[0.05]">
                                     <th>Feature</th>
                                     <th>Linear</th>
                                     <th>Shortcut</th>
@@ -222,9 +222,9 @@
                     <h2 class="text-2xl font-bold text-white mb-4">Which Should You Choose?</h2>
                     <p>The choice between Linear and Shortcut depends on your team structure and what you optimize for. Engineering-only teams that prize speed and consistency will gravitate toward Linear. Cross-functional product teams that need flexibility and hierarchical planning will prefer Shortcut.</p>
                     <div class="grid md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
+                        <div class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-6">
                             <h3 class="font-semibold text-white mb-2">Choose Linear if...</h3>
-                            <ul class="space-y-2 text-sm text-slate-400">
+                            <ul class="space-y-2 text-sm text-slate-300">
                                 <li>&#8226; Your team is primarily engineers who value blazing fast UI</li>
                                 <li>&#8226; You want opinionated, consistent workflows across all teams</li>
                                 <li>&#8226; Keyboard-first navigation is important for your daily workflow</li>
@@ -232,9 +232,9 @@
                                 <li>&#8226; You use Figma and Sentry and want native deep integrations</li>
                             </ul>
                         </div>
-                        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
+                        <div class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-6">
                             <h3 class="font-semibold text-white mb-2">Choose Shortcut if...</h3>
-                            <ul class="space-y-2 text-sm text-slate-400">
+                            <ul class="space-y-2 text-sm text-slate-300">
                                 <li>&#8226; You need cross-project epics and milestone-level planning</li>
                                 <li>&#8226; Your team includes product managers and designers alongside engineers</li>
                                 <li>&#8226; You want custom workflows that differ between projects or teams</li>
@@ -255,22 +255,22 @@
                         <h2 class="text-2xl font-bold text-white mb-3">Need a deeper analysis?</h2>
                         <p class="text-slate-300 mb-6">Get a full competitive intelligence report comparing Linear, Shortcut, and up to 8 more project management tools. Pricing, features, market positioning — everything you need to make the right call.</p>
                         <a href="../order.html" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl text-lg font-semibold transition">Order Your Custom Report — $49</a>
-                        <p class="text-slate-400 text-sm mt-3">Delivered in 24 hours. 7-day money-back guarantee.</p>
+                        <p class="text-slate-300 text-sm mt-3">Delivered in 24 hours. 7-day money-back guarantee.</p>
                     </div>
                 </section>
             </div>
 
-            <div class="mt-16 pt-8 border-t border-white/5">
+            <div class="mt-16 pt-8 border-t border-white/10">
                 <h3 class="text-lg font-semibold mb-4">Related Comparisons</h3>
                 <div class="flex flex-wrap gap-3">
-                    <a href="plane-vs-linear.html" class="bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2 text-sm text-slate-400 hover:text-white transition">Plane vs Linear</a>
-                    <a href="notion-vs-clickup.html" class="bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-2 text-sm text-slate-400 hover:text-white transition">Notion vs ClickUp</a>
+                    <a href="plane-vs-linear.html" class="bg-white/[0.05] border border-white/[0.10] rounded-lg px-4 py-2 text-sm text-slate-300 hover:text-white transition">Plane vs Linear</a>
+                    <a href="notion-vs-clickup.html" class="bg-white/[0.05] border border-white/[0.10] rounded-lg px-4 py-2 text-sm text-slate-300 hover:text-white transition">Notion vs ClickUp</a>
                 </div>
             </div>
         </div>
     </article>
 
-    <footer class="border-t border-white/5 py-8 px-6">
+    <footer class="border-t border-white/10 py-8 px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>

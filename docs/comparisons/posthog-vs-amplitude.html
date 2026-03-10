@@ -21,11 +21,11 @@
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #020617; color: #e2e8f0; }
         .gradient-bg { background: radial-gradient(ellipse at top, #1e1b4b 0%, #0f172a 50%, #020617 100%); }
         .grid-pattern { background-image: linear-gradient(rgba(99, 102, 241, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.02) 1px, transparent 1px); background-size: 64px 64px; }
-        .comparison-table th, .comparison-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .comparison-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; }
+        .comparison-table th, .comparison-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.10); }
+        .comparison-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #cbd5e1; }
         .check { color: #34d399; } .cross { color: #f87171; }
             a:focus-visible, button:focus-visible { outline: 2px solid #818cf8; outline-offset: 2px; border-radius: 4px; }
     </style>
@@ -34,13 +34,13 @@
     </script>
 </head>
 <body class="gradient-bg text-white grid-pattern antialiased">
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="../index.html" class="text-xl font-bold tracking-tight">Zero<span class="text-indigo-400">Intel</span></a>
             <div class="flex gap-6 text-sm">
-                <a href="../index.html" class="text-slate-400 hover:text-white transition">Home</a>
-                <a href="index.html" class="text-slate-400 hover:text-white transition">Comparisons</a>
-                <a href="../blog/" class="text-slate-400 hover:text-white transition">Blog</a>
+                <a href="../index.html" class="text-slate-300 hover:text-white transition">Home</a>
+                <a href="index.html" class="text-slate-300 hover:text-white transition">Comparisons</a>
+                <a href="../blog/" class="text-slate-300 hover:text-white transition">Blog</a>
                 <a href="../order.html" class="text-indigo-400 hover:text-indigo-300 transition font-medium">Order Report</a>
             </div>
         </div>
@@ -51,7 +51,7 @@
             <div class="mb-8"><a href="index.html" class="text-indigo-400 text-sm hover:text-indigo-300 transition">&larr; All Comparisons</a></div>
             <div class="text-sm text-slate-500 mb-4">Updated March 2026 &middot; 8 min read</div>
             <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight mb-6">PostHog vs Amplitude: Comprehensive Comparison 2026</h1>
-            <p class="text-lg text-slate-400 mb-12 leading-relaxed">PostHog and Amplitude represent two fundamentally different philosophies in product analytics. PostHog is open-source, self-hostable, and bundles analytics with session replay, feature flags, and A/B testing into a single platform. Amplitude is a mature, enterprise-grade analytics product known for its deep behavioral analysis, powerful cohort tools, and polished collaboration features. This comparison covers everything you need to pick the right tool for your product team in 2026.</p>
+            <p class="text-lg text-slate-300 mb-12 leading-relaxed">PostHog and Amplitude represent two fundamentally different philosophies in product analytics. PostHog is open-source, self-hostable, and bundles analytics with session replay, feature flags, and A/B testing into a single platform. Amplitude is a mature, enterprise-grade analytics product known for its deep behavioral analysis, powerful cohort tools, and polished collaboration features. This comparison covers everything you need to pick the right tool for your product team in 2026.</p>
 
             <div class="space-y-8 text-slate-300 leading-relaxed">
 
@@ -69,7 +69,7 @@
                     <h2 class="text-2xl font-bold text-white mb-4">Feature Comparison</h2>
                     <div class="overflow-x-auto">
                         <table class="comparison-table w-full bg-white/[0.02] rounded-xl overflow-hidden">
-                            <thead><tr class="bg-white/[0.03]"><th>Feature</th><th>PostHog</th><th>Amplitude</th></tr></thead>
+                            <thead><tr class="bg-white/[0.05]"><th>Feature</th><th>PostHog</th><th>Amplitude</th></tr></thead>
                             <tbody>
                                 <tr>
                                     <td class="text-white font-medium">Product Analytics</td>
@@ -129,7 +129,7 @@
                 <section>
                     <h2 class="text-2xl font-bold text-white mb-4">Pricing Comparison</h2>
                     <p class="mb-4"><strong class="text-white">PostHog</strong> uses usage-based pricing with a generous free tier:</p>
-                    <ul class="list-disc list-inside space-y-1 mb-6 text-slate-400">
+                    <ul class="list-disc list-inside space-y-1 mb-6 text-slate-300">
                         <li><strong class="text-slate-200">Free:</strong> 1M events/mo, 5K session recordings, 1M feature flag requests, 250 survey responses</li>
                         <li><strong class="text-slate-200">Product analytics:</strong> $0.00031/event after 1M free (volume discounts apply)</li>
                         <li><strong class="text-slate-200">Session replay:</strong> $0.005/recording after 5K free</li>
@@ -138,14 +138,14 @@
                         <li><strong class="text-slate-200">No seat-based pricing</strong> &mdash; unlimited users on all plans</li>
                     </ul>
                     <p class="mb-4"><strong class="text-white">Amplitude</strong> pricing:</p>
-                    <ul class="list-disc list-inside space-y-1 mb-6 text-slate-400">
+                    <ul class="list-disc list-inside space-y-1 mb-6 text-slate-300">
                         <li><strong class="text-slate-200">Starter (Free):</strong> Up to 50K monthly tracked users (MTUs), core analytics charts, unlimited seats</li>
                         <li><strong class="text-slate-200">Plus:</strong> From $49/mo &mdash; advanced analytics, unlimited saved charts, root cause analysis</li>
                         <li><strong class="text-slate-200">Growth:</strong> Custom pricing &mdash; behavioral cohorts, causal analysis, data governance, SSO</li>
                         <li><strong class="text-slate-200">Enterprise:</strong> Custom pricing &mdash; predictions, custom roles, dedicated CSM, HIPAA BAA, 99.9% SLA</li>
                         <li><strong class="text-slate-200">Amplitude Experiment</strong> and <strong class="text-slate-200">CDP</strong> are priced separately on top of Analytics</li>
                     </ul>
-                    <p class="text-slate-400"><strong class="text-white">Key pricing insight:</strong> PostHog's usage-based model is significantly cheaper for most startups and mid-market companies &mdash; a team tracking 5M events/month pays roughly $125/month with no per-seat fees. Amplitude's free tier is generous on MTUs (50K), but the jump to Growth or Enterprise for governance, cohorts, and SSO is a large, opaque cost increase. Where Amplitude wins on pricing is for very large organizations that negotiate enterprise deals with volume commitments &mdash; the per-event cost can be competitive, and you get white-glove support. PostHog is the clear cost winner for teams under ~100M events/month who want all-in-one tooling without sales calls.</p>
+                    <p class="text-slate-300"><strong class="text-white">Key pricing insight:</strong> PostHog's usage-based model is significantly cheaper for most startups and mid-market companies &mdash; a team tracking 5M events/month pays roughly $125/month with no per-seat fees. Amplitude's free tier is generous on MTUs (50K), but the jump to Growth or Enterprise for governance, cohorts, and SSO is a large, opaque cost increase. Where Amplitude wins on pricing is for very large organizations that negotiate enterprise deals with volume commitments &mdash; the per-event cost can be competitive, and you get white-glove support. PostHog is the clear cost winner for teams under ~100M events/month who want all-in-one tooling without sales calls.</p>
                 </section>
 
                 <section>
@@ -204,9 +204,9 @@
                     <h2 class="text-2xl font-bold text-white mb-4">Which Should You Choose?</h2>
                     <p class="mb-6">This decision often comes down to team DNA. Engineering-led product teams tend to gravitate toward PostHog. Product and growth teams in larger organizations lean toward Amplitude. Both are excellent &mdash; the question is which strengths matter more for your context.</p>
                     <div class="grid md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
+                        <div class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-6">
                             <h3 class="font-semibold text-white mb-2">Choose PostHog if...</h3>
-                            <ul class="space-y-2 text-sm text-slate-400">
+                            <ul class="space-y-2 text-sm text-slate-300">
                                 <li>You want analytics, session replay, feature flags, and A/B testing in one tool</li>
                                 <li>Data ownership and self-hosting are requirements (GDPR, sensitive data)</li>
                                 <li>You're an engineering-led team comfortable with SQL and open-source tooling</li>
@@ -214,9 +214,9 @@
                                 <li>You're a startup or mid-market company tracking under 100M events/month</li>
                             </ul>
                         </div>
-                        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
+                        <div class="bg-white/[0.05] border border-white/[0.10] rounded-xl p-6">
                             <h3 class="font-semibold text-white mb-2">Choose Amplitude if...</h3>
-                            <ul class="space-y-2 text-sm text-slate-400">
+                            <ul class="space-y-2 text-sm text-slate-300">
                                 <li>You need the deepest behavioral analytics &mdash; predictive models, advanced cohorts, journey maps</li>
                                 <li>Your team is mostly PMs and analysts who prefer no-code chart builders</li>
                                 <li>Data governance, compliance (HIPAA, SOC 2), and audit trails are non-negotiable</li>
@@ -232,23 +232,23 @@
                         <h2 class="text-2xl font-bold text-white mb-3">Need a deeper analysis?</h2>
                         <p class="text-slate-300 mb-6">Get a full competitive intelligence report with detailed analysis of these tools and more.</p>
                         <a href="../order.html" class="inline-block bg-indigo-600 hover:bg-indigo-500 px-8 py-4 rounded-xl text-lg font-semibold transition">Order Your Custom Report &mdash; $49</a>
-                        <p class="text-slate-400 text-sm mt-3">Delivered in 24 hours. 7-day money-back guarantee.</p>
+                        <p class="text-slate-300 text-sm mt-3">Delivered in 24 hours. 7-day money-back guarantee.</p>
                     </div>
                 </section>
             </div>
 
-            <div class="mt-16 pt-8 border-t border-white/5">
+            <div class="mt-16 pt-8 border-t border-white/10">
                 <h3 class="text-lg font-semibold mb-4">Related Comparisons</h3>
                 <div class="flex flex-wrap gap-3">
-                    <a href="posthog-vs-heap.html" class="text-sm bg-white/[0.04] border border-white/[0.06] px-4 py-2 rounded-lg hover:bg-white/[0.08] transition text-slate-300">PostHog vs Heap</a>
-                    <a href="amplitude-vs-mixpanel.html" class="text-sm bg-white/[0.04] border border-white/[0.06] px-4 py-2 rounded-lg hover:bg-white/[0.08] transition text-slate-300">Amplitude vs Mixpanel</a>
-                    <a href="plane-vs-linear.html" class="text-sm bg-white/[0.04] border border-white/[0.06] px-4 py-2 rounded-lg hover:bg-white/[0.08] transition text-slate-300">Plane vs Linear</a>
+                    <a href="posthog-vs-heap.html" class="text-sm bg-white/[0.04] border border-white/[0.10] px-4 py-2 rounded-lg hover:bg-white/[0.08] transition text-slate-300">PostHog vs Heap</a>
+                    <a href="amplitude-vs-mixpanel.html" class="text-sm bg-white/[0.04] border border-white/[0.10] px-4 py-2 rounded-lg hover:bg-white/[0.08] transition text-slate-300">Amplitude vs Mixpanel</a>
+                    <a href="plane-vs-linear.html" class="text-sm bg-white/[0.04] border border-white/[0.10] px-4 py-2 rounded-lg hover:bg-white/[0.08] transition text-slate-300">Plane vs Linear</a>
                 </div>
             </div>
         </div>
     </article>
 
-    <footer class="border-t border-white/5 py-8 px-6">
+    <footer class="border-t border-white/10 py-8 px-6">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <span class="text-sm font-semibold">Zero<span class="text-indigo-400">Intel</span></span>
             <div class="flex gap-6 text-sm text-slate-500"><a href="mailto:onur.akpolat@gmail.com" class="hover:text-white transition">Contact</a></div>
