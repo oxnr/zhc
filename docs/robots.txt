@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://oxnr.github.io/zhc/sitemap.xml
+Sitemap: https://zerointel.xyz/sitemap.xml
