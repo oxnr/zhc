@@ -1,7 +1,7 @@
 {
   "name": "zhc-mission-control",
   "version": "1.0.0",
-  "description": "Zero Human Corp — Unified Mission Control Dashboard",
+  "description": "Zero Human Corp \u2014 Unified Mission Control Dashboard",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,5 +11,8 @@
     "express": "^4.21.0",
     "ws": "^8.18.0",
     "chokidar": "^4.0.0"
+  },
+  "engines": {
+    "node": "^22.23.4 || ^24.22.1 || ^26.12.1"
   }
 }
